@@ -39,7 +39,7 @@ module Simpler
     end
 
     def make_response(controller, action)
-      controller.make_response
+      controller.make_response(action)
     end
 
   end

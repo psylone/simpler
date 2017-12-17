@@ -1,4 +1,4 @@
 Simpler.application.routes do
-  get '/', 'home#index'
-  post '/', 'home#create'
+  get '/tests', 'tests#index'
+  post '/tests', 'tests#create'
 end
