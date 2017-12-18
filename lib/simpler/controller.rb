@@ -3,7 +3,7 @@ require_relative 'view'
 module Simpler
   class Controller
 
-    attr_reader :name
+    attr_reader :name, :request, :response
 
     def initialize(env)
       @name = extract_name
