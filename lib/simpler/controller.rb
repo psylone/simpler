@@ -15,8 +15,9 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
       send(action)
+      check_template
+      set_default_headers
       write_response
 
       @response.finish
@@ -39,7 +40,8 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      renderer = View.renderer(@request.env)
+      renderer.new(@request.env).render(binding)
     end
 
     def request_params
@@ -60,6 +62,16 @@ module Simpler
 
     def headers
       @response.headers
+    end
+
+    def check_template
+      template = @request.env['simpler.template']
+
+      if template.is_a? Hash
+        case template.keys.first
+        when :plain then headers['Content-Type'] = Rack::Mime.mime_type('.text')
+        end
+      end  
     end
 
   end
