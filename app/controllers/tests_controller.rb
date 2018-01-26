@@ -1,7 +1,7 @@
 class TestsController < Simpler::Controller
 
   def index
-    render plain: "Index"
+    @time = Time.now
   end
 
   def create

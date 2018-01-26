@@ -17,7 +17,8 @@ class HTMLRenderer
 
   def view_path
     path = [controller.name, action].join('/')
-    Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+    @env['simpler.view_path'] = "#{path}.html.erb"
+    Simpler.root.join(VIEW_BASE_PATH, @env['simpler.view_path']) 
   end
 
   def controller
