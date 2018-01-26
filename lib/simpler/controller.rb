@@ -42,8 +42,12 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
+    def request_params
       @request.params
+    end
+
+    def params
+      @request.params.update(@request.env['simpler.route_params'])
     end
 
     def render(template)
