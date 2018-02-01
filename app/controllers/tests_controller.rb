@@ -8,4 +8,8 @@ class TestsController < Simpler::Controller
 
   end
 
+  def show
+    @test = set_params
+  end
+
 end

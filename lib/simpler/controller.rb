@@ -50,6 +50,10 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
+    def set_params
+      @request.params.update(@request.env['simpler.params'])
+    end
+
     def params
       @request.params
     end
