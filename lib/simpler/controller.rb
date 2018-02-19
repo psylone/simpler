@@ -15,8 +15,9 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
       send(action)
+      set_default_headers
+      select_format
       write_response
 
       @response.finish
@@ -38,7 +39,8 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      type = View.select_type(@request.env)
+      type.new(@request.env).render(binding)
     end
 
     def add_params
@@ -59,6 +61,16 @@ module Simpler
 
     def headers
       @response.headers
+    end
+
+    def select_format
+      template = @request.env['simpler.template']
+
+      if template.is_a? Hash
+        case template.keys.first
+        when :plain then @response['Content-Type'] = 'text/plain'
+        end
+      end
     end
 
   end
