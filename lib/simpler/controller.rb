@@ -34,12 +34,15 @@ module Simpler
 
     def write_response
       body = render_body
-
       @response.write(body)
     end
 
     def render_body
       View.new(@request.env).render(binding)
+    end
+
+    def add_params
+      @request.params.update(@request.env['simpler.params'])
     end
 
     def params
