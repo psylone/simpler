@@ -55,5 +55,9 @@ module Simpler
       @response.status = new_status
     end
 
+    def header(new_header)
+      @response['Content-Type'] = new_header
+    end
+
   end
 end

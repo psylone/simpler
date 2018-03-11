@@ -11,6 +11,7 @@ class TestsController < Simpler::Controller
   def list
     render plain: 'Plain text response'
     status 201
+    header 'text/plain'
   end
 
 end
