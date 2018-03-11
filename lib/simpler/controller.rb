@@ -22,6 +22,14 @@ module Simpler
       @response.finish
     end
 
+    def not_found_response
+      status 404
+      header 'plain/html'
+      render 'public/404'
+      write_response
+      @response.finish
+    end
+
     private
 
     def extract_name
@@ -34,7 +42,6 @@ module Simpler
 
     def write_response
       body = render_body
-
       @response.write(body)
     end
 
