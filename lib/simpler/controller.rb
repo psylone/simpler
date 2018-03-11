@@ -46,8 +46,9 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(render_params)
+      @request.env['simpler.template'] = render_params if render_params.is_a?(String)
+      @request.env['simpler.plain_response'] = render_params[:plain] if render_params.is_a?(Hash)
     end
 
   end

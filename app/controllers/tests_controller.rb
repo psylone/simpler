@@ -8,4 +8,8 @@ class TestsController < Simpler::Controller
 
   end
 
+  def list
+    render plain: 'Plain text response'
+  end
+
 end
