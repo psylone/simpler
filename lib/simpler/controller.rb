@@ -51,5 +51,9 @@ module Simpler
       @request.env['simpler.plain_response'] = render_params[:plain] if render_params.is_a?(Hash)
     end
 
+    def status(new_status)
+      @response.status = new_status
+    end
+
   end
 end
