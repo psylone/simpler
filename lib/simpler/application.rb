@@ -1,3 +1,4 @@
+require 'byebug'
 require 'yaml'
 require 'singleton'
 require 'sequel'
@@ -32,6 +33,7 @@ module Simpler
         Controller.new(env).not_found_response
       else
         controller = route.controller.new(env)
+        controller.request.params[:id]=route.id unless route.id.nil?
         action = route.action
         make_response(controller, action)
       end

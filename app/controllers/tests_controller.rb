@@ -14,4 +14,7 @@ class TestsController < Simpler::Controller
     header 'text/plain'
   end
 
+  def show
+    @test = Test[params[:id]]
+  end
 end

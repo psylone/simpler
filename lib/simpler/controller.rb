@@ -1,3 +1,4 @@
+require 'byebug'
 require_relative 'view'
 
 module Simpler
