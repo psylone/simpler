@@ -1,6 +1,7 @@
 class TestsController < Simpler::Controller
 
   def index
+    status 200
     @time = Time.now
   end
 
@@ -16,5 +17,6 @@ class TestsController < Simpler::Controller
 
   def show
     @test = Test[params[:id]]
+    status 200
   end
 end
