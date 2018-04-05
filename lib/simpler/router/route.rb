@@ -21,7 +21,7 @@ module Simpler
         router_path_parts = path_parts(@path)
         request_path_parts = path_parts(path)
 
-        return false if request_path_parts.size != router_path_parts.size
+        return false if request_path_parts&.size != router_path_parts.size
 
         router_path_parts.each_with_index do |part, index|
           if parameter?(part)
