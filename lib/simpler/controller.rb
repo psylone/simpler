@@ -35,7 +35,7 @@ module Simpler
     def write_response
       body = render_body
 
-      @response.write(body)
+      @response.write("#{body}\n")
     end
 
     def render_body
@@ -48,6 +48,10 @@ module Simpler
 
     def render(template)
       @request.env['simpler.template'] = template
+    end
+
+    def status(code)
+      @response.status = code
     end
 
   end
