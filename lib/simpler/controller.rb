@@ -11,6 +11,13 @@ module Simpler
       @response = Rack::Response.new
     end
 
+    def not_found
+      status(404)
+      set_default_headers
+      @response.write('<h1>404: not found<h1>')
+      @response.finish
+    end
+
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action

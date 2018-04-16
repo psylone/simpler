@@ -28,6 +28,8 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return not_found(env) if route.nil?
+
       controller = route.controller.new(env)
       action = route.action
 
@@ -48,6 +50,10 @@ module Simpler
       database_config = YAML.load_file(Simpler.root.join('config/database.yml'))
       database_config['database'] = Simpler.root.join(database_config['database'])
       @db = Sequel.connect(database_config)
+    end
+
+    def not_found(env)
+      Simpler::Controller.new(env).not_found
     end
 
     def make_response(controller, action)
