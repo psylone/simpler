@@ -54,5 +54,9 @@ module Simpler
       @response.status = code
     end
 
+    def set_header(header, value)
+      @response[header] = value
+    end
+
   end
 end
