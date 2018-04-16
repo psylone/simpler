@@ -10,9 +10,7 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      ERB.new(str_from_template).result(binding)
     end
 
     private
@@ -33,6 +31,14 @@ module Simpler
       path = template || [controller.name, action].join('/')
 
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+    end
+
+    def str_from_template
+      if template.is_a? Hash
+        template.first.last
+      else
+        File.read(template_path)
+      end
     end
 
   end
