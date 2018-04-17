@@ -49,10 +49,6 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
-    end
-
     def render(template)
       @request.env['simpler.template'] = template
     end
@@ -63,6 +59,10 @@ module Simpler
 
     def set_header(header, value)
       @response[header] = value
+    end
+
+    def params
+      @request.env['simpler.params']
     end
 
   end
