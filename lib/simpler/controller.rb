@@ -33,9 +33,10 @@ module Simpler
     end
 
     def write_response
-      body = render_body
-
-      @response.write(body)
+      if @response.body.empty?
+        body = render_body
+        @response.write(body)
+      end
     end
 
     def render_body
@@ -43,12 +44,34 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].merge!(@request.params)
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template[:plain]
+        plain(template[:plain])
+      elsif template[:inline]
+        inline(template[:inline])
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
+    def plain(text)
+      @response.write(text)
+      @response['Content-type'] = 'text/plain'
+    end
+
+    def inline(text)
+      @response.write(ERB.new(text).result(binding))
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def headers
+      @response
+    end
   end
 end
