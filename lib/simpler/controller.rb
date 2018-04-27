@@ -60,5 +60,9 @@ module Simpler
       @response['Content-Type'] = 'text/plain'
     end
 
+    def status(status)
+      @response.status = status
+    end
+
   end
 end
