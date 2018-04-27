@@ -21,7 +21,7 @@ module Simpler
 
       env['simpler.params'] ||= {}
       route = @routes.find { |route| route.match?(method, path) }
-      env['simpler.params'].update(route.params) if route
+      env['simpler.params'].merge!(route.params) if route
       route
     end
 
