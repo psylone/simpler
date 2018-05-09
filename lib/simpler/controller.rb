@@ -44,7 +44,7 @@ module Simpler
     end
     
     def add_params
-      @request.params.update(@request.env['simpler.params'])
+      @params ||= @request.params.update(@request.env['simpler.params'])
     end
 
     def params
