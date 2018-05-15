@@ -14,6 +14,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
+      check_params
       set_default_headers
       send(action) if action
       write_response
@@ -66,6 +67,18 @@ module Simpler
         @request.env['simpler.template_plain'] = template[:plain]
       else
         @request.env['simpler.template'] = template
+      end
+    end
+
+    def check_params
+      if @request.env['QUERY_STRING']
+        params = {}
+        args = @request.env['QUERY_STRING'].split('&')
+        args.each do |arg|
+          arg = arg.split('=')
+          params[arg[0]] = arg[1]
+        end
+        @request.env['simpler.parameters'] = params
       end
     end
   end

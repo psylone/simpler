@@ -16,7 +16,7 @@ class AppLogger
   def message(env, status, headers)
     "Request: #{env['REQUEST_METHOD']} #{env['REQUEST_URI']}\n" \
     "Handler: #{env['simpler.controller'].class}##{env['simpler.action']}\n" \
-    "Parameters: #{env['QUERY_STRING']}\n" \
+    "Parameters: #{env['simpler.parameters']}\n" \
     "Response: #{status} #{headers['Content-Type']} #{env['simpler.render_view']}\n" \
   end
 end

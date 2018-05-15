@@ -11,7 +11,7 @@ module Simpler
       end
 
       def match?(method, path)
-        if path == @path
+        if path.split('?').first == @path
           @method == method
         else
           @method == method && path.match(@path.split('/')[1]) && @path.match(':id')
