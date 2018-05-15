@@ -1,7 +1,6 @@
 module Simpler
   class Router
     class Route
-
       attr_reader :controller, :action
 
       def initialize(method, path, controller, action)
@@ -12,9 +11,12 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.match(@path)
+        if path == @path
+          @method == method
+        else
+          @method == method && path.match(@path.split('/')[1]) && @path.match(':id')
+        end
       end
-
     end
   end
 end

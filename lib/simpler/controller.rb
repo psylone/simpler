@@ -2,7 +2,6 @@ require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -16,13 +15,26 @@ module Simpler
       @request.env['simpler.action'] = action
 
       set_default_headers
-      send(action)
+      send(action) if action
       write_response
 
       @response.finish
     end
 
+    def params
+      arg = @request.env['PATH_INFO'].split('/').last.to_i
+      {id: arg} if @request.env['simpler.action'] == 'show'
+    end
+
     private
+
+    def change_header
+      @response['Content-Type'] = 'text/plain'
+    end
+
+    def check_status
+      @response.status = 201 if @request.env['REQUEST_METHOD'] == 'POST'
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
@@ -33,8 +45,14 @@ module Simpler
     end
 
     def write_response
-      body = render_body
+      case @response['Content-Type']
+        when 'text/plain'
+          body = @request.env['simpler.template_plain']
+        when 'text/html'
+          body = render_body
+      end
 
+      check_status
       @response.write(body)
     end
 
@@ -42,13 +60,13 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
-    end
-
     def render(template)
-      @request.env['simpler.template'] = template
+      if template[:plain]
+        change_header
+        @request.env['simpler.template_plain'] = template[:plain]
+      else
+        @request.env['simpler.template'] = template
+      end
     end
-
   end
 end
