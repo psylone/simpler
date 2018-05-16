@@ -28,8 +28,10 @@ module Simpler
         equal_element = true
 
         request_path.zip(route_path).each do |element_request_path, element_route_path|
-
-          return unless element_route_path
+          unless element_route_path
+            equal_element = false
+            return equal_element
+          end
 
           if element_route_path.include?(':')
             key = element_route_path.delete(':').to_sym
@@ -38,7 +40,7 @@ module Simpler
             equal_element = element_route_path == element_request_path if equal_element
           end
 
-          return unless equal_element
+          return equal_element unless equal_element
         end
 
         push_params(params, env) if equal_element
