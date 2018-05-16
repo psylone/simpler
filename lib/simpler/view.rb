@@ -6,12 +6,17 @@ module Simpler
 
     def initialize(env)
       @env = env
+
     end
 
-    def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+    def render(binding, content_type)
+      case content_type
+        when 'text/plain'
+          @env['simpler.template_plain']
+        when 'text/html'
+          @template = File.read(template_path)
+          ERB.new(@template).result(binding)
+      end
     end
 
     private
