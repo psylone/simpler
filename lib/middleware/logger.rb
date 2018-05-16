@@ -1,14 +1,16 @@
+require 'logger'
+
 class AppLogger
-  def initialize(app)
+  def initialize(app, **options)
+    @logger = Logger.new(options[:logdev] || STDOUT)
     @app = app
   end
 
   def call(env)
-    status, headers, response = @app.call(env)
+    status, headers = @app.call(env)
     log = message(env, status, headers)
-
-    File.open(Simpler.root.join('log/app.log'), 'a') { |file| file.write(log) }
-    [status, headers, response]
+    @logger.info(log)
+    @app.call(env)
   end
 
   private
