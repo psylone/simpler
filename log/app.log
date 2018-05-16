@@ -1,0 +1,20 @@
+
+I, [2018-05-16T13:52:02.483710 #15127]  INFO -- :
+Request: GET /tests/101
+Handler: TestsController#show
+Parameters: {:id=>101}
+Response: 200 text/html tests/show.html.erb
+
+I, [2018-05-16T13:52:09.508669 #15127]  INFO -- :
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>1}
+Response: 200 text/html tests/show.html.erb
+
+I, [2018-05-16T13:52:12.845445 #15127]  INFO -- :
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/plain
+
+
