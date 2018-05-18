@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'view'
 
 module Simpler
@@ -39,15 +40,39 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      template = @request.env['simpler.template']
+
+      if template && template.is_a?(Hash)
+        send(template.keys.first, template)
+      else
+        View.new(@request.env).render(binding)
+      end
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].update(@request.params)
     end
 
     def render(template)
       @request.env['simpler.template'] = template
+    end
+
+    def plain(template)
+      @response['Content-Type'] = 'text/plain'
+      template[:plain]
+    end
+
+    def json(template)
+      @response['Content-Type'] = 'application/json'
+      template[:json].to_json
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def header
+      @response
     end
 
   end
