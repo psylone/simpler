@@ -1,10 +1,11 @@
 class TestsController < Simpler::Controller
 
   def index
-    @time = Time.now
+    @tests = Test.all
+    # render plain: "some text"
   end
 
-  def create
+  def show
 
   end
 

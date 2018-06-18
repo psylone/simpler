@@ -12,6 +12,9 @@ module Simpler
       end
 
       def match?(method, path)
+        p path
+        p @method == method
+        p path.match(@path)
         @method == method && path.match(@path)
       end
 
