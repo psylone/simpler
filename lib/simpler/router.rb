@@ -17,8 +17,6 @@ module Simpler
 
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
-      # path = env['PATH_INFO']
-
       @routes.find { |route| route.match?(method, work_with_path(env)) }
     end
 
@@ -26,7 +24,7 @@ module Simpler
 
     def work_with_path(env)
       path = env['PATH_INFO']
-      p path.split('/')
+      path.split('/')
       if path.split('/').last =~ /^\d+$/
         a = path.split('/')
         a.pop

@@ -6,7 +6,14 @@ class TestsController < Simpler::Controller
   end
 
   def show
+    @params = self.params
+    @test = Test.where(id: @params).all
+  end
 
+  def new
+  end
+
+  def create
   end
 
 end

@@ -1,4 +1,6 @@
 require_relative 'view'
+require_relative 'headers'
+require_relative 'status'
 
 module Simpler
   class Controller
@@ -6,6 +8,7 @@ module Simpler
     attr_reader :name, :request, :response
 
     def initialize(env)
+      @env = env
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
@@ -15,11 +18,16 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
-      send(action)
-      write_response
 
+      set_status
+      send(action)
+      set_headers
+      write_response
       @response.finish
+    end
+
+    def params
+      @env['PATH_INFO'].split('/').last
     end
 
     private
@@ -28,8 +36,12 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
+    def set_status
+      @response.status = Status.new(@env).status
+    end
+
+    def set_headers
+      @response['Content-Type'] = Headers.new(@env).header
     end
 
     def write_response
@@ -42,9 +54,7 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
-    end
+
 
     def render(template)
       @request.env['simpler.template'] = template

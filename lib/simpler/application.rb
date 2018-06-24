@@ -27,14 +27,26 @@ module Simpler
     end
 
     def call(env)
-      route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
+      begin
+        route = @router.route_for(env)
+        controller = route.controller.new(env)
+        action = route.action
 
-      make_response(controller, action)
+        make_response(controller, action)
+      rescue
+        wrong_route
+      end
     end
 
     private
+
+    def wrong_route
+      [
+        404,
+        { "Content-Type" => 'text/plain'},
+        ["Not found"]
+      ]
+    end
 
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
