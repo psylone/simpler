@@ -10,11 +10,15 @@ class AppLogger
   end
 
   def call(env)
-    @logger.info( "Request: #{env["REQUEST_METHOD"]} #{env["PATH_INFO"]}")
-    @app.call(env)
 
-
-
+    status, headers, body = @app.call(env)
+    @response = Rack::Response.new
+    @logger.info("
+      Request: #{env["REQUEST_METHOD"]} #{env["PATH_INFO"]}
+      Handler: #{env['simpler.controller']}
+      Parameters: #{env['simpler.parameters']}
+      Response: #{@response.status} #{env['Content-Type']}")
+    [status, headers, body]
   end
 
 end

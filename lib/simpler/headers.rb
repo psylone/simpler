@@ -1,7 +1,8 @@
 module Simpler
   class Headers
 
-    HEADER = {plain: "text/plain", nil: "text/html"}
+    HEADER = {plain: "text/plain"}
+    DEFAULT_HEADER = "text/html"
 
     def initialize(env)
       @env = env
@@ -13,9 +14,9 @@ module Simpler
 
     def get_renderer
       if @env['simpler.template'].nil?
-        return HEADER[:nil]
+        return DEFAULT_HEADER
       else
-        @env['simpler.template'].each do |key, value|
+        @env['simpler.template'].each_key do |key|
           if HEADER.include?(key)
             return HEADER[key]
           end

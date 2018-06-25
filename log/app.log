@@ -1,7 +1,0 @@
-
-I, [2018-06-24T23:24:56.327884 #12299]  INFO -- : Request: GET /tests
-I, [2018-06-24T23:25:00.908172 #12299]  INFO -- : Request: GET /tests/1
-I, [2018-06-24T23:25:06.731106 #12299]  INFO -- : Request: GET /tests/2
-I, [2018-06-24T23:25:17.297313 #12299]  INFO -- : Request: GET /tests/4
-I, [2018-06-24T23:25:24.849312 #12299]  INFO -- : Request: GET /tests/5
-I, [2018-06-24T23:25:32.454824 #12299]  INFO -- : Request: GET /task

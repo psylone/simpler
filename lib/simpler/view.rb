@@ -7,7 +7,8 @@ module Simpler
 
     VIEW_BASE_PATH = 'app/views'.freeze
 
-    RENDERERS = {plain: PlainRenderer, nil: ErbRenderer}
+    RENDERERS = {plain: PlainRenderer}
+    DEFAULT_RENDERER = ErbRenderer
 
     def initialize(env)
       @env = env
@@ -26,7 +27,7 @@ module Simpler
 
     def get_renderer
       if template.nil?
-        return RENDERERS[:nil]
+        return DEFAULT_RENDERER
       else
         template.each do |key, value|
           if RENDERERS.include?(key)

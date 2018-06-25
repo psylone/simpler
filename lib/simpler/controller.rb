@@ -1,6 +1,5 @@
 require_relative 'view'
 require_relative 'headers'
-require_relative 'status'
 
 module Simpler
   class Controller
@@ -17,9 +16,10 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+      @request.env['simpler.parameters'] = params
 
 
-      set_status
+      # set_status
       send(action)
       set_headers
       write_response
@@ -27,17 +27,22 @@ module Simpler
     end
 
     def params
-      @env['PATH_INFO'].split('/').last
+      @params = {id: @env['PATH_INFO'].split('/').last}
+
+      @env['QUERY_STRING'].split('&').each do |item|
+        some_item = item.split('=')
+        @params[:"#{some_item[0]}"] = some_item[1]
+      end
+    end
+
+    def set_status(status)
+      @response.status = status
     end
 
     private
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
-    end
-
-    def set_status
-      @response.status = Status.new(@env).status
     end
 
     def set_headers

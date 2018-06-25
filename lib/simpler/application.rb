@@ -33,7 +33,7 @@ module Simpler
         action = route.action
 
         make_response(controller, action)
-      rescue
+      rescue NoMethodError
         wrong_route
       end
     end
