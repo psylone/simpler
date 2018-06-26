@@ -3,6 +3,7 @@ require 'singleton'
 require 'sequel'
 require_relative 'router'
 require_relative 'controller'
+require 'byebug'
 
 module Simpler
   class Application
@@ -28,10 +29,13 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
-
-      make_response(controller, action)
+      if route
+        controller = route.controller.new(env)
+        action = route.action
+        make_response(controller, action)
+      else
+        error_response
+      end
     end
 
     private
@@ -52,6 +56,22 @@ module Simpler
 
     def make_response(controller, action)
       controller.make_response(action)
+    end
+
+    def error_response
+      [status, headers, body]
+    end
+
+    def status
+      404
+    end
+
+    def headers
+      { 'Content-Type' => 'text/plain' }
+    end
+
+    def body
+      ['']
     end
 
   end
