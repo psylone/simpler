@@ -12,9 +12,15 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.match(@path)
+        if @path.include?(':id')
+          path_id = path.split('/')[2]
+          return path_match = false if path_id.nil?
+          path_match = path.match @path.gsub(':id', path_id)
+        else
+          path_match = path.match(@path)
+        end
+        @method == method && path_match
       end
-
     end
   end
 end

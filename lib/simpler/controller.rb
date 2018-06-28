@@ -15,7 +15,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
+      update_params
       send(action)
       write_response
 
@@ -28,8 +28,12 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
+    def set_content_type(type)
+      @response['Content-Type'] = type
+    end
+
+    def status(code)
+      @response.status = code
     end
 
     def write_response
@@ -42,13 +46,32 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
+    def headers
+      @response
+    end
+
     def params
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def update_params
+      resource_id = @request.path.split('/')[2]
+      @request.params[:id] = resource_id if resource_id =~ /\A\d+\z/
     end
 
+    def render(template = nil, plain: nil)
+      if template
+        @request.env['simpler.template'] = template
+        set_content_type('text/html')
+        set_template_path(template)
+      elsif plain
+        @request.env['simpler.plain'] = plain
+        set_content_type('text/plain')
+      end
+    end
+
+    def set_template_path(template_path)
+      @response['X-Template'] = template_path
+    end
   end
 end
