@@ -15,6 +15,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
+      update_params
       set_content_type('text/html')
       send(action)
       write_response
@@ -48,6 +49,11 @@ module Simpler
 
     def params
       @request.params
+    end
+
+    def update_params
+      resource_id = @request.path.split('/')[2]
+      @request.params[:id] = resource_id if resource_id =~ /\A\d+\z/
     end
 
     def render(template = nil, plain: nil)
