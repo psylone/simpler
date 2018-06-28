@@ -1,8 +1,9 @@
 class TestsController < Simpler::Controller
 
   def index
-     # @tests = Test.all
-     render plain: "some text"
+     @tests = Test.all
+     # render plain: "some text"
+     set_headers("Content-Type", "text/html")
      set_status("200")
   end
 

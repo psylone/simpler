@@ -2,7 +2,7 @@ require 'erb'
 
 module Simpler
   class View
-    class ErbRenderer
+    class HtmlRenderer
 
       def initialize(env)
         @env = env

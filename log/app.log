@@ -1,0 +1,380 @@
+I, [2018-06-27T04:05:41.374162 #13258]  INFO -- : 
+      Request: GET /tests
+      Handler: #<TestsController:0x00000000c86cc0>
+      Parameters: []
+      Response: 200 
+I, [2018-06-27T04:05:41.596346 #13258]  INFO -- : 
+      Request: GET /favicon.ico
+      Handler: 
+      Parameters: 
+      Response: 200 
+I, [2018-06-27T04:05:55.398364 #13316]  INFO -- : 
+      Request: GET /tests
+      Handler: #<TestsController:0x00000001525610>
+      Parameters: []
+      Response: 200 
+I, [2018-06-27T04:05:59.040436 #13316]  INFO -- : 
+      Request: GET /tessdf
+      Handler: 
+      Parameters: 
+      Response: 200 
+I, [2018-06-27T04:08:17.795730 #13376]  INFO -- : 
+      Request: GET /tests
+      Handler: #<TestsController:0x00000001ad40c0>
+      Parameters: []
+      Response: 200 
+I, [2018-06-27T04:09:42.412640 #13488]  INFO -- : 
+      Request: GET /tests
+      Handler: #<TestsController:0x00000001ed1538>
+      Parameters: []
+      Response: 200 
+I, [2018-06-27T04:09:48.930506 #13488]  INFO -- : 
+      Request: GET /tests
+      Handler: #<TestsController:0x00000001cc34d0>
+      Parameters: []
+      Response: 200 
+I, [2018-06-27T04:09:50.244593 #13488]  INFO -- : 
+      Request: GET /tests
+      Handler: #<TestsController:0x00000001c32728>
+      Parameters: []
+      Response: 200 
+I, [2018-06-27T05:18:18.727479 #15698]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000000d3f5b8>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-27T05:18:40.375558 #15751]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001b6bad8>
+      Parameters: 
+      Response: 200 
+I, [2018-06-27T05:18:50.782449 #15769]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x0000000280bd38>
+      Parameters: 
+      Response: 200 
+I, [2018-06-27T05:19:06.115488 #15785]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001d678c8>
+      Parameters: [:params, :update_param, :delete_param, :[], :[]=, :path, :values_at, :host, :fullpath, :scheme, :port, :authority, :url, :body, :GET, :POST, :logger, :accept_encoding, :cookies, :path_info, :delete?, :content_type, :script_name, :script_name=, :path_info=, :request_method, :query_string, :content_length, :user_agent, :multithread?, :referer, :referrer, :session, :session_options, :get?, :head?, :options?, :link?, :patch?, :post?, :put?, :trace?, :unlink?, :xhr?, :host_with_port, :ssl?, :ip, :media_type, :media_type_params, :content_charset, :form_data?, :parseable_data?, :base_url, :accept_language, :trusted_proxy?, :env, :has_header?, :get_header, :fetch_header, :each_header, :set_header, :add_header, :delete_header, :to_yaml, :to_yaml_properties, :psych_to_yaml, :instance_of?, :kind_of?, :is_a?, :tap, :public_send, :remove_instance_variable, :singleton_method, :instance_variable_set, :define_singleton_method, :method, :public_method, :extend, :to_enum, :enum_for, :<=>, :===, :=~, :!~, :eql?, :respond_to?, :freeze, :inspect, :object_id, :send, :display, :to_s, :nil?, :hash, :class, :singleton_class, :clone, :dup, :itself, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :frozen?, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variable_get, :instance_variables, :instance_variable_defined?, :!, :==, :!=, :__send__, :equal?, :instance_eval, :instance_exec, :__id__]
+      Response: 200 
+I, [2018-06-27T05:20:18.255926 #15845]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001a546b8>
+      Parameters: /tests/:test_id/questions/:id
+      Response: 200 
+I, [2018-06-27T05:20:39.083424 #15845]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001848d60>
+      Parameters: /tests/:test_id/questions/:id
+      Response: 200 
+I, [2018-06-27T05:21:00.723949 #15878]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001e7b9d0>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T05:39:07.251556 #16514]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x000000028da0e8>
+      Parameters: Hash
+      Response: 200 
+I, [2018-06-27T05:39:22.532281 #16543]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x000000027e6ee8>
+      Parameters: Hash
+      Response: 200 
+I, [2018-06-27T05:55:28.055381 #17181]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x000000010dd6c0>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T05:55:41.761294 #17200]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001d2be18>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:09:12.241538 #17595]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000002838c98>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:11:42.360032 #17667]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x000000021f09a8>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:05.204922 #17685]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001e2ae40>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:20.033201 #17697]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x0000000263f518>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:30.527900 #17713]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001a128f8>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:32.263649 #17713]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x000000019a5aa0>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:32.927785 #17713]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001977bc8>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:33.522352 #17713]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001930638>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:34.169725 #17713]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001481d58>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:34.869314 #17713]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x0000000137e910>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:35.474376 #17713]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001329d48>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:36.184676 #17713]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001137f80>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:12:57.810293 #17742]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x0000000101a3a0>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:13:07.274076 #17742]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000000e0e1b0>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-27T06:13:18.804778 #17775]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000000bc87c0>
+      Parameters: {"title"=>"ruby?level=1"}
+      Response: 200 
+I, [2018-06-28T02:53:37.253459 #888]  INFO -- : 
+      Request: GET /tests
+      Handler: #<TestsController:0x00000001d8f530>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T02:53:37.572303 #888]  INFO -- : 
+      Request: GET /favicon.ico
+      Handler: 
+      Parameters: 
+      Response: 200 
+I, [2018-06-28T03:57:44.521876 #5461]  INFO -- : 
+      Request: GET /tests
+      Handler: #<TestsController:0x00000001e5b388>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T03:58:07.291431 #5461]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001c46e08>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T03:58:16.299282 #5461]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x00000001bb9760>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T03:59:13.649984 #5550]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x0000000235d2f0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T03:59:40.106216 #5550]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000020e3ab0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:00:54.046508 #5587]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000002a068b8>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:01:21.795083 #5636]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000002250b00>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:03:49.413844 #5758]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000002f98150>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:09:45.166535 #5929]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000001daf330>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:11:07.981651 #5961]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000002983d28>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:11:28.580299 #5978]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000000ed72e0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:13:46.572209 #6182]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000023b13c8>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:17:26.450877 #6504]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000027de798>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:18:17.873427 #6546]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000029671f0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:19:18.567520 #6615]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000000d666b8>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:19:32.753712 #6634]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000010c74b0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:21:09.777307 #6672]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000002cdbd90>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:21:32.054483 #6689]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000013cdb00>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T04:21:54.437060 #6706]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000001c651a0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:09:16.629962 #9282]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000012536d0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:09:44.262079 #9407]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x0000000121fbf0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:10:35.545193 #9526]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000031b9420>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:10:49.632374 #9548]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x007f09ec016ee8>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:11:48.907091 #9643]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x007ffb68017168>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:13:20.946005 #9689]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000002081568>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:14:06.967127 #9832]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000021ae940>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:14:19.080899 #9850]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000017dd588>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:14:29.671880 #9862]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x007f3c18017268>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:15:18.211222 #9886]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000013accc0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:15:27.078919 #9900]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x007fa4bc017260>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:15:42.709900 #9933]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000002755330>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:41:36.693687 #12196]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x000000025431a0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:43:48.473240 #12356]  INFO -- : 
+      Request: GET /tests/1/questions/2
+      Handler: #<TestsController:0x00000002812d18>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:46:53.120890 #12481]  INFO -- : 
+      Request: GET /tests
+      Handler: #<TestsController:0x007f9858014738>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:47:11.276246 #12481]  INFO -- : 
+      Request: GET /tests/:test_id/questions/:id
+      Handler: #<TestsController:0x007f985807f9c0>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:47:17.722548 #12481]  INFO -- : 
+      Request: GET /tests/2/questions/3
+      Handler: #<TestsController:0x007f98580b1100>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:47:21.406290 #12481]  INFO -- : 
+      Request: GET /tests/2/
+      Handler: #<TestsController:0x007f98580dd728>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:47:25.483921 #12481]  INFO -- : 
+      Request: GET /tests/2
+      Handler: #<TestsController:0x00000002ad0618>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:47:28.776469 #12481]  INFO -- : 
+      Request: GET /tests/1
+      Handler: #<TestsController:0x007f985813d538>
+      Parameters: {}
+      Response: 200 
+I, [2018-06-28T05:48:08.282954 #12559]  INFO -- : 
+      Request: GET /tests/1
+      Handler: #<TestsController:0x00000001fdc0e0>
+      Parameters: {}
+      Response: 200 

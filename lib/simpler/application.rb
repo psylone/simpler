@@ -27,14 +27,14 @@ module Simpler
     end
 
     def call(env)
-      begin
-        route = @router.route_for(env)
+      route = @router.route_for(env)
+      if route.nil?
+        wrong_route
+      else
         controller = route.controller.new(env)
         action = route.action
 
         make_response(controller, action)
-      rescue NoMethodError
-        wrong_route
       end
     end
 

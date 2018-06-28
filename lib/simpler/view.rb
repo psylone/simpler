@@ -1,21 +1,21 @@
 require 'erb'
 require_relative 'view/plain_renderer'
-require_relative 'view/erb_renderer'
+require_relative 'view/html_renderer'
 
 module Simpler
   class View
 
     VIEW_BASE_PATH = 'app/views'.freeze
 
-    RENDERERS = {plain: PlainRenderer}
-    DEFAULT_RENDERER = ErbRenderer
+    RENDERERS = {"text/plain": PlainRenderer, "text/html": HtmlRenderer}
+    DEFAULT_RENDERER = HtmlRenderer
 
     def initialize(env)
       @env = env
     end
 
     def render(binding)
-      @renderer = get_renderer
+      @renderer = get_renderer(@env)
       @renderer.new(@env).render(binding)
     end
 
@@ -25,15 +25,11 @@ module Simpler
       @env['simpler.template']
     end
 
-    def get_renderer
+    def get_renderer(env)
       if template.nil?
         return DEFAULT_RENDERER
       else
-        template.each do |key, value|
-          if RENDERERS.include?(key)
-            return RENDERERS[key]
-          end
-        end
+        RENDERERS[env['Content-Type']]
       end
     end
   end
