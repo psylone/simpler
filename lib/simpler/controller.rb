@@ -46,6 +46,10 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
+    def headers
+      @response
+    end
+
     def params
       @request.params
     end
@@ -67,7 +71,7 @@ module Simpler
     end
 
     def set_template_path(template_path)
-      @response.set_header('X-Template', template_path)
+      @response['X-Template'] = template_path
     end
   end
 end

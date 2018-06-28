@@ -6,7 +6,6 @@ class Logger
   end
 
   def call(env)
-    @env = env
     @request = Rack::Request.new(env)
     @status, @headers, @body = @app.call(env)
     update_log
@@ -23,7 +22,8 @@ class Logger
   end
 
   def log_request
-    request = "Request: #{@request.request_method} #{@request.path}\n"
+    request_uri = @request.env['REQUEST_URI']
+    request = "Request: #{@request.request_method} #{request_uri}\n"
     @log_file.write(request)
   end
 
