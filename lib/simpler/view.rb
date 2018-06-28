@@ -10,11 +10,11 @@ module Simpler
     end
 
     def render(binding)
-      if template
+      if plain
+        plain
+      else
         template = File.read(template_path)
         ERB.new(template).result(binding)
-      elsif plain
-        plain
       end
     end
 

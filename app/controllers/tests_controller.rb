@@ -1,9 +1,8 @@
 class TestsController < Simpler::Controller
 
   def index
-    #@time = Time.now
-    render plain: 'Text'
-    status 201
+    @time = Time.now
+    render 'tests/list'
   end
 
   def show

@@ -1,4 +1,5 @@
 require 'pathname'
+require_relative 'simpler/middleware/logger'
 require_relative 'simpler/application'
 
 module Simpler

@@ -16,7 +16,6 @@ module Simpler
       @request.env['simpler.action'] = action
 
       update_params
-      set_content_type('text/html')
       send(action)
       write_response
 
@@ -59,10 +58,16 @@ module Simpler
     def render(template = nil, plain: nil)
       if template
         @request.env['simpler.template'] = template
+        set_content_type('text/html')
+        set_template_path(template)
       elsif plain
         @request.env['simpler.plain'] = plain
         set_content_type('text/plain')
       end
+    end
+
+    def set_template_path(template_path)
+      @response.set_header('X-Template', template_path)
     end
   end
 end

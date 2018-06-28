@@ -1,4 +1,3 @@
 Simpler.application.routes do
-  get '/tests/:id', 'tests#index'
-  post '/tests', 'tests#show'
+  get '/tests', 'tests#index'
 end
