@@ -3,13 +3,14 @@ class TestsController < Simpler::Controller
   def index
      @tests = Test.all
      # render plain: "some text"
-     set_headers("Content-Type", "text/html")
+     set_headers("text/html")
      set_status("200")
   end
 
   def show
+    # render plain: "some text"
     @params = self.params
-    @test = Test.where(id: @params[:id]).all
+    @test = Test.where(id: @params[":id"]).all
     set_status("200")
   end
 

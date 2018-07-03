@@ -1,10 +1,7 @@
-require 'linguistics'
 require_relative 'router/route'
 
 module Simpler
   class Router
-
-    Linguistics.use( :en )
 
     def initialize
       @routes = []
@@ -20,30 +17,20 @@ module Simpler
 
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
-      @routes.find { |route| route.match?(method, work_with_path(env)) }
+      path = env['PATH_INFO']
+
+      @routes.find { |route| route.match?(method, path) }
+    end
+
+    def set_env_route_params(env)
+      @route_params = []
+      @routes.each do |route|
+        @route_params << route.return_params
+      end
+      env['Simpler.Route.Params'] = @route_params.compact
     end
 
     private
-
-    def work_with_path(env)
-      path = env['PATH_INFO']
-      @path = []
-      @i = path.split('/').size
-      @j = 0
-      path.split('/').each do |item|
-        @j += 1
-        if item =~ /^\d+$/
-          if @j == @i
-            @path << ":id"
-          else
-            @path << @path[@j-2].en.plural + "_id"
-          end
-        else
-          @path << item
-        end
-      end
-      return @path.join('/')
-    end
 
     def add_route(method, path, route_point)
       route_point = route_point.split('#')

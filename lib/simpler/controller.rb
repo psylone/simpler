@@ -1,4 +1,5 @@
 require_relative 'view'
+require_relative 'router'
 
 module Simpler
   class Controller
@@ -24,7 +25,7 @@ module Simpler
     end
 
     def params
-      @request.params
+      @env['Simpler.Route.Params'][0].merge(@request.params)
     end
 
     def set_status(status)
@@ -41,8 +42,8 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_headers(content_header, type_content)
-      @response[content_header] = type_content
+    def set_headers(type_content)
+      @response["Content-Type"] = type_content
     end
 
     def write_response

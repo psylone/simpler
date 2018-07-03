@@ -27,20 +27,22 @@ module Simpler
     end
 
     def call(env)
+      @router.set_env_route_params(env)
       route = @router.route_for(env)
       if route.nil?
-        wrong_route
+        make_not_foud_response
       else
         controller = route.controller.new(env)
         action = route.action
 
         make_response(controller, action)
       end
+
     end
 
     private
 
-    def wrong_route
+    def make_not_foud_response
       [
         404,
         { "Content-Type" => 'text/plain'},
