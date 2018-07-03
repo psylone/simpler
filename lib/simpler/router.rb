@@ -22,6 +22,14 @@ module Simpler
       @routes.find { |route| route.match?(method, path) }
     end
 
+    def set_env_route_params(env)
+      @route_params = []
+      @routes.each do |route|
+        @route_params << route.return_params
+      end
+      env['Simpler.Route.Params'] = @route_params.compact
+    end
+
     private
 
     def add_route(method, path, route_point)
