@@ -6,14 +6,14 @@ module Simpler
     attr_reader :name, :request, :response
 
     def initialize(env)
-      @name = extract_name
-      @request = Rack::Request.new(env)
+      @name     = extract_name
+      @request  = Rack::Request.new(env)
       @response = Rack::Response.new
     end
 
     def make_response(action)
       @request.env['simpler.controller'] = self
-      @request.env['simpler.action'] = action
+      @request.env['simpler.action']     = action
 
       set_default_headers
       send(action)
@@ -46,7 +46,27 @@ module Simpler
       @request.params
     end
 
+    def plain(text)
+      @response.write(text)
+      @response['Content-Type'] = 'text/plain'
+    end
+
+    def status(status)
+      @response.status = status
+    end
+
+    def headers
+      @response.headers
+    end
+
+    def action_params
+      @request.env['action_params']
+    end
+
     def render(template)
+      puts 'dddddd'
+      return plain(template[:plain]) unless template[:plain].nil?
+      puts @request.env['simpler.template']
       @request.env['simpler.template'] = template
     end
 
