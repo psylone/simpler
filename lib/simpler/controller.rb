@@ -64,9 +64,7 @@ module Simpler
     end
 
     def render(template)
-      puts 'dddddd'
       return plain(template[:plain]) unless template[:plain].nil?
-      puts @request.env['simpler.template']
       @request.env['simpler.template'] = template
     end
 
