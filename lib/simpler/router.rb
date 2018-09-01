@@ -28,6 +28,7 @@ module Simpler
       route_point = route_point.split('#')
       controller = controller_from_string(route_point[0])
       action = route_point[1]
+      path = path_to_reg(path)
       route = Route.new(method, path, controller, action)
 
       @routes.push(route)
@@ -35,6 +36,15 @@ module Simpler
 
     def controller_from_string(controller_name)
       Object.const_get("#{controller_name.capitalize}Controller")
+    end
+
+    def path_to_reg(path)
+      path = path.split(':')
+      if path[1] == 'id'
+        path = path[0] + '\d+'
+      else
+        path = path[0]
+      end
     end
 
   end
