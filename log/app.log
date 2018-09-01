@@ -1,0 +1,5 @@
+# Logfile created on 2018-09-01 10:45:16 +0300 by logger.rb/56815
+I, [2018-09-01T10:45:22.166712 #15267]  INFO -- : Request: GET /tests?category=Backend
+I, [2018-09-01T10:45:22.171354 #15267]  INFO -- : Handler: TestsController#index
+Parameters: {"category"=>"Backend"}
+I, [2018-09-01T10:45:22.171471 #15267]  INFO -- : Response: 200 [text/html] tests/index.html.erb
