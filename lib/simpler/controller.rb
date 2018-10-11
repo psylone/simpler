@@ -33,9 +33,10 @@ module Simpler
     end
 
     def write_response
-      body = render_body
-
-      @response.write(body)
+      if @response.body.empty?
+        body = render_body
+        @response.write(body)
+      end
     end
 
     def render_body
@@ -47,7 +48,23 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template[:plain]
+        plain(template[:plain])
+      elsif template[:json]
+        json(template[:json])
+      else
+        @request.env['simpler.template'] = template
+      end
+    end
+
+    def plain(text)
+      @response.write(text)
+      @response['Content-Type'] = 'text/plain'
+    end
+
+    def json(hash)
+      @response.write(hash.to_json)
+      @response['Content-Type'] = 'application/json'
     end
 
   end
