@@ -1,0 +1,48 @@
+I, [2018-10-16T16:43:27.386401 #27537]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: 
+Response: 200 [text/plain] 
+
+I, [2018-10-16T17:21:36.275533 #12551]  INFO -- : 
+Request: GET /test/2
+Handler: NilClass#
+Parameters: 
+Response: 404 [text/plain] 
+
+I, [2018-10-16T17:23:14.209009 #12551]  INFO -- : 
+Request: GET /test/2
+Handler: NilClass#
+Parameters: 
+Response: 404 [text/plain] 
+
+I, [2018-10-16T17:23:17.391006 #12551]  INFO -- : 
+Request: GET /test/234
+Handler: NilClass#
+Parameters: 
+Response: 404 [text/plain] 
+
+I, [2018-10-16T17:30:02.337205 #17971]  INFO -- : 
+Request: GET /tests/234?4545=f
+Handler: TestsController#show
+Parameters: 
+Response: 200 [text/plain] 
+
+I, [2018-10-16T17:30:09.359064 #17971]  INFO -- : 
+Request: GET /tests/234
+Handler: TestsController#show
+Parameters: 
+Response: 200 [text/plain] 
+
+I, [2018-10-16T17:30:35.375215 #17971]  INFO -- : 
+Request: GET /tests/234
+Handler: TestsController#show
+Parameters: 
+Response: 200 [text/plain] 
+
+I, [2018-10-16T17:30:52.091269 #17971]  INFO -- : 
+Request: GET /tests/234?test=test
+Handler: TestsController#show
+Parameters: 
+Response: 200 [text/plain] 
+

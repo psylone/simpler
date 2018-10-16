@@ -1,14 +1,15 @@
 class TestsController < Simpler::Controller
-
   def index
     @time = Time.now
-    render json: {test: 'test'}
-    status 404
-    headers['Some-Header'] = 'Title'
+    render plain: "test"
+    status 200
+    headers['Content-Type'] = 'text/plain'
   end
 
-  def create
+  def create; end
 
+  def show
+    @params = params
+    render plain: params
   end
-
 end
