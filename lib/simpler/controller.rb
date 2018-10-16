@@ -2,7 +2,6 @@ require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -33,9 +32,10 @@ module Simpler
     end
 
     def write_response
-      body = render_body
-
-      @response.write(body)
+      if @response.body.empty?
+        body = render_body
+        @response.write(body)
+      end
     end
 
     def render_body
@@ -43,12 +43,31 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.params.update(@request.env['simpler.params'])
     end
 
     def render(template)
+      send(template.keys.first.to_s, template.values.first)
+    rescue NoMethodError
       @request.env['simpler.template'] = template
     end
 
+    def plain(text)
+      @response.write(text)
+      @response['Content-Type'] = 'text/plain'
+    end
+
+    def json(hash)
+      @response.write(hash.to_json)
+      @response['Content-Type'] = 'application/json'
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def headers
+      @response
+    end
   end
 end
