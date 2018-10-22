@@ -1,0 +1,108 @@
+I, [2018-10-22T20:28:05.221700 #7450]  INFO -- : 
+Request GET /tests
+Handler TestsController#index
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"220"} 
+
+
+I, [2018-10-22T20:28:08.668316 #7450]  INFO -- : 
+Request GET /tests
+Handler TestsController#index
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"220"} 
+
+
+I, [2018-10-22T20:28:11.223771 #7450]  INFO -- : 
+Request GET /tests/1
+Handler TestsController#show
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"195"} 
+
+
+I, [2018-10-22T20:28:12.329613 #7450]  INFO -- : 
+Request GET /tests/1
+Handler TestsController#show
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"195"} 
+
+
+I, [2018-10-22T20:28:13.026022 #7450]  INFO -- : 
+Request GET /tests/1
+Handler TestsController#show
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"195"} 
+
+
+I, [2018-10-22T20:28:13.499696 #7450]  INFO -- : 
+Request GET /tests/1
+Handler TestsController#show
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"195"} 
+
+
+I, [2018-10-22T20:28:14.086108 #7450]  INFO -- : 
+Request GET /tests/1
+Handler TestsController#show
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"195"} 
+
+
+I, [2018-10-22T20:31:04.940072 #7450]  INFO -- : 
+Request GET /tests/1
+Handler TestsController#show
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"195"} 
+
+
+I, [2018-10-22T20:31:05.559089 #7450]  INFO -- : 
+Request GET /tests/1
+Handler TestsController#show
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"195"} 
+
+
+I, [2018-10-22T20:37:22.232480 #7450]  INFO -- : 
+Request GET /tests/1
+Handler TestsController#show
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"195"} 
+
+
+I, [2018-10-22T20:37:25.258571 #7450]  INFO -- : 
+Request GET /tests
+Handler TestsController#index
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"220"} 
+
+
+I, [2018-10-22T20:37:30.088454 #7450]  INFO -- : 
+Request GET /tests/2
+Handler TestsController#show
+Parameters 
+Response 200 {"Content-Type"=>"text/html", "Content-Length"=>"195"} 
+
+
+I, [2018-10-22T20:45:03.297984 #8184]  INFO -- : 
+Request GET /
+Parameters 
+Response   public/404
+
+
+I, [2018-10-22T20:45:03.513595 #8184]  INFO -- : 
+Request GET /favicon.ico
+Parameters 
+Response   public/404
+
+
+I, [2018-10-22T20:45:04.193825 #8184]  INFO -- : 
+Request GET /
+Parameters 
+Response   public/404
+
+
+I, [2018-10-22T20:45:07.299360 #8184]  INFO -- : 
+Request GET /
+Parameters 
+Response   public/404
+
+
