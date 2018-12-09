@@ -19,7 +19,9 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
 
-      @routes.find { |route| route.match?(method, path) }
+      route = @routes.find { |route| route.match?(method, path) }
+
+      route || route_404
     end
 
     private
@@ -37,5 +39,8 @@ module Simpler
       Object.const_get("#{controller_name.capitalize}Controller")
     end
 
+    def route_404
+      Route.new('', '', Controller, :error_404)
+    end
   end
 end
