@@ -6,7 +6,6 @@ require_relative 'controller'
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -20,6 +19,7 @@ module Simpler
       setup_database
       require_app
       require_routes
+      require_renders
     end
 
     def routes(&block)
@@ -28,16 +28,27 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return not_found if route.nil?
+
       controller = route.controller.new(env)
       action = route.action
+      route.set_params(env)
 
       make_response(controller, action)
     end
 
     private
 
+    def not_found
+      [404, { 'Content-Type' => 'text/plain' }, ['Page not found']]
+    end
+
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
+    end
+
+    def require_renders
+      Dir["#{Simpler.root}/lib/simpler/view/*.rb"].each { |file| require file }
     end
 
     def require_routes
@@ -53,6 +64,5 @@ module Simpler
     def make_response(controller, action)
       controller.make_response(action)
     end
-
   end
 end

@@ -2,38 +2,16 @@ require 'erb'
 
 module Simpler
   class View
-
     VIEW_BASE_PATH = 'app/views'.freeze
+    DEFAULT_RENDER = 'html'.freeze
 
-    def initialize(env)
-      @env = env
+    def self.render(env)
+      Simpler::View.const_get("#{self.render_type(env).capitalize}Render")
     end
 
-    def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+    def self.render_type(env)
+      template = env.keys.select { |type| type.match(/simpler.template./) }
+      template.any? ? template.first.split('.').last : DEFAULT_RENDER
     end
-
-    private
-
-    def controller
-      @env['simpler.controller']
-    end
-
-    def action
-      @env['simpler.action']
-    end
-
-    def template
-      @env['simpler.template']
-    end
-
-    def template_path
-      path = template || [controller.name, action].join('/')
-
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
-    end
-
   end
 end

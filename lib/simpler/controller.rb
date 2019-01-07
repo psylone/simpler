@@ -1,7 +1,13 @@
 require_relative 'view'
+require 'byebug'
 
 module Simpler
   class Controller
+
+    HEADERS = {
+      plain: "text/plain",
+      html: "text/html"
+    }
 
     attr_reader :name, :request, :response
 
@@ -15,7 +21,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
+      set_headers
       send(action)
       write_response
 
@@ -28,8 +34,8 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
+    def set_headers(type = nil)
+      @response['Content-Type'] = HEADERS.fetch(type, 'text/html')
     end
 
     def write_response
@@ -39,16 +45,28 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      view_render = View.render(@request.env)
+      view_render.new(@request.env).render(binding)
     end
 
     def params
-      @request.params
+      @request.env['simpler.params']
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def header
+      @response
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
-    end
+      render = template.is_a?(Hash) ? template : { html: template }
+      type = render.keys.first
 
+      set_headers(type)
+      @request.env["simpler.template.#{type}"] = render[type]
+    end
   end
 end
