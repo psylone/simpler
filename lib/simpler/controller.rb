@@ -29,7 +29,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      @response['Content-Type'] = 'text/plain'
     end
 
     def write_response
@@ -50,5 +50,12 @@ module Simpler
       @request.env['simpler.template'] = template
     end
 
+    def set_status_code(code)
+      @response.status = code
+    end
+
+    def headers
+      @response
+    end
   end
 end
