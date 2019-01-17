@@ -14,6 +14,7 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+      
 
       set_default_headers
       send(action)
@@ -29,7 +30,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/plain'
+      @response['Content-Type'] = 'text/html'
     end
 
     def write_response
@@ -43,7 +44,7 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params']
     end
 
     def render(template)
@@ -57,5 +58,10 @@ module Simpler
     def headers
       @response
     end
+    
+    def path_params
+      @request.env['simpler.path_params']
+    end
+
   end
 end
