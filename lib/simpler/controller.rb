@@ -2,7 +2,6 @@ require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -14,8 +13,8 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+      @request.env['simpler.params'] = request.params
       
-
       set_default_headers
       send(action)
       write_response
@@ -44,7 +43,7 @@ module Simpler
     end
 
     def params
-      @request.env['simpler.params']
+      @request.env['params']
     end
 
     def render(template)
@@ -58,10 +57,5 @@ module Simpler
     def headers
       @response
     end
-    
-    def path_params
-      @request.env['simpler.path_params']
-    end
-
   end
 end
