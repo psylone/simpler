@@ -6,7 +6,6 @@ require_relative 'controller'
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -27,14 +26,16 @@ module Simpler
     end
 
     def call(env)
-      begin
-        route = @router.route_for(env)
+      route = @router.route_for(env)
+
+      if route
         controller = route.controller.new(env)
         action = route.action
+        env['simpler.params'] = route.params
         make_response(controller, action)
-      rescue NoMethodError
+      else
         not_found_route
-      end 
+      end
     end
 
     private
@@ -58,7 +59,7 @@ module Simpler
     end
 
     def not_found_route
-      [ 404, { "Content-Type" => "text/plain" }, ["Not found"] ]
+      [404, { 'Content-Type' => 'text/plain' }, ['Not found']]
     end
   end
 end

@@ -13,8 +13,8 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-      @request.env['simpler.params'] = request.params
-      
+      @request.env['simpler.params'].merge!(@request.params)
+
       set_default_headers
       send(action)
       write_response
@@ -33,9 +33,11 @@ module Simpler
     end
 
     def write_response
-      body = render_body
+      if @response.body.empty?
+        body = render_body
 
-      @response.write(body)
+        @response.write(body)
+      end
     end
 
     def render_body
@@ -43,19 +45,35 @@ module Simpler
     end
 
     def params
-      @request.env['params']
+      @request.env['simpler.params']
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      type_template = template.keys.first
+      case type_template
+      when :plain then plain(template[type_template])
+      when :json  then json(template[type_template])
+      else
+        @request.env['simpler.template'] = template
+      end
+    end
+
+    def plain(text)
+      @response.write(text)
+      @response['Content-Type'] = 'text/plain'
+    end
+
+    def json(text)
+      @response.write(text)
+      @response['Content-Type'] = 'application/json'
     end
 
     def set_status_code(code)
       @response.status = code
     end
 
-    def headers
-      @response
+    def headers(type)
+      @response.header['Content-Type'] = type
     end
   end
 end

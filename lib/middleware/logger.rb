@@ -1,6 +1,6 @@
 require 'logger'
 
-class AppLoger
+class AppLogger
   def initialize(app, **options)
     @logger = Logger.new(options[:logdev] || STDOUT)
     @app = app
@@ -19,6 +19,6 @@ class AppLoger
     "Request: #{env['REQUEST_METHOD']} #{env['REQUEST_URI']}\n" \
     "Handler: #{env['simpler.controller'].class}##{env['simpler.action']}\n" \
     "Parameters: #{env['simpler.params']}\n" \
-    "Response: #{status} #{headers['Content-Type']} #{env['simpler.path']}.html.erb\n"
+    "Response: #{status} #{headers['Content-Type']} #{env['simpler.view_path']}\n"
   end
 end
