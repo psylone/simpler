@@ -9,25 +9,21 @@ module Simpler
         @controller = controller
         @action = action
       end
-      
+
       def match?(method, path)
-        @method == method && !!match_path(path)
+        @method == method && match_path(path)
       end
-      
-      
-      def add_params(path)
+
+      def extract_params(path)
         params = {}
         requests = parse_path(path)
         routes = parse_path(@path)
 
         requests.zip(routes).each do |request, route|
-          if route.include?(':')
-            params[route.delete!(':').to_sym] = request
-          end
+          params[route.delete!(':').to_sym] = request if route.include?(':')
         end
-        params 
+        params
       end
-      
 
       private
 
@@ -35,19 +31,19 @@ module Simpler
         requests = parse_path(path)
         routes = parse_path(@path)
 
-        requests.zip(routes).each do |request, route|
-          return false if route.nil?
+        return false if requests.size != routes.size
 
+        requests.zip(routes).each do |request, route|
           if route.include?(':')
-            return true
+            true
           else
             return false if request != route
           end
         end
       end
-    
+
       def parse_path(path)
-        path.split('/').reject!(&:empty?)
+        path.split('/').reject(&:empty?)
       end
     end
   end
