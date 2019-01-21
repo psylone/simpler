@@ -27,15 +27,12 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-
-      if route
-        controller = route.controller.new(env)
-        action = route.action
-        env['simpler.params'] = route.params
-        make_response(controller, action)
-      else
-        not_found_route
-      end
+      
+      return not_found_route if route.nil?    
+      
+      controller = route.controller.new(env)
+      action = route.action
+      make_response(controller, action)
     end
 
     private
