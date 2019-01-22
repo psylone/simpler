@@ -32,13 +32,13 @@ module Simpler
     end
 
     def write_response
-        body = render_body
+      body = render_body
 
-        @response.write(body)
+      @response.write(body)
     end
 
     def render_body
-      @request.env['simpler.template'] || View.new(@request.env).render(binding)
+      View.new(@request.env, @render_type).render(binding)
     end
 
     def params
@@ -48,15 +48,16 @@ module Simpler
     def render(template)
       type_template = template.keys.first
       case type_template
-      when :plain then plain(template[type_template])
+      when :plain then render_plain('plain', template)
       else
         @request.env['simpler.template'] = template
       end
     end
 
-    def plain(text)
+    def render_plain(render_type, template)
+      @render_type = render_type
       headers['Content-Type'] = 'text/plain'
-      @request.env['simpler.template'] = text
+      @request.env['simpler.template'] = template[:plain]
     end
 
     def set_status_code(code)
