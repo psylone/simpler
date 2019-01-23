@@ -12,7 +12,7 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && match_path(path)
+        @method == method && match_path?(path)
       end
 
       def extract_params(path)
@@ -28,11 +28,10 @@ module Simpler
 
       private
 
-      def match_path(path)
+      def match_path?(path)
         requests = parse_path(path)
         routes = parse_path(@path)
-        return false if requests.size != routes.size
-        path.match(@path)
+        requests.size == routes.size && path.match?(@path)
       end
 
       def processing_paths(path)
