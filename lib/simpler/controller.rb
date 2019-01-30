@@ -31,13 +31,6 @@ module Simpler
 
     private
 
-    def not_found
-      status = 404
-      headers = {}
-      body = ["Nothing found"]
-      self
-    end
-
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
@@ -54,7 +47,6 @@ module Simpler
     def set_rendered_content_type(format)
       if format && !@response['Content-Type']
         case format
-         #   when :html then @response['Content-Type'] = "text/html"
           when :plain then @response['Content-Type'] = "text/plain"
         else
           # если формат не указан и контент тайп не указан - по дефолту устанавливаем
@@ -68,8 +60,7 @@ module Simpler
       @request.params
     end
 
-    # render plain: "404 Not Found", status: 404
-    #def render(template)
+    # EG render plain: "404 Not Found", status: 404
     def render(options)
       # если не просто render :edit
       if options.is_a?(Hash)
@@ -80,25 +71,9 @@ module Simpler
         format = RENDER_FORMATS.find { |f| options.keys[0] == f }
         @format = format.nil? ? :html : format
         set_rendered_content_type(@format)
-        @request.env['simpler.template'] = options[@format]
-   
-      #  @request.env['simpler.template'] = options
       end
-        @request.env['simpler.template'] = options
-        p @request.env['simpler.template']
-     # @request.env['simpler.template'] = options.first
-      # unless format
-      #   @request.env['simpler.template'] = options.first
-      #   return
-      # end
-      
-     # @response['Formated-Content'] = options[format]
 
-
-
+      @request.env['simpler.template'] = options
     end
-
-
-
   end
 end
