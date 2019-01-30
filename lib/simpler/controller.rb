@@ -23,13 +23,22 @@ module Simpler
       # ]
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-
+      set_default_headers
       send(action)
       write_response
       @response.finish
     end
 
+    
+    def params
+      @request.params
+    end
+
     private
+
+    def set_default_headers
+      @response['Content-Type'] ||= 'text/html'
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
@@ -54,10 +63,6 @@ module Simpler
           @response['Content-Type'] = "text/html"
         end
       end
-    end
-
-    def params
-      @request.params
     end
 
     # EG render plain: "404 Not Found", status: 404
