@@ -2,8 +2,11 @@ class TestsController < Simpler::Controller
 
   def index
     @time = Time.now
+    render plain: "оОЛОЛо"
+    # render plain: "tests/index", status: 202
  #   render 'tests/' content_type: 'text/plain', status: 500
-    render plain: "Plain text response", content_type: 'text/plain', status: 204
+
+#render plain: "Plain text response", content_type: 'text/plain', status: 204
   #  list
   end
 
