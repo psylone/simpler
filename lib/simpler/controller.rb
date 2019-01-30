@@ -42,10 +42,6 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_default_headers
-      @response['Content-Type'] ||= 'text/html'
-    end
-
     def write_response
       body = render_body
       @response.write(body)
@@ -65,7 +61,6 @@ module Simpler
           # или есть формат :html
           @response['Content-Type'] = "text/html"
         end
-        p @response['Content-Type']
       end
     end
 
@@ -77,24 +72,19 @@ module Simpler
     #def render(template)
     def render(options)
       # если не просто render :edit
-     p options.is_a?(Hash)
       if options.is_a?(Hash)
 
         content_type, status = options.values_at(:content_type, :status)
         @response['Content-Type'] = content_type if content_type
         @response.status = status if status
-      
         format = RENDER_FORMATS.find { |f| options.keys[0] == f }
-
-
-      # если надо рендерить не страницу, а текст render :plain/:html/:body "smth" 
-
         @format = format.nil? ? :html : format
         set_rendered_content_type(@format)
         @request.env['simpler.template'] = options[@format]
    
       #  @request.env['simpler.template'] = options
       end
+        @request.env['simpler.template'] = options
         p @request.env['simpler.template']
      # @request.env['simpler.template'] = options.first
       # unless format
