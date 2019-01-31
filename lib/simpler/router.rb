@@ -18,19 +18,24 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
       params = extract_params_from_path(path)
-      # p method    :get
-      # p path "/tests/101"
-      # p params [101]
-      @route = @routes.find do |route| 
-        route.match?(method, path, params)
-      end
+      @route = @routes.find { |route| route.match?(method, path) }
+      if @route
 
-      env['simpler.path_params'] = params if @route
+        # if options.key? :params
+        #   params.merge! options[:params]
+        # end
+
+      env['simpler.path_params'] = params unless params.empty?
+    end
       @route
       # #<Simpler::Router::Route:0x00007fb6f1b91978 @method=:get, @path="/tests", 
       #@controller=TestsController, @action="index">
 
     end
+
+    # 'tests/:id/question/:id'
+    # 'tests/101/question/:id'
+    # :id = 101, :id = 101
 
     private
 
@@ -39,9 +44,7 @@ module Simpler
       controller = controller_from_string(route_point[0])
       action = route_point[1]
       params = extract_params_from_path(path)
-      route = Route.new(method, path, controller, action)
-      # doesnt do anything - params empty because :id doesnt convert to_i
-      # route = Route.new(method, path, controller, action, params)
+      route = Route.new(method, path, controller, action, params)
 
       @routes.push(route)
     end
@@ -56,6 +59,7 @@ module Simpler
       params = path.split('/').reject(&:empty?)
       # getting all the ids - all the Strings is nil
       params.map { |param| param.to_i if param.to_i > 0 }.reject(&:nil?)
+      #params.map { |param| param.to_i if param.to_i > 0 }.reject(&:nil?)
     end
   end
 end

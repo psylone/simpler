@@ -14,7 +14,7 @@ class TestsController < Simpler::Controller
   end
 
   def show
-    
+   # @id = params[:id]
   end
 
   private
@@ -22,5 +22,4 @@ class TestsController < Simpler::Controller
   def test_params
     params.require(:test).permit(:title, :level)
   end
-
 end

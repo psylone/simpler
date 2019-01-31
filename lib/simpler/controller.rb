@@ -23,6 +23,9 @@ module Simpler
 
     def params
       @request.params
+      # если параметры кроются уже в самом запросе - в строке типа :id (tests/:id), а не как обычно ?opt1=value
+     # @params ||= @request.env['simpler.path_params'].merge(@request.params)
+      #@request.params.merge(@request.env['simpler.path_params'])
     end
 
     private
@@ -49,7 +52,7 @@ module Simpler
         case format
           when :plain then @response['Content-Type'] = "text/plain"
         else
-          # если формат не указан и контент тайп не указан - по дефолту устанавливаем, или есть формат :html
+          # если формат не указан и контент тайп не указан - по дефолту устанавливаем, или если формат :html
           @response['Content-Type'] = "text/html"
         end
       end
