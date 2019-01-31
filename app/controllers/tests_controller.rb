@@ -14,7 +14,7 @@ class TestsController < Simpler::Controller
   end
 
   def show
-    find_test
+    
   end
 
   private
@@ -23,7 +23,4 @@ class TestsController < Simpler::Controller
     params.require(:test).permit(:title, :level)
   end
 
-  def find_test
-    @test = Test.find(params[:id])
-  end
 end

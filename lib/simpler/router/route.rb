@@ -11,8 +11,14 @@ module Simpler
         @params = params
       end
 
-      def match?(method, path)
-        @method == method && path.match(@path)
+      def match?(method, path, params)
+        if params.empty?
+          @method == method && path.match(@path)
+        else
+          # show SHOW not INDEX
+          # apperently Do work with 2 levels - tests/101/questions/99
+          @method == method && @path.gsub(':id', params[0].to_s).match(path)
+        end
       end
     end
   end
