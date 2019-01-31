@@ -23,9 +23,6 @@ module Simpler
 
     def params
       @request.params
-      # если параметры кроются уже в самом запросе - в строке типа :id (tests/:id), а не как обычно ?opt1=value
-     # @params ||= @request.env['simpler.path_params'].merge(@request.params)
-      #@request.params.merge(@request.env['simpler.path_params'])
     end
 
     private

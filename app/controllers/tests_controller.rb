@@ -14,7 +14,8 @@ class TestsController < Simpler::Controller
   end
 
   def show
-   # @id = params[:id]
+    # NEED to merge :id from path_params to params of the controller to get access to it, don't know how to do it yet
+#    @id = params[:id]
   end
 
   private
