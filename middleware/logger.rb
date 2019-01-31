@@ -16,11 +16,24 @@ class AppLogger
 
   private
 
+
+# Пример:
+#  
+# Request: GET /tests?category=Backend
+# Handler: TestsController#index
+# Parameters: {'category' => 'Backend'}
+# Response: 200 OK [text/html] tests/index.html.erb
+
+# ОТРЕФАКТОРИТЬ
   def request_info(env)
     request_info = "\n REQUEST INFO \n"
     request_info << "Request Method #{env['REQUEST_METHOD']}\n"
     request_info << "Path Info: #{env['PATH_INFO']}\n"
+
+    # /? 
     request_info << "Query #{env['QUERY_STRING']}\n" unless env['QUERY_STRING'].empty?
+
+
 
     request_info << "Controller #{env['simpler.controller'].name.capitalize} \n" if env['simpler.controller']
     request_info << "#{env['simpler.controller'].params}\n" unless env['simpler.controller'].params.empty?

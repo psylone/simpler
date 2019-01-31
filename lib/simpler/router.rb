@@ -2,7 +2,6 @@ require_relative 'router/route'
 
 module Simpler
   class Router
-
     def initialize
       @routes = []
     end
@@ -18,8 +17,16 @@ module Simpler
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
+      params = extract_params_from_path(path)
+      # p method    :get
+      # p path "/tests/101"
+      # p params [101]
 
-      @routes.find { |route| route.match?(method, path) }
+      @route = @routes.find { |route| route.match?(method, path) }
+      #@route = @routes.find { |route| route.match?(method, path) }
+      # #<Simpler::Router::Route:0x00007fb6f1b91978 @method=:get, @path="/tests", 
+      #@controller=TestsController, @action="index">
+
     end
 
     private
@@ -28,7 +35,8 @@ module Simpler
       route_point = route_point.split('#')
       controller = controller_from_string(route_point[0])
       action = route_point[1]
-      route = Route.new(method, path, controller, action)
+      params = extract_params_from_path(path)
+      route = Route.new(method, path, controller, action, params)
 
       @routes.push(route)
     end
@@ -37,5 +45,12 @@ module Simpler
       Object.const_get("#{controller_name.capitalize}Controller")
     end
 
+
+     # path = "/tests/101/questions/18" ??? 
+    def extract_params_from_path(path)
+      params = path.split('/').reject(&:empty?)
+      # getting all the ids - all the Strings is nil
+      params.map { |param| param.to_i if param.to_i > 0 }.reject(&:nil?)
+    end
   end
 end

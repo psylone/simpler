@@ -2,7 +2,7 @@ require_relative 'view'
 
 module Simpler
   class Controller
-    RENDER_FORMATS = [:body, :plain, :html]
+    RENDER_FORMATS = %i[body plain html].freeze
 
     attr_reader :name, :request, :response, :format
 
@@ -13,14 +13,6 @@ module Simpler
     end
 
     def make_response(action)
-
-            # [
-      #   200,
-      #   { 'Content-Type' => 'text/plain', 
-      #     'X-Simpler-Controller' => self.class.name,
-      #     'X-Simpler-Action' => action },
-      #   ["Simpler framework in action!\n"]
-      # ]
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
       set_default_headers
@@ -29,7 +21,6 @@ module Simpler
       @response.finish
     end
 
-    
     def params
       @request.params
     end
@@ -58,8 +49,7 @@ module Simpler
         case format
           when :plain then @response['Content-Type'] = "text/plain"
         else
-          # если формат не указан и контент тайп не указан - по дефолту устанавливаем
-          # или есть формат :html
+          # если формат не указан и контент тайп не указан - по дефолту устанавливаем, или есть формат :html
           @response['Content-Type'] = "text/html"
         end
       end
