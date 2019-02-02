@@ -79,7 +79,8 @@ module Simpler
     def set_headers(header_name, value)
       @response[header_name] = value
     end
-    #теперь статус можно устанавливать и не в рендере, а так: status 201
+
+    # теперь статус можно устанавливать и не в рендере, а так: status 201
     def status(code)
       @response.status = code
     end

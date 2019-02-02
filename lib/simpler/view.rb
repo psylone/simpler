@@ -27,13 +27,6 @@ module Simpler
       @env['simpler.template']
     end
 
-    def template_path
-      path = template || [controller.name, action].join('/')
-      # for logger
-      @env['simpler.template_path'] = "#{path}.html.erb"
-      Simpler.root.join(VIEW_BASE_PATH, @env['simpler.template_path'])
-    end
-
     def render_options(binding)
       if template.is_a?(Hash)
         render_raw
@@ -50,6 +43,13 @@ module Simpler
     def render_from_file(binding)
       template = File.read(template_path)
       ERB.new(template).result(binding)
+    end
+
+    def template_path
+      path = template || [controller.name, action].join('/')
+      # for logger
+      @env['simpler.template_path'] = "#{path}.html.erb"
+      Simpler.root.join(VIEW_BASE_PATH, @env['simpler.template_path'])
     end
   end
 end

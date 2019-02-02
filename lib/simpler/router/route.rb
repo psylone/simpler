@@ -26,7 +26,6 @@ module Simpler
       end
 
       private
-      attr_reader :path_regexp
 
       def make_regexp(path)
         regexp = path
