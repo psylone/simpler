@@ -17,11 +17,9 @@ module Simpler
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
-      params = extract_params_from_path(path)
       @route = @routes.find { |route| route.match?(method, path) }
-      if @route
-        env['simpler.path_params'] = params unless params.empty?
-      end
+      @route.path_params(env) if @route
+
       @route
     end
 
@@ -31,20 +29,13 @@ module Simpler
       route_point = route_point.split('#')
       controller = controller_from_string(route_point[0])
       action = route_point[1]
-      params = extract_params_from_path(path)
-      route = Route.new(method, path, controller, action, params)
+      route = Route.new(method, path, controller, action)
 
       @routes.push(route)
     end
 
     def controller_from_string(controller_name)
       Object.const_get("#{controller_name.capitalize}Controller")
-    end
-
-    def extract_params_from_path(path)
-      params = path.split('/').reject(&:empty?)
-      # getting all the ids - all the Strings is nil
-      params.map { |param| param.to_i if param.to_i > 0 }.reject(&:nil?)
     end
   end
 end

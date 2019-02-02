@@ -27,14 +27,12 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return page_not_found if route.nil?
       # если пути правильные - есть что показать
-      if route
-        controller = route.controller.new(env)
-        action = route.action
-        make_response(controller, action)
-      else
-        page_not_found
-      end
+      controller = route.controller.new(env)
+      action = route.action
+      env['simpler.path_params'] = route.params unless route.params.empty?
+      make_response(controller, action)
     end
 
     private

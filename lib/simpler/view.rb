@@ -44,7 +44,7 @@ module Simpler
     end
 
     def render_raw
-      "#{template.values[0]}\n"
+      "#{template.values[0]}"
     end
 
     def render_from_file(binding)

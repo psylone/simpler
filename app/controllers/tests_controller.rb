@@ -1,26 +1,21 @@
 class TestsController < Simpler::Controller
   def index
     @time = Time.now
-    #list
-    #render plain: "Plain text response", content_type: 'text/plain', status: 204
+    # render plain: 'Привет!'
+    # set_headers 'Greetings', 'Hi/Aloha/Ciao'
+    # render plain: "Plain text response\n", content_type: 'text/plain', status: 205
+    # list
+    # render plain: 'Plain text response', content_type: 'text/plain', status: 204
   end
 
   def list
-    render html: "<h1><i>HERE WE GO </i></h1>", status: 202
+    render html: "<h1><i>HERE WE GO </i></h1>\n", status: 202
   end
 
   def create
-    @test = Test.new(test_params)
   end
 
   def show
-    # NEED to merge :id from path_params to params of the controller to get access to it, don't know how to do it yet
-#    @id = params[:id]
-  end
-
-  private
-
-  def test_params
-    params.require(:test).permit(:title, :level)
+    @id = params[:id]
   end
 end
