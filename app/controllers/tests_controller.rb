@@ -1,8 +1,8 @@
 class TestsController < Simpler::Controller
   def index
     @time = Time.now
-    # render plain: 'Привет!'
-    # set_headers 'Greetings', 'Hi/Aloha/Ciao'
+    render plain: 'Привет!'
+    # set_header 'Greetings', 'Hi/Aloha/Ciao'
     # render plain: "Plain text response\n", content_type: 'text/plain', status: 205
     # list
     # render plain: 'Plain text response', content_type: 'text/plain', status: 204

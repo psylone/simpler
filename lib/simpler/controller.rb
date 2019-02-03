@@ -15,8 +15,7 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-      set_default_header
-      #set_rendered_content_type
+      set_default_headers
       send(action)
       write_response
 
@@ -29,7 +28,7 @@ module Simpler
 
     private
 
-    def set_default_header
+    def set_default_headers
       @response['Content-Type'] ||= ['text/html']
     end
 
@@ -60,7 +59,7 @@ module Simpler
         set_content_type_from_format(given_format) if RENDER_FORMATS.include?(given_format)
 
         # если человек вдруг указал и формат и content-type, то приоритет будет у content-type
-        @response['Content-Type'] = content_type if content_type
+        set_header('Content-Type', content_type)
         @response.status = status if status
       end
 
@@ -76,8 +75,8 @@ module Simpler
     end
 
     # теперь хедеры можно добавлять так: set_headers 'Content-Type', 'text/plain'
-    def set_headers(header_name, value)
-      @response[header_name] = value
+    def set_header(header_name, value)
+      @response[header_name] = value unless value.nil?
     end
 
     # теперь статус можно устанавливать и не в рендере, а так: status 201
