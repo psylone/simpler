@@ -7,9 +7,9 @@ module Simpler
         @method = method
         @path = path
         # it's from def route in routes - tests/:id
-        @params_keys = params_keys_from_path(@path)
         @controller = controller
         @action = action
+        @params = {}
 
         @path_regexp = make_regexp(@path)
       end
@@ -21,35 +21,28 @@ module Simpler
       def path_params(env)
         # it's from current route - tests/101
         path = env['PATH_INFO']
-        params_values = params_values_from_path(path)
-        @params = make_hash_from_params(@params_keys, params_values)
+        make_hash_from_params(path)
       end
 
       private
 
       def make_regexp(path)
-        regexp = path
-        keys = path.scan(/:\w+/)
-
-        # меняем все :id и т.д. на регекспы, чтобы tests/:id распознало 101 как :id 
-        #path_params_keys.each { |key| regexp = regexp.gsub(/#{key}/, '([1-9][0-9]*)') }
+        # меняем все :keys и т.д. на регекспы, чтобы tests/:id распознало 101 как :id 
         # работает не только с числами  /categories/:slug/posts
-        keys.each { |key| regexp = regexp.gsub(/#{key}/, '((?:)\w+)') }
-        /#{regexp}$/
+        Regexp.new("#{path.gsub(/:\w+/, '((?:)\w+)')}$")
       end
 
-      def make_hash_from_params(params_keys, params_values)
-        Hash[params_keys.map(&:to_sym).zip(params_values)]
-      end
+      def make_hash_from_params(path)
+        route_mask = @path.split('/').reject(&:empty?)
+        request_params = path.split('/').reject(&:empty?)
 
-      def params_keys_from_path(path)
-        path.scan(/(?<=:)\w+/).map(&:to_sym)
-      end
-
-      def params_values_from_path(path)
-        params = path.split('/').reject(&:empty?)
-        # getting all the ids - all the Strings are nil
-        params.map { |param| param.to_i if param.to_i > 0 }.compact
+        route_mask.each_with_index do |element, index|
+        # если элемент — символ, типа :id 
+          if element[0] == ':'
+            element.delete!(':') # making element sym
+            @params[element.to_sym] = request_params[index]
+          end
+        end
       end
     end
   end

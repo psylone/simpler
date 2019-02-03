@@ -2,8 +2,8 @@ require_relative 'view'
 
 module Simpler
   class Controller
-    RENDER_FORMATS = %i[body plain html].freeze
     FORMAT_CONTENT_TYPES = { plain: 'text/plain', html: 'text/html' }.freeze
+    RENDER_FORMATS = [*FORMAT_CONTENT_TYPES.keys, :body].freeze
 
     attr_reader :name, :request, :response
     def initialize(env)
@@ -15,7 +15,8 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-      set_rendered_content_type
+      set_default_header
+      #set_rendered_content_type
       send(action)
       write_response
 
@@ -23,11 +24,14 @@ module Simpler
     end
 
     def params
-      request_params
-      request_params.merge(path_params) if path_params && request_params
+      request_params.merge(path_params)
     end
 
     private
+
+    def set_default_header
+      @response['Content-Type'] ||= ['text/html']
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
@@ -35,14 +39,14 @@ module Simpler
 
     def write_response
       body = render_body
-      @response.write(body)
+      @response.write("#{body}\n")
     end
 
     def render_body
       View.new(@request.env).render(binding)
     end
 
-    def set_rendered_content_type(format = default_format)
+    def set_content_type_from_format(format)
       @response['Content-Type'] = FORMAT_CONTENT_TYPES[format]
     end
 
@@ -53,18 +57,14 @@ module Simpler
         content_type, status = options.values_at(:content_type, :status)
 
         given_format = options.keys[0]
-        render_format = RENDER_FORMATS.include?(given_format) ? given_format : default_format
-        set_rendered_content_type(render_format)
+        set_content_type_from_format(given_format) if RENDER_FORMATS.include?(given_format)
+
         # если человек вдруг указал и формат и content-type, то приоритет будет у content-type
         @response['Content-Type'] = content_type if content_type
         @response.status = status if status
       end
 
       @request.env['simpler.template'] = options
-    end
-
-    def default_format
-      :html
     end
 
     def path_params

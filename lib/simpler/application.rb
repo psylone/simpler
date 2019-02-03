@@ -31,7 +31,7 @@ module Simpler
       # если пути правильные - есть что показать
       controller = route.controller.new(env)
       action = route.action
-      env['simpler.path_params'] = route.params unless route.params.empty?
+      env['simpler.path_params'] = route.params
       make_response(controller, action)
     end
 

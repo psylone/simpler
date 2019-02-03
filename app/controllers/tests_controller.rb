@@ -9,7 +9,7 @@ class TestsController < Simpler::Controller
   end
 
   def list
-    render html: "<h1><i>HERE WE GO </i></h1>\n", status: 202
+    render html: "<h1><i>HERE WE GO </i></h1>", status: 202
   end
 
   def create

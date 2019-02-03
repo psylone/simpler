@@ -26,10 +26,12 @@ class AppLogger
     request_info << "Request Method #{env['REQUEST_METHOD']}\n"
     request_info << "Path Info: #{env['PATH_INFO']}\n"
     request_info << "Query #{env['QUERY_STRING']}\n" unless env['QUERY_STRING'].empty?
-    # чтобы избежать no method error - если страница not found, то в логах все равно продолжает писаться и возникает ошибка
-    return unless env['simpler.controller']
-    request_info << "Controller #{env['simpler.controller'].name.capitalize} \n"
-    request_info << "#{env['simpler.controller'].params}\n" unless env['simpler.controller'].params.nil?
+
+    controller = env['simpler.controller']
+    return request_info unless controller
+
+    request_info << "Controller #{controller.name.capitalize} \n"
+    request_info << "#{controller.params}\n" unless controller.params.nil?
     request_info << "Action #{env['simpler.action']}\n" if env['simpler.action']
   end
 
