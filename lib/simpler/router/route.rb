@@ -33,16 +33,18 @@ module Simpler
       end
 
       def make_hash_from_params(path)
-        route_mask = @path.split('/').reject(&:empty?)
-        request_params = path.split('/').reject(&:empty?)
+        # route_mask = @path.split('/').reject(&:empty?)
+        # request_params = path.split('/').reject(&:empty?)
+        route_mask = array_from_path(@path)
+        request_params = array_from_path(path)
 
-        route_mask.each_with_index do |element, index|
-        # если элемент — символ, типа :id 
-          if element[0] == ':'
-            element.delete!(':') # making element sym
-            @params[element.to_sym] = request_params[index]
-          end
+        route_mask.zip(request_params).each do |route, request|
+          @params[route.delete!(':').to_sym] = request if route.start_with?(':')
         end
+      end
+
+      def array_from_path(path)
+        path.split('/').reject(&:empty?)
       end
     end
   end
