@@ -1,7 +1,7 @@
 module Simpler
   class Router
     class Route
-      attr_reader :controller, :action, :params
+      attr_reader :controller, :action
 
       def initialize(method, path, controller, action)
         @method = method
@@ -9,8 +9,6 @@ module Simpler
         # it's from def route in routes - tests/:id
         @controller = controller
         @action = action
-        @params = {}
-
         @path_regexp = make_regexp(@path)
       end
 
@@ -18,8 +16,7 @@ module Simpler
         @method == method && path.match(@path_regexp)
       end
 
-      def path_params(env)
-        # it's from current route - tests/101
+      def request_path_params(env)
         path = env['PATH_INFO']
         make_hash_from_params(path)
       end
@@ -33,13 +30,12 @@ module Simpler
       end
 
       def make_hash_from_params(path)
-        # route_mask = @path.split('/').reject(&:empty?)
-        # request_params = path.split('/').reject(&:empty?)
+        params = {}
         route_mask = array_from_path(@path)
         request_params = array_from_path(path)
 
         route_mask.zip(request_params).each do |route, request|
-          @params[route.delete!(':').to_sym] = request if route.start_with?(':')
+          params[route.delete!(':').to_sym] = request if route.start_with?(':')
         end
       end
 
