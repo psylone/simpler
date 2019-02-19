@@ -46,8 +46,16 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(template )
+      if template[:plain]
+        @request.env['simpler.text'] = template[:plain]
+      else
+        @request.env['simpler.template'] = template
+      end
+    end
+
+    def view
+
     end
 
   end
