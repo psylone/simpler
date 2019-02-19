@@ -1,0 +1,4 @@
+rack/log
+.idea
+.git
+*.keep

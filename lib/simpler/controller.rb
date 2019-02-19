@@ -9,6 +9,7 @@ module Simpler
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @type_render = nil
     end
 
     def make_response(action)
@@ -29,7 +30,11 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      set_header('Content-Type', 'text/html')
+    end
+
+    def set_header(key, v)
+      @response.headers[key] = v
     end
 
     def write_response
@@ -39,16 +44,27 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      View.new(@request.env).render(binding, @type_render)
     end
 
     def params
-      @request.params
+      @request.params.merge(@request.env['simpler.route_params'])
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.keys.first == :plain
+        status(template[:status])
+
+        set_header('Content-Type', 'text/plain')
+        @type_render = 'plain'
+        @request.env['simpler.template'] = template[:plain]
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
+    def status(value)
+      @response.status = value || 200
+    end
   end
 end
