@@ -1,5 +1,6 @@
 require 'yaml'
 require 'singleton'
+require 'jdbc/sqlite3'
 require 'sequel'
 require_relative 'router'
 require_relative 'controller'
@@ -28,10 +29,13 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
-
-      make_response(controller, action)
+      if route
+        controller = route.controller.new(env)
+        action = route.action
+        make_response(controller, action)
+      else
+        url_not_found_response
+      end
     end
 
     private
@@ -47,11 +51,19 @@ module Simpler
     def setup_database
       database_config = YAML.load_file(Simpler.root.join('config/database.yml'))
       database_config['database'] = Simpler.root.join(database_config['database'])
-      @db = Sequel.connect(database_config)
+      @db = Sequel.connect("jdbc:sqlite:#{database_config['database']}") #(database_config)
     end
 
     def make_response(controller, action)
       controller.make_response(action)
+    end
+
+    def url_not_found_response
+      [
+        404,
+        { 'Content-Type' => 'text/plain' },
+        ["Error: 404\nURL not found\n"]
+      ]
     end
 
   end

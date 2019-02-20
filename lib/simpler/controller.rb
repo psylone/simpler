@@ -43,11 +43,29 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].merge!(@request.params)
     end
 
     def render(template)
       @request.env['simpler.template'] = template
+      case template.keys.first
+      when :plain
+        headers_content_type('.text')
+      when :json
+        headers_content_type('.json')
+      end
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def headers
+      @response.headers
+    end
+
+    def headers_content_type(type)
+      headers['Content-Type'] = Rack::Mime.mime_type(type)
     end
 
   end
