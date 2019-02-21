@@ -10,6 +10,7 @@ class TestsController < Simpler::Controller
   end
 
   def show
+    render plain: "Plain text response\n"
     @params = params
   end
 

@@ -25,11 +25,15 @@ module Simpler
         return false if request_path_parts&.size != router_path_parts.size
 
         router_path_parts.each_with_index do |part, index|
-          if parameter?(part)
-            add_params(part, request_path_parts[index])
-          else
-            return false unless part == request_path_parts[index]
-          end
+          exist_route(part, index, request_path_parts)
+        end
+      end
+
+      def exist_route(part, index, request_path_parts)
+        if parameter?(part)
+          add_params(part, request_path_parts[index])
+        else
+          false unless part == request_path_parts[index]
         end
       end
 
@@ -39,13 +43,13 @@ module Simpler
 
       def add_params(parameter, value)
         parameter = parameter.split(':')[1].to_sym
-        value = value.to_i
+        # value = value.to_i
 
-        @params[parameter] = value.to_i.zero? ? value : value.to_i
+        @params[parameter] = value#.to_i.zero? ? value : value.to_i
       end
 
       def path_parts(path)
-        path.split('/').reject!(&:empty?)
+        path.split('/').reject(&:empty?)
       end
 
 

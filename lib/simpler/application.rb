@@ -23,15 +23,11 @@ module Simpler
     end
 
     def call(env)
+      return page_not_found unless @router.route_for(env)
       route = @router.route_for(env)
-      if route
-        controller = route.controller.new(env)
-        action = route.action
-
-        make_response(controller, action)#(route.action.new(env))
-      else
-        page_not_found
-      end
+      controller = route.controller.new(env)
+      action = route.action
+      make_response(controller, action)
     end
 
     def routes(&block)

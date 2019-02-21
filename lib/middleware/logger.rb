@@ -8,7 +8,6 @@ class AppLog
 
   def call(env)
     status, headers, response = @app.call(env)
-
     log = build_log(env, status, headers)
 
     logger = Logger.new('log/app.log')

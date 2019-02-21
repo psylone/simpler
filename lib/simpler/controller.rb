@@ -41,14 +41,16 @@ module Simpler
     end
 
     def render_body
+      p 'render-body'
       View.new(@request.env).render(binding)
     end
 
     def params
-      @request.env['simpler.params'].merge!(@request.params)
+      @request.env['simpler.params']#.merge!(@request.params)
     end
 
     def render(template)
+      p 'render-controller'
       if template[:plain]
         plain(template[:plain])
       elsif template[:inline]
@@ -57,6 +59,7 @@ module Simpler
         @request.env['simpler.template'] = template
       end
     end
+
     def plain(text)
       @response.write(text)
       @response['Content-Type'] = 'text/plain'
