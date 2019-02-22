@@ -14,6 +14,7 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+      @request.env['simpler.params'].merge!(@request.params)
 
       set_default_headers
       send(action)
@@ -46,27 +47,12 @@ module Simpler
     end
 
     def params
-      @request.env['simpler.params']#.merge!(@request.params)
+      @request.env['simpler.params']
     end
 
     def render(template)
-      p 'render-controller'
-      if template[:plain]
-        plain(template[:plain])
-      elsif template[:inline]
-        inline(template[:inline])
-      else
-        @request.env['simpler.template'] = template
-      end
-    end
-
-    def plain(text)
-      @response.write(text)
-      @response['Content-Type'] = 'text/plain'
-    end
-
-    def inline(text)
-      @response.write(ERB.new(text).result(binding))
+      @request.env['simpler.template'] = template
+      View.new(@request.env).render(binding)
     end
 
     def status(code)

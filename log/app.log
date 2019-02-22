@@ -1,0 +1,582 @@
+I, [2019-02-21T20:36:49.546909 #5136]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T20:36:49.634798 #5136]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:37:43.992353 #5136]  INFO -- : 
+Request: GET /tests/
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:37:44.066197 #5136]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:38:05.707682 #5136]  INFO -- : 
+Request: GET /tests/
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:38:05.792565 #5136]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:38:54.246376 #5241]  INFO -- : 
+Request: GET /tests/
+Handler: TestsController#index
+Parameters: {}
+Response: 200 text/html tests/index.html.erb
+
+I, [2019-02-21T20:38:54.320690 #5241]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 200 text/html tests/index.html.erb
+
+I, [2019-02-21T20:39:55.701106 #5241]  INFO -- : 
+Request: GET /tests/1?sd=sd
+Handler: TestsController#show
+Parameters: {:id=>"1", "sd"=>"sd"}
+Response: 200 text/plain 
+
+I, [2019-02-21T20:39:55.775793 #5241]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 200 text/html tests/index.html.erb
+
+I, [2019-02-21T20:40:10.634510 #5241]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 text/html tests/index.html.erb
+
+I, [2019-02-21T20:40:10.693425 #5241]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 200 text/html tests/index.html.erb
+
+I, [2019-02-21T20:41:54.356759 #5241]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T20:41:54.432326 #5241]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 200 text/html tests/index.html.erb
+
+I, [2019-02-21T20:42:04.467356 #5241]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T20:42:04.535177 #5241]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 200 text/html tests/index.html.erb
+
+I, [2019-02-21T20:42:09.805225 #5241]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T20:42:09.881605 #5241]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 200 text/html tests/index.html.erb
+
+I, [2019-02-21T20:42:16.281622 #5313]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 200 text/html tests/index.html.erb
+
+I, [2019-02-21T20:42:33.522591 #5336]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:44:36.172709 #5392]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T20:44:36.266551 #5392]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:44:57.963216 #5392]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T20:44:58.028425 #5392]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:45:30.636560 #5435]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T20:45:30.706925 #5435]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:45:53.941349 #5460]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T20:45:53.997836 #5460]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:46:12.294234 #5460]  INFO -- : 
+Request: GET /tests/1?title=%22ttt%22
+Handler: TestsController#show
+Parameters: {:id=>"1", "title"=>"\"ttt\""}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T20:46:12.360838 #5460]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:46:18.722801 #5460]  INFO -- : 
+Request: GET /tests/1?title=%22ttt%22
+Handler: TestsController#show
+Parameters: {:id=>"1", "title"=>"\"ttt\""}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T20:46:18.775173 #5460]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:51:52.179093 #5557]  INFO -- : 
+Request: GET /tests/1?title=%22ttt%22
+Handler: TestsController#show
+Parameters: {:id=>"1", "title"=>"\"ttt\""}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T20:51:52.330609 #5557]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:56:27.383744 #5713]  INFO -- : 
+Request: GET /tests/1?title=%22ttt%22
+Handler: TestsController#show
+Parameters: {:id=>"1", "title"=>"\"ttt\""}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T20:56:27.454048 #5713]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:57:26.467827 #5742]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T20:57:34.847601 #5766]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:09:35.634354 #6105]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:09:47.438865 #6118]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:10:23.752755 #6118]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:16:54.729715 #6250]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:17:58.620982 #6309]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:18:10.016681 #6333]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T21:18:10.105816 #6333]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:18:21.143140 #6333]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T21:18:21.216488 #6333]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:18:26.022891 #6358]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T21:18:26.093338 #6358]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:20:22.878655 #6417]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T21:20:22.953980 #6417]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:20:35.506561 #6444]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T21:20:35.583692 #6444]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:21:12.869130 #6469]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-21T21:21:12.933916 #6469]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:21:29.892744 #6511]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T21:21:29.963041 #6511]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:22:25.563095 #6565]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T21:22:25.633985 #6565]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:23:04.576375 #6602]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:24:51.516514 #6657]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:25:30.439823 #6685]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:26:09.273091 #6721]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:26:49.087374 #6750]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:27:18.726164 #6776]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T21:27:18.807906 #6776]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:31:25.608623 #6920]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:32:58.769697 #6963]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:37:05.867217 #7057]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T21:37:05.938246 #7057]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:37:28.401493 #7108]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:37:28.475762 #7108]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:38:08.446624 #7134]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:38:08.511702 #7134]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:38:36.663418 #7159]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:38:36.724483 #7159]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:40:44.004884 #7199]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:40:44.075324 #7199]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:42:02.585356 #7240]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:42:16.793728 #7263]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:42:16.861521 #7263]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:42:27.849328 #7287]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:42:27.908003 #7287]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:43:03.762999 #7313]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-21T21:43:03.823223 #7313]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:43:14.785118 #7336]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T21:43:14.859423 #7336]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:47:42.207777 #7425]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T21:47:42.276897 #7425]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T21:48:00.224398 #7452]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T21:48:00.290008 #7452]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T22:23:47.741297 #7758]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-21T22:23:47.833691 #7758]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T22:23:53.384424 #7758]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T22:23:53.457146 #7758]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-21T22:24:03.186592 #7758]  INFO -- : 
+Request: GET /
+Handler: NilClass#
+Parameters: {}
+Response: 404 text/plain 
+
+I, [2019-02-21T22:24:03.248429 #7758]  INFO -- : 
+Request: GET /favicon.ico
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+

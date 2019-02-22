@@ -7,13 +7,32 @@ module Simpler
 
     def initialize(env)
       @env = env
+      @response = Rack::Response.new
     end
 
     def render(binding)
-      template = File.read(template_path)
-      p 'render-view'
-      ERB.new(template).result(binding)
+      if @env['simpler.template']
+        template = @env['simpler.template']
+        other_format(template)
+      else
+        template = File.read(template_path)
+        ERB.new(template).result(binding)
+      end
     end
+
+    def other_format(template)
+      @response['Content-Type'] = 'text/plain'
+      if template[:plain]
+        generate_responce(template[:plain])
+      else template[:inline]
+        generate_responce(template[:inline])
+      end
+    end
+
+    def generate_responce(text)
+      @response.write(ERB.new(text).result(binding))
+    end
+
 
     private
 
