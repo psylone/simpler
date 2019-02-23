@@ -1,6 +1,7 @@
 require 'yaml'
 require 'singleton'
 require 'sequel'
+require 'byebug'
 require_relative 'router'
 require_relative 'controller'
 

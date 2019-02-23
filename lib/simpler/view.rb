@@ -1,21 +1,33 @@
-require 'erb'
+require_relative 'view/html_renderer'
+require_relative 'view/plain_renderer'
 
 module Simpler
   class View
+    TYPES = {plain: '.text', json: '.json', html: '.html'}.freeze
 
     VIEW_BASE_PATH = 'app/views'.freeze
-
+    attr_reader :renderer
     def initialize(env)
       @env = env
     end
 
-    def render(binding)
+    def render(bind)
       template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      @renderer = set_renderer(template, bind)
+      @renderer.render
     end
 
-    private
+   private
+
+    def set_renderer(template, bind)
+      context = @env['simpler.render_template'][:plain]
+      if context.nil?
+        HtmlRenderer.new(template, bind)
+      else
+        PlainRenderer.new(context, bind)
+      end
+
+    end
 
     def controller
       @env['simpler.controller']
@@ -26,14 +38,13 @@ module Simpler
     end
 
     def template
-      @env['simpler.template']
+      @env['simpler.template_path']
     end
 
     def template_path
       path = template || [controller.name, action].join('/')
-
+      @env['simpler.template_path'] = path
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
-
   end
 end

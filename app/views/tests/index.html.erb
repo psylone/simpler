@@ -4,9 +4,17 @@
     <meta charset="utf-8">
     <title>Index | Simpler application</title>
   </head>
-  <body>
-    <h1>Simpler framework at work!</h1>
+<body>
+<h1>Simpler framework in action!</h1>
 
-    <p><%= @time %></p>
-  </body>
+<p><%= @time %></p>
+
+  <ul>
+    <% @tests.each do |test| %>
+      <li><%= " #{test.id}. #{test.title}" %> (<%= test.level %>)</li>
+    <% end %>
+  </ul>
+
+</body>
+
 </html>
