@@ -21,15 +21,14 @@ module Simpler
     end
 
     def other_format(template)
-      @response['Content-Type'] = 'text/plain'
       if template[:plain]
-        generate_responce(template[:plain])
+        generate_response(template[:plain])
       else template[:inline]
-        generate_responce(template[:inline])
+        generate_response(template[:inline])
       end
     end
 
-    def generate_responce(text)
+    def generate_response(text)
       @response.write(ERB.new(text).result(binding))
     end
 

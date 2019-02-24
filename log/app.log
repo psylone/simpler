@@ -580,3 +580,48 @@ Handler: TestsController#index
 Parameters: {}
 Response: 201 text/html tests/index.html.erb
 
+I, [2019-02-23T12:35:25.449383 #4659]  INFO -- : 
+Request: GET http://localhost:9292/tests
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+
+I, [2019-02-23T12:37:54.125987 #5102]  INFO -- : 
+Request: GET http://localhost:9292/tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-23T12:38:29.283114 #5149]  INFO -- : 
+Request: GET http://localhost:9292/tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-23T12:41:37.669185 #5354]  INFO -- : 
+Request: GET http://localhost:9292/tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-23T12:42:04.175163 #5398]  INFO -- : 
+Request: GET http://localhost:9292/tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-23T13:05:08.998531 #6594]  INFO -- : Request: GET http://localhost:9292/tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html tests/show.html.erb
+
+I, [2019-02-24T13:39:13.958821 #4909]  INFO -- : Request: GET http://localhost:9292/
+Handler: NilClass#
+Parameters: 
+Response: 404 text/plain 
+
+I, [2019-02-24T13:40:43.884671 #5015]  INFO -- : Request: GET http://localhost:9292/tests
+Handler: TestsController#index
+Parameters: {}
+Response: 201 text/html tests/index.html.erb
+

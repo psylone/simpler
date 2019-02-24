@@ -23,8 +23,12 @@ module Simpler
     end
 
     def call(env)
-      return page_not_found unless @router.route_for(env)
       route = @router.route_for(env)
+      return page_not_found unless route
+      
+      env['simpler.params'] ||= {}
+      env['simpler.params'].merge!(route.params(env))
+      
       controller = route.controller.new(env)
       action = route.action
       make_response(controller, action)

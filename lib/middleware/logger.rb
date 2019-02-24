@@ -4,16 +4,14 @@ class AppLog
 
   def initialize(app)
     @app = app
+    @logger = Logger.new('log/app.log')
   end
 
   def call(env)
     status, headers, response = @app.call(env)
     log = build_log(env, status, headers)
 
-    logger = Logger.new('log/app.log')
-    logger.info() { "\n#{log}" }
-    logger.close
-
+    @logger.info(log)
     [status, headers, response]
   end
 
