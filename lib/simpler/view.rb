@@ -14,6 +14,7 @@ module Simpler
     def render(bind)
       template = File.read(template_path)
       @renderer = set_renderer(template, bind)
+      # byebug
       @renderer.render
     end
 

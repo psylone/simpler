@@ -43,10 +43,12 @@ module Simpler
 
     def render_body
       @view = View.new(@request.env)
-      view.render(binding)
+
+      @view.render(binding)
     end
 
     def params
+      byebug # Controller
       @request.params
     end
 
