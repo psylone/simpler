@@ -625,3 +625,23 @@ Handler: TestsController#index
 Parameters: {}
 Response: 201 text/html tests/index.html.erb
 
+I, [2019-02-24T14:00:08.840119 #5787]  INFO -- : Request: GET http://localhost:9292/tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/plain 
+
+I, [2019-02-24T14:00:40.075687 #5826]  INFO -- : Request: GET http://localhost:9292/tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-24T14:01:27.119698 #5894]  INFO -- : Request: GET http://localhost:9292/tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+
+I, [2019-02-24T14:02:44.334347 #5954]  INFO -- : Request: GET http://localhost:9292/tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 text/html 
+

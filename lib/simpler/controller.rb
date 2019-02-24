@@ -47,7 +47,6 @@ module Simpler
 
     def render(template)
       @request.env['simpler.template'] = template
-      p template.class
       @response['Content-Type'] = 'text/plain' if template.class == Hash && (template.key?(:plain) || template.key(:inline))
       View.new(@request.env).render(binding)
     end

@@ -21,17 +21,12 @@ module Simpler
     end
 
     def other_format(template)
-      if template[:plain]
-        generate_response(template[:plain])
-      else template[:inline]
-        generate_response(template[:inline])
+      if template[:plain] || template[:inline]
+        @response.write(ERB.new(template.values.first).result(binding))
+      else
+        @response.write(ERB.new("format not known\n").result(binding))
       end
     end
-
-    def generate_response(text)
-      @response.write(ERB.new(text).result(binding))
-    end
-
 
     private
 
