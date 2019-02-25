@@ -18,7 +18,7 @@ module Simpler
       set_default_headers
       send(action)
       write_response
-
+      # byebug
       @response.finish
     end
 
@@ -26,6 +26,10 @@ module Simpler
 
     def status(code)
       @response.status = code
+    end
+
+    def headers_content_type(type)
+      headers['Content-Type'] = type
     end
 
     def headers
@@ -43,6 +47,7 @@ module Simpler
     def write_response
       @response.write(render_body)
       @response['Content-Type'] = view.renderer.header
+      headers_content_type(@response['Content-Type']) # уже не понимаю..надо это или нет..
     end
 
     def render_body

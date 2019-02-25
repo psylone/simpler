@@ -1,0 +1,18 @@
+I, [2019-02-25T22:01:03.063546 #33198]  INFO -- : 
+Request: GET /tests
+Handler: TestsController# index
+Parameters: {}
+Response: 201 [text/html] tests/index
+
+I, [2019-02-25T22:01:12.383848 #33198]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController# show
+Parameters: {:id=>"1"}
+Response: 200 [text/html] tests/show
+
+I, [2019-02-25T22:01:39.340578 #33198]  INFO -- : 
+Request: GET /tests/5
+Handler: TestsController# show
+Parameters: {:id=>"5"}
+Response: 200 [text/html] tests/show
+

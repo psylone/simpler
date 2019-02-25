@@ -3,10 +3,10 @@ require_relative 'view/plain_renderer'
 
 module Simpler
   class View
-    TYPES = {plain: '.text', json: '.json', html: '.html'}.freeze
 
     VIEW_BASE_PATH = 'app/views'.freeze
     attr_reader :renderer
+
     def initialize(env)
       @env = env
     end
@@ -14,7 +14,6 @@ module Simpler
     def render(bind)
       template = File.read(template_path)
       @renderer = set_renderer(template, bind)
-      # byebug
       @renderer.render
     end
 
@@ -27,7 +26,6 @@ module Simpler
       else
         PlainRenderer.new(context, bind)
       end
-
     end
 
     def controller

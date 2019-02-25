@@ -29,7 +29,6 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      # byebug # 4
       controller = route.controller.new(env)
       action = route.action
 
@@ -42,7 +41,7 @@ module Simpler
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
     end
 
-    def require_routes
+    def require_routes  
       require Simpler.root.join('config/routes')
     end
 
