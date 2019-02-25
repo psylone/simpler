@@ -8,7 +8,12 @@
 <h3>  Example Show Page !</h3>
 
 <p><%= @time %></p>
+<div>
+  <% @params.keys.each do |key| %>
 
+  <%= "params[:#{key}] = #{@params[key]}"  %> <br>
+  <% end %>
+</div>
 <!-- <p>  <%#= @test.category.title %> </p> -->
 </body>
 </html>
