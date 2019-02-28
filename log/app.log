@@ -1,0 +1,6 @@
+I, [2019-02-28T17:03:04.411370 #9093]  INFO -- : Request: GET /testsHandler: TestsController#indexParameters: {}Response: 201 [text/plain] 
+I, [2019-02-28T17:03:04.540183 #9093]  INFO -- : Request: GET /favicon.icoHandler: TestsController#indexParameters: {}Response: 201 [text/plain] 
+I, [2019-02-28T17:03:11.819550 #9093]  INFO -- : Request: GET /tests/102Handler: TestsController#indexParameters: {}Response: 201 [text/plain] 
+I, [2019-02-28T17:03:11.887595 #9093]  INFO -- : Request: GET /favicon.icoHandler: TestsController#indexParameters: {}Response: 201 [text/plain] 
+I, [2019-02-28T17:03:45.746820 #9093]  INFO -- : Request: GET /tests/101Handler: TestsController#indexParameters: {}Response: 201 [text/plain] 
+I, [2019-02-28T17:03:45.894806 #9093]  INFO -- : Request: GET /favicon.icoHandler: TestsController#indexParameters: {}Response: 201 [text/plain] 

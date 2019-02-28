@@ -42,9 +42,7 @@ module Simpler
       def add_params(parameter, value)
 
         parameter = parameter.split(':')[1].to_sym
-        value = value.to_i
-
-        @params[parameter] = value.to_i.zero? ? value : value.to_i
+        @params[parameter] = value
         
       end
 
