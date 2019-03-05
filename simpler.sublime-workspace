@@ -1,0 +1,460 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Simpler",
+				"Simpler::Application.instance.object_id\t(application.rb)"
+			],
+			[
+				"req",
+				"request"
+			],
+			[
+				"r",
+				"render_body"
+			],
+			[
+				"co",
+				"controller"
+			],
+			[
+				"C",
+				"Controller\t(controller.rb)"
+			],
+			[
+				"mo",
+				"mod\tmodule .. end"
+			],
+			[
+				"route",
+				"route_point"
+			],
+			[
+				"cla",
+				"cla\tclass .. end"
+			],
+			[
+				"requi",
+				"require_relative\t(simpler.rb)"
+			],
+			[
+				"app",
+				"application"
+			],
+			[
+				"Si",
+				"Simpler"
+			],
+			[
+				"cl",
+				"cla\tclass .. end"
+			],
+			[
+				"T",
+				"Trophy\t(test_passages_controller.rb)"
+			],
+			[
+				"cons",
+				"console.log"
+			],
+			[
+				"t",
+				"today"
+			],
+			[
+				"v",
+				"value"
+			],
+			[
+				"i",
+				"id\tAttr"
+			],
+			[
+				"trop",
+				"trophies"
+			],
+			[
+				"tes",
+				"test_passage"
+			],
+			[
+				"test",
+				"test_passages\t(Draft.rb)"
+			],
+			[
+				"cu",
+				"current_user"
+			],
+			[
+				"ca",
+				"category"
+			],
+			[
+				"troph",
+				"trophies\t(routes.rb)"
+			],
+			[
+				"re",
+				"resources"
+			],
+			[
+				"con",
+				"contact_us"
+			],
+			[
+				"cont",
+				"contact_us_path\t(index.html.erb)"
+			],
+			[
+				"en",
+				"enabled"
+			],
+			[
+				"E",
+				"ENV"
+			],
+			[
+				"ac",
+				"action_mailer"
+			],
+			[
+				"q",
+				"question\t(en.yml)"
+			],
+			[
+				"l",
+				"length"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"f",
+				"fun\tFunction"
+			],
+			[
+				"in",
+				"indicator"
+			],
+			[
+				"up",
+				"update_inline"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"PackageResourceViewer: Extract All Packages"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 184.512466431,
+		"history":
+		[
+			"puts 'pol'"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler"
+	],
+	"file_history":
+	[
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/app/views/tests/show.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/lib/simpler/application.rb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/app/controllers/tests_controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/lib/simpler/controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/app/views/tests/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/config/database.yml",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/config/routes.rb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/db/test_guru.sqlite3",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/middleware/logger.rb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/config.ru",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/lib/simpler/router.rb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/lib/simpler/router/route.rb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/lib/simpler/untitled.rb",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/log/simpler.log",
+		"/home/vicstor/1_Thinknetica_rails/Framwork/simpler/log/simpler.rb",
+		"/home/vicstor/1_Thinknetica_rails/Catalog_TestGuru/TestGuru/app/controllers/admin/tests_controller.rb",
+		"/home/vicstor/dwhelper/Устройство и создание веб-фреймворка/simpler/lib/simpler/controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/app/models/test.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/app/controllers/tests_controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/app/views/tests/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/config/database.yml",
+		"/home/vicstor/1_Thinknetica_rails/simpler/config/routes.rb",
+		"/home/vicstor/1_Thinknetica_rails/Draft.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/config.ru",
+		"/home/vicstor/1_Thinknetica_rails/simpler/db/test_guru_development.sqlite3",
+		"/home/vicstor/1_Thinknetica_rails/simpler/lib/simpler/untitled.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/app/views/tests/list.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/lib/simpler/view.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/lib/simpler/controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/lib/simpler.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/lib/simpler/application.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/app/views/tests/index.html",
+		"/home/vicstor/1_Thinknetica_rails/simpler/config/environment.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/lib/simpler/router.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/lib/simpler/router/route.rb",
+		"/home/vicstor/MyTetra/mytetra_1_44_31_lin_64/editorconf.ini",
+		"/home/vicstor/1_Thinknetica_rails/simpler/lib/simpler/simpler.rb",
+		"/home/vicstor/1_Thinknetica_rails/simpler/README.md",
+		"/home/vicstor/1_Thinknetica_rails/TestGuru/config/application.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestGuru/ruby.rb",
+		"/home/vicstor/.config/sublime-text-3/Packages/User/Emmet.sublime-settings",
+		"/home/vicstor/.config/sublime-text-3/Packages/SublimeREPL/config/Rails/pry_repl.rb",
+		"/home/vicstor/.config/sublime-text-3/Packages/SublimeREPL/config/Ruby/pry_repl.rb",
+		"/home/vicstor/.config/sublime-text-3/Packages/User/SublimeREPL.sublime-settings",
+		"/home/vicstor/.config/sublime-text-3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/home/vicstor/1_Thinknetica_rails/Rack_interface/ruby.rb",
+		"/home/vicstor/1_Thinknetica_rails/Rack_interface/time_formatter.rb",
+		"/home/vicstor/1_Thinknetica_rails/Rack_interface/app.rb",
+		"/home/vicstor/1_Thinknetica_rails/Rack_interface/config.ru",
+		"/home/vicstor/1_Thinknetica_rails/Rack_interface/midllevare/logger.rb",
+		"/home/vicstor/1_Thinknetica_rails/Rack_interface/midllevare/runtime.rb",
+		"/home/vicstor/1_Thinknetica_rails/Другие ребята/the_well_grounded_rubyist/chapter_01/c2f.rb",
+		"/home/vicstor/1_Thinknetica_rails/Rack_interface/rackapp.rb",
+		"/tmp/Максимально качественный переводчик текстов онлайн.html",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/controllers/test_passages_controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/models/test_passage.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/helpers/test_passages_helper.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/test_passages/show.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/assets/javascripts/utilites/timer.js",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/helpers/application_helper.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/services/distribution_trophies.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/test_passages/result.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/assets/stylesheets/global.scss",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/services/gist_question_service.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/models/distribution_trophies.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/trophies/_trophy.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/helpers/trophies_helper.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/trophies/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/assets/stylesheets/application.scss",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/trophies/_trophy.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/controllers/trophies_controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/tests/edit.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/trophies/edit.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/trophies/new.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/trophies/show.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/_menu.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/tests/_form_inline.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/tests/_test.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/tests/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/tests/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/tests/_test.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/trophies/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/TestHerokuGuru/app/views/admin/trophies/_form.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/models/trophy.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/helpers/trophies_helper.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/helpers/test_passages_helper.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/controllers/admin/trophies_controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/controllers/trophies_controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/test_passages/result.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/trophies/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/trophies/edit.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/mailers/tests_mailer.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/tests/edit.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/models/user.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/controllers/admin/tests_controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/models/test.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/tests/_form.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/test_passages/show.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/Gemfile",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/assets/stylesheets/application.scss",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/layouts/application.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/db/migrate/20190218073301_add_tests_column_timetest.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/controllers/test_passages_controller.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/helpers/tests_helper.rb",
+		"/home/vicstor/Desktop/timer.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/db/seeds.rb",
+		"/home/vicstor/Шаблоны/sb/config.rb",
+		"/home/vicstor/Шаблоны/sb/sb.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/trophies/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/tests/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/trophies/_trophy.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/models/test_passage.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/config/initializers/devise.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/models/category.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/models/question.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/trophies/_form.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/trophies/new.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/trophies/show.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/tests/index.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/views/admin/trophies/_trophies.html.erb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/config/routes.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/db/migrate/20190211084009_create_trophies_users_join_table.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/app/models/audit_sweeper.rb",
+		"/home/vicstor/1_Thinknetica_rails/Educational_application/config/environments/production.rb",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/config/environments/production.rb",
+		"/home/vicstor/1_Thinknetica_rails/Educational_application/config/database.yml",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/config/database.yml",
+		"/home/vicstor/1_Thinknetica_rails/LocaleTestGuru/.bundle/config"
+	],
+	"find":
+	{
+		"height": 26.9192422732
+	},
+	"find_in_files":
+	{
+		"height": 163.575274177,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"pp",
+			"@request.env['simpler.action']"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.9192422732
+	},
+	"input":
+	{
+		"height": 71.850448654
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.Terminus":
+	{
+		"height": 138.650054932
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "simpler.sublime-project",
+	"replace":
+	{
+		"height": 49.850448654
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 501.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/1_Thinknetica_rails/Framwork/simpler/simpler.sublime-project"
+			]
+		],
+		"width": 381.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 285.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

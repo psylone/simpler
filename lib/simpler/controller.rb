@@ -15,6 +15,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
+      set_status_post_request
       set_default_headers
       send(action)
       write_response
@@ -22,7 +23,15 @@ module Simpler
       @response.finish
     end
 
+    def params
+      Hash[id: nil]
+    end
+
     private
+
+    def set_status_post_request
+      @response.status = 201 if @request.post?
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
@@ -39,7 +48,12 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      if @request.env['simpler.template'].class == Hash
+        @response['Content-Type'] = 'text/plain'
+        return @request.env['simpler.template'].values.last
+      else
+        View.new(@request.env).render(binding)
+      end
     end
 
     def params

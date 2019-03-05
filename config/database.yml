@@ -1,2 +1,2 @@
 adapter: sqlite
-database: db/test_guru.sqlite
+database: db/test_guru.sqlite3

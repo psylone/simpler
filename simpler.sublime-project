@@ -1,0 +1,10 @@
+{
+  "folders":
+  [
+    {
+      "path": "/home/vicstor/1_Thinknetica_rails/Framwork/simpler",
+      "folder_exclude_patterns": ["tmp", "log", "node_modules", "build"],
+      "file_exclude_patterns": ["*.sublime-project", "*.sublime-workspace"]
+    }
+  ]
+}
