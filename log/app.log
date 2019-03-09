@@ -1,0 +1,30 @@
+I, [2019-03-09T15:34:47.911405 #8564]  INFO -- : 
+Request: GET /tests/
+Handler: TestsController#index
+Parametrs: {}
+Response: 201, text/html, tests/list 
+
+I, [2019-03-09T15:34:54.238263 #8564]  INFO -- : 
+Request: GET /tests/:id
+Handler: TestsController#show
+Parametrs: {":id"=>"101"}
+Response: 200, text/html,  
+
+I, [2019-03-09T15:47:20.240591 #8646]  INFO -- : 
+Request: GET /tests/:id
+Handler: TestsController#show
+Parametrs: {":id"=>"101"}
+Response: 200, text/html,  
+
+I, [2019-03-09T15:48:36.080335 #8906]  INFO -- : 
+Request: GET /
+Handler not found.
+I, [2019-03-09T15:48:36.717911 #8906]  INFO -- : 
+Request: GET /favicon.ico
+Handler not found.
+I, [2019-03-09T15:49:12.046546 #8950]  INFO -- : 
+Request: GET /tests/
+Handler: TestsController#index
+Parametrs: {}
+Response: 201, text/plain, tests/list 
+

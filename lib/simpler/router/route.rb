@@ -12,7 +12,12 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.match(@path)
+        if path.match(/\/\d+\z/)
+          path.gsub!(/\d+/, ':id')
+          @method == method && path == @path
+        else
+          @method == method && path.match(@path)
+        end
       end
 
     end
