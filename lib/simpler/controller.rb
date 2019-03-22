@@ -50,5 +50,13 @@ module Simpler
       @request.env['simpler.template'] = template
     end
 
+    def status(number)
+      @response.status = number
+    end
+
+    def headers(header_name, value)
+      @response["#{header_name}"] = "#{value}"
+    end
+
   end
 end
