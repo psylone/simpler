@@ -3,6 +3,7 @@ require 'singleton'
 require 'sequel'
 require_relative 'router'
 require_relative 'controller'
+require_relative 'NotfoundController'
 
 module Simpler
   class Application
@@ -28,7 +29,7 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      controller = route.controller.new(env)
+      controller = route.controller.new(env, route.params)
       action = route.action
 
       make_response(controller, action)
@@ -53,6 +54,5 @@ module Simpler
     def make_response(controller, action)
       controller.make_response(action)
     end
-
   end
 end

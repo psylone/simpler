@@ -18,11 +18,19 @@ module Simpler
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
-
-      @routes.find { |route| route.match?(method, path) }
+      @routes.find { |route| route.match?(method, path) } || not_found_route
     end
 
     private
+
+    def not_found_route
+      Route.new(
+          nil,
+          nil,
+          NotfoundController,
+         'not_found'
+          )
+    end
 
     def add_route(method, path, route_point)
       route_point = route_point.split('#')

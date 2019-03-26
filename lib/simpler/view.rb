@@ -10,12 +10,24 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
+      if template || respond_type.nil?
+        str_template = File.read(template_path)
+        ERB.new(str_template).result(binding)
+      else
+        respond_value if respond_type == :plain
+      end
 
-      ERB.new(template).result(binding)
     end
 
     private
+
+    def respond_type
+      @env['simpler.respond_type']
+    end
+
+    def respond_value
+      @env['simpler.respond_value']
+    end
 
     def controller
       @env['simpler.controller']
