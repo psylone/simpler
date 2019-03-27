@@ -1,0 +1,46 @@
+I, [2019-03-27T20:25:30.907255 #32500]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:31:43.698285 #333]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:31:43.700437 #333]  INFO -- : Handler #<TestsController:0x00007f4e6c0149d0>#index
+I, [2019-03-27T20:32:58.733807 #425]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:32:58.737644 #425]  INFO -- : Handler TestsController#index
+I, [2019-03-27T20:36:25.970916 #596]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:36:25.975298 #596]  INFO -- : Handler TestsController#index
+I, [2019-03-27T20:36:25.975410 #596]  INFO -- : Response: 200 text/plain 
+I, [2019-03-27T20:37:59.515336 #700]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:37:59.519443 #700]  INFO -- : Handler TestsController#index
+I, [2019-03-27T20:37:59.519572 #700]  INFO -- : Params: {}
+I, [2019-03-27T20:37:59.519648 #700]  INFO -- : Response: 200 text/plain 
+I, [2019-03-27T20:40:10.424623 #860]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:40:10.427479 #860]  INFO -- : Handler TestsController#index
+I, [2019-03-27T20:40:10.427638 #860]  INFO -- : Params: {}
+I, [2019-03-27T20:40:10.427683 #860]  INFO -- : Response: 200 text/plain 
+I, [2019-03-27T20:40:36.610553 #1044]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:40:36.615471 #1044]  INFO -- : Handler TestsController#index
+I, [2019-03-27T20:40:36.615559 #1044]  INFO -- : Params: {}
+I, [2019-03-27T20:40:36.615603 #1044]  INFO -- : Response: 200 text/plain 
+I, [2019-03-27T20:45:54.160066 #1404]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:46:14.763208 #1522]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:46:14.767021 #1522]  INFO -- : Handler TestsController#index
+I, [2019-03-27T20:46:14.767249 #1522]  INFO -- : Params: {}
+I, [2019-03-27T20:46:14.767309 #1522]  INFO -- : Response: 200 text/plain 
+I, [2019-03-27T20:50:04.645008 #1804]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:50:58.969683 #1970]  INFO -- : Request: GET /tests/101
+I, [2019-03-27T20:50:58.975143 #1970]  INFO -- : Handler TestsController#show
+I, [2019-03-27T20:50:58.975345 #1970]  INFO -- : Params: {:id=>"101"}
+I, [2019-03-27T20:50:58.975421 #1970]  INFO -- : Response: 200 text/html 
+I, [2019-03-27T20:51:33.384036 #1970]  INFO -- : Request: GET /tests
+I, [2019-03-27T20:51:33.384308 #1970]  INFO -- : Handler TestsController#index
+I, [2019-03-27T20:51:33.384590 #1970]  INFO -- : Params: {}
+I, [2019-03-27T20:51:33.384666 #1970]  INFO -- : Response: 200 text/plain 
+I, [2019-03-27T20:51:37.479804 #1970]  INFO -- : Request: GET /tests/90
+I, [2019-03-27T20:51:37.480787 #1970]  INFO -- : Handler TestsController#show
+I, [2019-03-27T20:51:37.481013 #1970]  INFO -- : Params: {:id=>"90"}
+I, [2019-03-27T20:51:37.481162 #1970]  INFO -- : Response: 200 text/html 
+I, [2019-03-27T20:52:47.390257 #2124]  INFO -- : Request: GET /tests/90
+I, [2019-03-27T20:52:47.392931 #2124]  INFO -- : Handler TestsController#show
+I, [2019-03-27T20:52:47.393203 #2124]  INFO -- : Params: {:id=>"90"}
+I, [2019-03-27T20:52:47.393266 #2124]  INFO -- : Response: 200 text/html 
+I, [2019-03-27T20:54:04.784617 #2194]  INFO -- : Request: GET /tests/90
+I, [2019-03-27T20:54:04.788455 #2194]  INFO -- : Handler TestsController#show
+I, [2019-03-27T20:54:04.788592 #2194]  INFO -- : Params: {:id=>"90"}
+I, [2019-03-27T20:54:04.788674 #2194]  INFO -- : Response: 200 text/html 
