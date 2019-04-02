@@ -19,6 +19,7 @@ module Simpler
       private
 
       def check_path(path)
+        @params = {}
         route_path = @path.split('/').reject{ |s| s.empty? }
         request_path = path.split('/').reject{ |s| s.empty? }
 
