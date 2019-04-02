@@ -1,5 +1,5 @@
-require_relative 'renderers/html'
-require_relative 'renderers/text_plain'
+require_relative 'renders/html'
+require_relative 'renders/text_plain'
 
 module Simpler
   class View
