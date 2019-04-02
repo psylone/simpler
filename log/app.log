@@ -1,0 +1,13 @@
+# Logfile created on 2019-04-02 23:15:24 +0300 by logger.rb/66358
+I, [2019-04-02T23:15:28.334985 #7009]  INFO -- : Response: 200 [text/html] 
+
+I, [2019-04-02T23:16:26.750271 #7040]  INFO -- : Request: env['REQUEST_METHOD'] env['REQUEST_PATH']
+     Handler: TestsController#show
+     Parameters: {:id=>"120"}
+     Response: 200 [text/html] 
+
+I, [2019-04-02T23:19:04.589549 #7090]  INFO -- : Request: GET /tests/120
+     Handler: TestsController#show
+     Parameters: {:id=>"120"}
+     Response: 200 [text/html] tests/show
+
