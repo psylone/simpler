@@ -28,6 +28,8 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return [404, {}, ["Page Not Found"]] until route
+
       controller = route.controller.new(env)
       action = route.action
 
