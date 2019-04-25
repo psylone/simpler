@@ -1,0 +1,4 @@
+I, [2019-04-25T09:37:53.224966 #1213]  INFO -- : Request: GET /tests/list
+I, [2019-04-25T09:37:53.225235 #1213]  INFO -- : Handler: NilClass#
+I, [2019-04-25T09:37:53.225348 #1213]  INFO -- : Parameters: 
+I, [2019-04-25T09:37:53.225429 #1213]  INFO -- : Response: 404 text/plain 
