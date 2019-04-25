@@ -16,10 +16,10 @@ module Simpler
     end
 
     def route_for(env)
-      method = env['REQUEST_METHOD'].downcase.to_sym
-      path = env['PATH_INFO']
-
-      @routes.find { |route| route.match?(method, path) }
+      request = Rack::Request.new(env)
+      @routes.find do |route|
+        route.match?(request.request_method.downcase.to_sym, request.path_info)
+      end
     end
 
     private
