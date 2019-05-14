@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -15,9 +16,9 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
       send(action)
       write_response
+      set_header
 
       @response.finish
     end
@@ -28,10 +29,6 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
-    end
-
     def write_response
       body = render_body
 
@@ -40,6 +37,12 @@ module Simpler
 
     def render_body
       View.new(@request.env).render(binding)
+      renderer = View.renderer(@request.env)
+      renderer.new(@request.env).render(binding)
+    end
+
+    def req_params
+      @request.params.update(@request.env['simpler.route_params'])
     end
 
     def params
@@ -50,5 +53,25 @@ module Simpler
       @request.env['simpler.template'] = template
     end
 
+    def set_headers(key, value)
+      @response[key] = value
+    end
+
+    def set_status(code)
+      @response.status = code
+    end
+
+    def set_header
+      template = @request.env['simple.template']
+
+      if template.is_a? Hash
+        case template.key.first
+        when :plain
+          set_headers('Content-Type', 'text/plain')
+        when :html
+          set_headers('Content-Type', 'text/html')
+        end
+      end
+    end
   end
 end
