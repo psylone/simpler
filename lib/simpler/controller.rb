@@ -15,11 +15,19 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
       send(action)
       write_response
+      set_default_headers
 
       @response.finish
+    end
+
+    def params=(input)
+      input.each { |k, v| @request.params[k] = v }
+    end
+
+    def params
+      @request.params
     end
 
     private
@@ -29,7 +37,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      @response.headers['Content-Type'] ||= 'text/html'
     end
 
     def write_response
@@ -42,13 +50,24 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
-    end
-
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a?(Hash)
+        template.each do |k, v|
+          @request.env['simpler.format'] = k
+          @request.env['simpler.content'] = v
+        end
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
+    def status(code)
+      @response.status = code
+    end
+
+    def not_found
+      render plain: "Not Found\n"
+      status 404
+    end
   end
 end
