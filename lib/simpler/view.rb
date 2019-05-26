@@ -10,7 +10,11 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
+      template =  if content.nil?
+                    File.read(template_path)
+                  else
+                    content
+                  end
 
       ERB.new(template).result(binding)
     end
@@ -29,10 +33,27 @@ module Simpler
       @env['simpler.template']
     end
 
+    def content_type
+      @env.header['Content-Type'] if @env.respond_to?(:header)
+    end
+
+    def content
+      @env['simpler.content']
+    end
+
+    def format
+      @env['simpler.format']
+    end
+
     def template_path
       path = template || [controller.name, action].join('/')
+      type = if content_type.nil? || content_type == 'text/html'
+              'html'
+            else
+              content_type.gsub('text/', '')
+            end
 
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+      Simpler.root.join(VIEW_BASE_PATH, "#{path}.#{type}.erb")
     end
 
   end
