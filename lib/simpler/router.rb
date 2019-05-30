@@ -19,7 +19,7 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
 
-      @routes.find { |route| route.match?(method, path) }
+      @routes.find { |route| route.match?(method, path) } || not_found_route(method, path)
     end
 
     private
@@ -37,5 +37,9 @@ module Simpler
       Object.const_get("#{controller_name.capitalize}Controller")
     end
 
+    def not_found_route(method, path)
+      controller = controller_from_string('exceptions')
+      Route.new(method, path, controller, 'not_found')
+    end
   end
 end
