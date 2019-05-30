@@ -54,9 +54,8 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(source)
+      @request.env['simpler.render_source'] = source
     end
-
   end
 end
