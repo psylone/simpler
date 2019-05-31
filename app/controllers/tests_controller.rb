@@ -5,6 +5,10 @@ class TestsController < Simpler::Controller
     render plain: Time.now
   end
 
+  def show
+    @id = params[:id]
+  end
+
   def create
 
   end
