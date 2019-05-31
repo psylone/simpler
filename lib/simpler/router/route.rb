@@ -17,7 +17,7 @@ module Simpler
 
         return false unless @method == method && path_match
 
-        @params = path_match.named_captures
+        @params = path_match.named_captures.map{ |k,v| [k.to_sym, v.to_i] }.to_h
         true
       end
 
