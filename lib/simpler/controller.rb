@@ -46,8 +46,16 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(options)
+      case options
+      when String
+        @request.env['simpler.template'] = options
+      when Hash
+        if options[:plain]
+          @request['Content-Type'] = 'text/plain'
+          @request.env['simpler.plain_text'] = options[:plain]
+        end
+      end
     end
 
   end
