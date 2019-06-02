@@ -9,6 +9,7 @@ module Simpler
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @headers = {}
     end
 
     def make_response(action)
@@ -18,6 +19,7 @@ module Simpler
       set_default_headers
       send(action)
       write_response
+      @headers.each { |key, value| @response[key] = value }
 
       @response.finish
     end
@@ -29,7 +31,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      @headers['Content-Type'] = 'text/html'
     end
 
     def write_response
@@ -52,7 +54,7 @@ module Simpler
         @request.env['simpler.template'] = options
       when Hash
         if options[:plain]
-          @request['Content-Type'] = 'text/plain'
+          @headers['Content-Type'] = 'text/plain'
           @request.env['simpler.plain_text'] = options[:plain]
         end
       end
@@ -62,5 +64,8 @@ module Simpler
       @response.status = value
     end
 
+    def headers
+      @headers
+    end
   end
 end
