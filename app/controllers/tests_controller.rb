@@ -9,7 +9,8 @@ class TestsController < Simpler::Controller
   end
 
   def create
-
+    status 201
+    render plain: 'Created'
   end
 
 end

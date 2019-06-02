@@ -58,5 +58,9 @@ module Simpler
       end
     end
 
+    def status(value)
+      @response.status = value
+    end
+
   end
 end
