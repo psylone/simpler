@@ -46,9 +46,25 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(options = {})
+      @request.env['simpler.template'] = options.delete(:template)
+      @request.env['simpler.template.render'] = options.delete(:format)
+
+      render_inline(options) unless options.keys.empty?
     end
 
+    def render_inline(options)
+      format = options.keys.last
+      @request.env['simpler.template.render'] = format
+      @request.env['simpler.template.inline'] = options[format]
+    end
+
+    def headers
+      @response
+    end
+
+    def status(new_status)
+      @response.status = new_status
+    end
   end
 end
