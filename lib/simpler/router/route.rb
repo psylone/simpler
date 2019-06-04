@@ -34,7 +34,7 @@ module Simpler
       def add_param!(key, value)
         return false unless key[0] == ':'
 
-        params[key[1..-1]] = value
+        params[key[1..-1].to_sym] = value
       end
     end
   end
