@@ -28,7 +28,6 @@ module Simpler
     end
 
     def call(env)
-      byebug
       route = @router.route_for(env)
       controller = route.controller.new(env)
       action = route.action
