@@ -22,6 +22,14 @@ module Simpler
       @response.finish
     end
 
+    def make_no_routes_response
+      set_status 404
+      set_header['Content-Type'] = "text/plain"
+      write_no_routes_response
+
+      @response.finish
+    end
+
     private
 
     def extract_name
@@ -34,6 +42,14 @@ module Simpler
 
     def write_response
       body = render_body
+
+      @response.write(body)
+    end
+
+    def write_no_routes_response
+      method = @request.env["REQUEST_METHOD"]
+      resource = @request.env["REQUEST_PATH"]
+      body = "Resource '#{resource}' for #{method} request method was not found."
 
       @response.write(body)
     end
