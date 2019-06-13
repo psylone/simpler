@@ -19,7 +19,6 @@ module Simpler
       send(action)
       write_response
 
-      byebug
       @response.finish
     end
 
