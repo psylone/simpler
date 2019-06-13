@@ -68,7 +68,7 @@ module Simpler
         rendering_content = template.values[0]
         set_content_type(rendering_type)
         @request.env['simpler.template'] = rendering_content
-      else
+      else        
         @request.env['simpler.template'] = template
       end
     end

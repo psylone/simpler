@@ -38,7 +38,7 @@ module Simpler
       end
 
       def split_by_slash(path)
-        path.split("/").reject!(&:empty?)
+        path.split("/").reject!(&:empty?) || []
       end
 
       private
