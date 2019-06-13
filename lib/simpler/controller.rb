@@ -19,6 +19,7 @@ module Simpler
       send(action)
       write_response
 
+      byebug
       @response.finish
     end
 
@@ -68,6 +69,10 @@ module Simpler
 
     def set_status(status_code)
       @response.status = status_code
+    end
+
+    def set_header
+      @response.header
     end
 
   end
