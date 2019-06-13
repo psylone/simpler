@@ -9,8 +9,8 @@ module Simpler
       @env = env
     end
 
-    def render(binding)
-      template = File.read(template_path)
+    def render(binding)      
+      template = (File.exist?(template_path) ? File.read(template_path) : @env["simpler.template"])
 
       ERB.new(template).result(binding)
     end

@@ -29,7 +29,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      @response['Content-Type'] = "text/html"
     end
 
     def write_response
@@ -47,7 +47,23 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.instance_of?(Hash)
+        rendering_type = template.keys[0]
+        rendering_content = template.values[0]
+        set_content_type(rendering_type)
+        @request.env['simpler.template'] = rendering_content
+      else
+        @request.env['simpler.template'] = template
+      end
+    end
+
+    def set_content_type(rendering_type)
+      case rendering_type
+      when :html, :plain, :xml
+        @response['Content-Type'] = "text/#{rendering_type}"
+      when :json
+        @response['Content-Type'] = "application/#{rendering_type}"
+      end
     end
 
   end

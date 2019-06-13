@@ -1,6 +1,7 @@
 require 'yaml'
 require 'singleton'
 require 'sequel'
+require 'byebug'
 require_relative 'router'
 require_relative 'controller'
 
@@ -27,6 +28,7 @@ module Simpler
     end
 
     def call(env)
+      byebug
       route = @router.route_for(env)
       controller = route.controller.new(env)
       action = route.action
