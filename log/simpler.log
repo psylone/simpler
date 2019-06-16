@@ -1,0 +1,6 @@
+
+Request: GET /tests/4
+Handler: TestsController#show
+Parameters: {}
+Response: 200 html 
+----------------------------

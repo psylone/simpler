@@ -1,12 +1,12 @@
 require 'yaml'
 require 'singleton'
 require 'sequel'
+require_relative 'errors'
 require_relative 'router'
 require_relative 'controller'
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -28,10 +28,16 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      raise Errors::RouteError.new unless route
+
       controller = route.controller.new(env)
       action = route.action
+      route_params = route.route_params
 
-      make_response(controller, action)
+      make_response(controller, action, route_params)
+
+    rescue Errors::RouteError
+      [404, { 'Content-Type' => 'text/plain' }, ["\tPath is not found...\n"]]
     end
 
     private
@@ -50,9 +56,8 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action)
-      controller.make_response(action)
+    def make_response(controller, action, route_params)
+      controller.make_response(action, route_params)
     end
-
   end
 end

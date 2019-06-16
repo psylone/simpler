@@ -8,5 +8,7 @@
     <h1>Simpler framework at work!</h1>
 
     <p><%= @time %></p>
+    <p>Header(s) changed! <% headers 'X-New-Header' => 'Show Test' %></p>
+    <p>Status changed: <%= status 203 %></p>
   </body>
 </html>
