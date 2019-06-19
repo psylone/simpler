@@ -19,10 +19,15 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
 
-      @routes.find { |route| route.match?(method, path) }
+      @routes.find { |route| route.match?(method, path) } || route_404(method, path)
     end
 
     private
+
+    def route_404(method, path)
+      controller = controller_from_string('errors')
+      Route.new(method, path, controller, 'error_404')
+    end
 
     def add_route(method, path, route_point)
       route_point = route_point.split('#')

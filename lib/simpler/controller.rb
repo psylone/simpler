@@ -24,6 +24,14 @@ module Simpler
 
     private
 
+    def status(code)
+      @response.status = code
+    end
+
+    def header(key, v)
+      @response.set_header(key, v)
+    end
+
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
