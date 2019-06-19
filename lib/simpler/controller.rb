@@ -1,3 +1,4 @@
+
 require_relative 'view'
 
 module Simpler
@@ -32,6 +33,14 @@ module Simpler
       @response['Content-Type'] = 'text/html'
     end
 
+    def headers
+      @response
+    end    
+
+    def status(code)    
+      @response.status = code.to_s 
+    end
+
     def write_response
       body = render_body
 
@@ -47,8 +56,17 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template[:plain]
+        plain(template[:plain])
+      else
+        @request.env['simpler.template'] = template
+      end  
     end
+
+   def plain(text) 
+    @response.write(text)
+    @response['Content-Type'] = 'text/plain'
+   end
 
   end
 end
