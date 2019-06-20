@@ -54,8 +54,8 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(type_hash)
+      @request.env['simpler.render_type'] = type_hash
     end
 
   end

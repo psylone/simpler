@@ -1,5 +1,3 @@
-require 'erb'
-
 module Simpler
   class View
 
@@ -7,33 +5,23 @@ module Simpler
 
     def initialize(env)
       @env = env
+      Dir["#{Simpler.root}/lib/simpler/view/**/*.rb"].each { |file| require file }
     end
 
     def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      get_render.new(@env).result(binding)
     end
 
     private
 
-    def controller
-      @env['simpler.controller']
+    def get_render
+      if @env['simpler.render_type'].is_a?(Hash)
+        type = @env['simpler.render_type'].keys.first
+      else
+        type = 'html'
+      end
+
+      Object.const_get("Simpler::#{type.capitalize}Render")
     end
-
-    def action
-      @env['simpler.action']
-    end
-
-    def template
-      @env['simpler.template']
-    end
-
-    def template_path
-      path = template || [controller.name, action].join('/')
-
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
-    end
-
   end
 end
