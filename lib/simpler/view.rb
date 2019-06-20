@@ -5,6 +5,7 @@ module Simpler
 
     def initialize(env)
       @env = env
+      @base_render = 'html'
       Dir["#{Simpler.root}/lib/simpler/view/**/*.rb"].each { |file| require file }
     end
 
@@ -18,7 +19,7 @@ module Simpler
       if @env['simpler.render_type'].is_a?(Hash)
         type = @env['simpler.render_type'].keys.first
       else
-        type = 'html'
+        type = @base_render
       end
 
       Object.const_get("Simpler::#{type.capitalize}Render")
