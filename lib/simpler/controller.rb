@@ -1,4 +1,3 @@
-
 require_relative 'view'
 
 module Simpler
@@ -19,7 +18,7 @@ module Simpler
       set_default_headers
       send(action)
       write_response
-
+ 
       @response.finish
     end
 
@@ -42,9 +41,7 @@ module Simpler
     end
 
     def write_response
-      body = render_body
-
-      @response.write(body)
+      @response.write(render_body) if @response.body.empty?     
     end
 
     def render_body
@@ -52,7 +49,7 @@ module Simpler
     end
 
     def params
-      @request.params
+      @params ||= @request.params.merge(@request.env['simpler.route_params'])
     end
 
     def render(template)
