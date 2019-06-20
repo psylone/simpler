@@ -22,6 +22,10 @@ module Simpler
       @response.finish
     end
 
+    def params
+      @params ||= @request.params.merge(@request.env['simpler.route_params'])
+    end
+
     private
 
     def extract_name
@@ -46,10 +50,6 @@ module Simpler
 
     def render_body
       View.new(@request.env).render(binding)
-    end
-
-    def params
-      @params ||= @request.params.merge(@request.env['simpler.route_params'])
     end
 
     def render(template)
