@@ -1,0 +1,9 @@
+# Logfile created on 2019-06-21 06:20:24 +0400 by logger.rb/66358
+I, [2019-06-21T06:20:28.167592 #6079]  INFO -- : Request: GET /tests
+I, [2019-06-21T06:20:28.170820 #6079]  INFO -- : Handler: TestsController#index
+I, [2019-06-21T06:20:28.171807 #6079]  INFO -- : Parameters: {}
+I, [2019-06-21T06:20:28.173737 #6079]  INFO -- : Response: 201 Created [text/plain] tests/index.html.erb
+I, [2019-06-21T06:20:40.339057 #6079]  INFO -- : Request: GET /tests/101
+I, [2019-06-21T06:20:40.342246 #6079]  INFO -- : Handler: TestsController#show
+I, [2019-06-21T06:20:40.342361 #6079]  INFO -- : Parameters: {:id=>"101"}
+I, [2019-06-21T06:20:40.342445 #6079]  INFO -- : Response: 200 OK [text/plain] 
