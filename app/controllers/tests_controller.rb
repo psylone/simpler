@@ -1,7 +1,7 @@
 class TestsController < Simpler::Controller
 
   def index
-    @time = Time.now
+    
   end
 
   def create
@@ -9,7 +9,7 @@ class TestsController < Simpler::Controller
   end
 
   def show
-    render plain: "Test id: #{params[:id]}"
+    
   end
 
 end
