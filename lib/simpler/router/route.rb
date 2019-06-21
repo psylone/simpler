@@ -25,7 +25,7 @@ module Simpler
       private
 
       def get_regex_path(path)
-        "\\A#{path.gsub(/(:\w+)/, '(?<\1>\d+)').delete(':')}\\Z"
+        Regexp.new "\\A#{path.gsub(/(:\w+)/, '(?<\1>\d+)').delete(':')}\\Z"
       end
 
     end
