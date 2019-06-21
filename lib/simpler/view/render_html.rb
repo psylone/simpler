@@ -5,12 +5,16 @@ module Simpler
 
     def initialize(env)
       @env = env
+      @type = 'text/html'
+      @path = ''
     end
 
     def result(binding)
       template = File.read(template_path)
 
-      ERB.new(template).result(binding)
+      {type: @type,
+       body: ERB.new(template).result(binding),
+       template: @path}
     end
 
     private
@@ -24,9 +28,9 @@ module Simpler
     end
 
     def template_path
-      path = [controller.name, action].join('/')
+      @path = [controller.name, action].join('/') + '.html.erb'
 
-      Simpler.root.join(View::VIEW_BASE_PATH, "#{path}.html.erb")
+      Simpler.root.join(View::VIEW_BASE_PATH, @path)
     end
   end
 end

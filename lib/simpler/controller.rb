@@ -15,6 +15,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
       params.each { |key, value| @request.update_param(key.to_sym, value.to_i)}
+      @request.env['simpler.params'] = params
 
       set_default_headers
       send(action)
@@ -42,12 +43,14 @@ module Simpler
     end
 
     def write_response
-      body = render_body
+      content = render_response
 
-      @response.write(body)
+      @response.write(content[:body])
+      @response['Content-Type'] = content[:type]
+      @response['template'] = content[:template]
     end
 
-    def render_body
+    def render_response
       View.new(@request.env).render(binding)
     end
 
