@@ -1,4 +1,6 @@
-require 'erb'
+require_relative 'view/base_render'
+require_relative 'view/erb_render'
+require_relative 'view/plain_render'
 
 module Simpler
   class View
@@ -10,9 +12,8 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      template = template_inline || File.read(template_path)
+      render_class.new(template).render(binding)
     end
 
     private
@@ -29,11 +30,23 @@ module Simpler
       @env['simpler.template']
     end
 
+    def template_render
+      @env['simpler.template.render'] || 'erb'
+    end
+
+    def template_inline
+      @env['simpler.template.inline']
+    end
+
+    def render_class
+      View.const_get("#{template_render.capitalize}Render")
+    end
+
     def template_path
       path = template || [controller.name, action].join('/')
+      @env['simpler.template.path'] = "#{path}.html.#{template_render}"
 
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+      Simpler.root.join(VIEW_BASE_PATH, @env['simpler.template.path'])
     end
 
   end
-end
