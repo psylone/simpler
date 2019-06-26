@@ -1,36 +1,31 @@
-module Simpler
-  module Middleware
-    class Logger
-      DEFAULT_FILE_NANE = 'log/app.log'.freeze
+require 'logger'
 
-      def initialize(app, file_name = nil)
-        @app = app
-        @file_name = file_name
-      end
+class AppLogger
 
-      def call(env)
-        status, headers, body = @app.call(env)
-        log(message(status, headers, env))
-        [status, headers, body]
-      end
+  def initialize(app, **options)
+    @logger = Logger.new(options[:logdev] || STDOUT)
+    @app = app
+  end
 
-      private
+  def call(env)
+    status, headers, body = @app.call(env)
+    request_log(env)
+    response_log(env, status, headers)
+    [status, headers, body]
+  end
 
-      def log(msg)
-        File.open(Simpler.root.join(@file_name || DEFAULT_FILE_NANE), 'a') do |file|
-          file << "#{Time.now}\n"
-          file << msg
-        end
-      end
+  private
 
-      def message(status, headers, env)
-        params = env['simpler.params'].merge(Rack::Request.new(env).params)
-
-        "\tRequest: #{env['REQUEST_METHOD']} #{env['PATH_INFO']}\n"\
-        "\tHandler: #{env['simpler.controller'].class.name}##{env['simpler.action']}\n"\
-        "\tParameters: #{params}\n"\
-        "\tResponse: #{status} #{headers['Content-Type']} #{env['simpler.template.path']}\n"
-      end
+  def request_log(env)
+    @logger.info("Request: #{env['REQUEST_METHOD']} #{env['REQUEST_URI']}")
+    if env['simpler.controller']
+      @logger.info("Handler: #{env['simpler.controller'].name.capitalize}Controller##{env['simpler.action']}")
+      @logger.info("Parameters: #{env['simpler.controller'].params}")
     end
   end
+
+  def response_log(env, status, headers)
+    @logger.info("Response: #{status} #{Rack::Utils::HTTP_STATUS_CODES[status]} [#{headers['Content-Type']}] #{env['simpler.template_path']}")
+  end
+  
 end

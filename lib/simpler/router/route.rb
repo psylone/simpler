@@ -2,40 +2,37 @@ module Simpler
   class Router
     class Route
 
-      attr_reader :controller, :action, :params
+      attr_reader :controller, :action
 
       def initialize(method, path, controller, action)
+        @dynamic = false
         @method = method
-        @path = path
+        @path = parse_path(path)
         @controller = controller
         @action = action
       end
 
       def match?(method, path)
-        @params = {}
-        @method == method && match_route(path, @path)
+        @method == method && path.match(@path)      
+      end
+
+      def parse_params(path)
+        return {} unless @dynamic
+
+        path.match(@path).named_captures.transform_keys(&:to_sym)
       end
 
       private
 
-      def match_route(path, route)
-        path_parts = path.split('/')
-        route_parts = route.split('/')
-        return false unless path_parts.count == route_parts.count
+      def parse_path(path)
+        search_regex = /:(\w+)/
+        route_path = path.dup
 
-        path.split('/').each_with_index do |part, index|
-          route_part = route_parts[index]
-          next if add_param!(route_part, part)
+        @dynamic = true if route_path.gsub!(search_regex, '(?<\1>\w+)')
 
-          return false unless part == route_part
-        end
+        "^#{route_path}$"
       end
 
-      def add_param!(key, value)
-        return false unless key[0] == ':'
-
-        params[key[1..-1].to_sym] = value
-      end
     end
   end
 end
