@@ -1,0 +1,114 @@
+I, [2019-06-27T12:06:58.100278 #54267]  INFO -- : Request: GET /
+I, [2019-06-27T12:06:58.101441 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:08:18.221013 #54267]  INFO -- : Request: GET /
+I, [2019-06-27T12:08:18.221512 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:08:18.462834 #54267]  INFO -- : Request: GET /apple-touch-icon-precomposed.png
+I, [2019-06-27T12:08:18.462934 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:08:18.467381 #54267]  INFO -- : Request: GET /apple-touch-icon.png
+I, [2019-06-27T12:08:18.467480 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:08:18.478825 #54267]  INFO -- : Request: GET /favicon.ico
+I, [2019-06-27T12:08:18.484641 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:09:08.469864 #54267]  INFO -- : Request: GET /
+I, [2019-06-27T12:09:08.469976 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:09:11.148867 #54267]  INFO -- : Request: GET /
+I, [2019-06-27T12:09:11.148933 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:09:13.303050 #54267]  INFO -- : Request: GET /tests
+I, [2019-06-27T12:09:13.303177 #54267]  INFO -- : Handler: TestsController#index
+I, [2019-06-27T12:09:13.417222 #54267]  INFO -- : Request: GET /favicon.ico
+I, [2019-06-27T12:09:13.417353 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:20:53.628002 #54267]  INFO -- : Request: GET /tests
+I, [2019-06-27T12:20:53.628180 #54267]  INFO -- : Handler: TestsController#index
+I, [2019-06-27T12:20:56.985974 #54267]  INFO -- : Request: GET /
+I, [2019-06-27T12:20:56.986054 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:20:57.061562 #54267]  INFO -- : Request: GET /
+I, [2019-06-27T12:20:57.061644 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:26:33.566205 #54267]  INFO -- : Request: GET /
+I, [2019-06-27T12:26:33.566575 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:26:38.712937 #54267]  INFO -- : Request: GET /tests
+I, [2019-06-27T12:26:38.713017 #54267]  INFO -- : Handler: TestsController#index
+I, [2019-06-27T12:30:03.684758 #54267]  INFO -- : Request: GET /
+I, [2019-06-27T12:30:03.685256 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:30:05.915258 #54267]  INFO -- : Request: GET /
+I, [2019-06-27T12:30:05.915329 #54267]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-06-27T12:30:06.741895 #54267]  INFO -- : Request: GET /tests
+I, [2019-06-27T12:30:06.741968 #54267]  INFO -- : Handler: TestsController#index
+I, [2019-06-27T12:30:10.528849 #54267]  INFO -- : Request: GET /tests
+I, [2019-06-27T12:30:10.528959 #54267]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:33:33.466548 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:33:33.467672 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:33:37.809765 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:33:37.809834 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:33:40.892756 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:33:40.892856 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:33:41.768918 #58858]  INFO -- : Request: GET /tests
+I, [2019-07-01T11:33:41.768990 #58858]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:33:41.769145 #58858]  INFO -- : Parameters: {}
+I, [2019-07-01T11:33:41.769184 #58858]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2019-07-01T11:33:42.651270 #58858]  INFO -- : Request: GET /tests
+I, [2019-07-01T11:33:42.651380 #58858]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:33:42.651456 #58858]  INFO -- : Parameters: {}
+I, [2019-07-01T11:33:42.651508 #58858]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2019-07-01T11:33:56.736478 #58858]  INFO -- : Request: GET /favicon.ico
+I, [2019-07-01T11:33:56.736600 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:34:02.082448 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:34:02.082573 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:34:02.370269 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:34:02.370367 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:35:04.710432 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:35:04.710904 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:35:07.664590 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:35:07.664661 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:35:08.239893 #58858]  INFO -- : Request: GET /tests
+I, [2019-07-01T11:35:08.239964 #58858]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:35:08.240021 #58858]  INFO -- : Parameters: {}
+I, [2019-07-01T11:35:08.240057 #58858]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2019-07-01T11:35:09.240031 #58858]  INFO -- : Request: GET /tests
+I, [2019-07-01T11:35:09.240097 #58858]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:35:09.240148 #58858]  INFO -- : Parameters: {}
+I, [2019-07-01T11:35:09.240181 #58858]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2019-07-01T11:36:48.877426 #58858]  INFO -- : Request: GET /tests/123
+I, [2019-07-01T11:36:48.877501 #58858]  INFO -- : Handler: TestsController#show
+I, [2019-07-01T11:36:48.877540 #58858]  INFO -- : Parameters: {:id=>"123"}
+I, [2019-07-01T11:36:48.877576 #58858]  INFO -- : Response: 200 OK [text/html] tests/show.html.erb
+I, [2019-07-01T11:36:50.464115 #58858]  INFO -- : Request: GET /tests/123
+I, [2019-07-01T11:36:50.464180 #58858]  INFO -- : Handler: TestsController#show
+I, [2019-07-01T11:36:50.464215 #58858]  INFO -- : Parameters: {:id=>"123"}
+I, [2019-07-01T11:36:50.464246 #58858]  INFO -- : Response: 200 OK [text/html] tests/show.html.erb
+I, [2019-07-01T11:36:57.359769 #58858]  INFO -- : Request: GET /tests/123
+I, [2019-07-01T11:36:57.359839 #58858]  INFO -- : Handler: TestsController#show
+I, [2019-07-01T11:36:57.359882 #58858]  INFO -- : Parameters: {:id=>"123"}
+I, [2019-07-01T11:36:57.359917 #58858]  INFO -- : Response: 200 OK [text/html] tests/show.html.erb
+I, [2019-07-01T11:36:57.832452 #58858]  INFO -- : Request: GET /tests
+I, [2019-07-01T11:36:57.832518 #58858]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:36:57.832572 #58858]  INFO -- : Parameters: {}
+I, [2019-07-01T11:36:57.832606 #58858]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2019-07-01T11:36:58.703253 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:36:58.703317 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:36:59.126402 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:36:59.126580 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:37:02.211157 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:37:02.211229 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:37:03.384784 #58858]  INFO -- : Request: GET /jgd
+I, [2019-07-01T11:37:03.384856 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:37:03.439955 #58858]  INFO -- : Request: GET /favicon.ico
+I, [2019-07-01T11:37:03.440022 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:37:24.778889 #58858]  INFO -- : Request: GET /jgd
+I, [2019-07-01T11:37:24.779232 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:37:25.073368 #58858]  INFO -- : Request: GET /
+I, [2019-07-01T11:37:25.073434 #58858]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-01T11:37:26.084491 #58858]  INFO -- : Request: GET /tests
+I, [2019-07-01T11:37:26.084572 #58858]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:37:26.084644 #58858]  INFO -- : Parameters: {}
+I, [2019-07-01T11:37:26.084692 #58858]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2019-07-01T11:37:27.500804 #58858]  INFO -- : Request: GET /tests
+I, [2019-07-01T11:37:27.500871 #58858]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:37:27.500923 #58858]  INFO -- : Parameters: {}
+I, [2019-07-01T11:37:27.500971 #58858]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2019-07-01T11:37:38.898183 #58858]  INFO -- : Request: GET /tests
+I, [2019-07-01T11:37:38.898242 #58858]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:37:38.898298 #58858]  INFO -- : Parameters: {}
+I, [2019-07-01T11:37:38.898328 #58858]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2019-07-01T11:37:39.256228 #58858]  INFO -- : Request: GET /tests
+I, [2019-07-01T11:37:39.256298 #58858]  INFO -- : Handler: TestsController#index
+I, [2019-07-01T11:37:39.256363 #58858]  INFO -- : Parameters: {}
+I, [2019-07-01T11:37:39.256396 #58858]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
