@@ -67,5 +67,9 @@ module Simpler
       text
     end
 
+    def status(code)
+      @response.status = code
+    end
+
   end
 end
