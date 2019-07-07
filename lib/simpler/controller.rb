@@ -52,6 +52,7 @@ module Simpler
       if template.class == Hash
         body = View.new(@request.env).render(binding, render_text(template))
         @response.write(body)
+        @response['Content-Type'] = 'text/plain'
       else
         @request.env['simpler.template'] = template
       end
