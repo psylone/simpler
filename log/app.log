@@ -1,0 +1,18 @@
+I, [2019-07-07T12:41:18.000881 #10617]  INFO -- : Request: GET /
+I, [2019-07-07T12:41:18.000978 #10617]  INFO -- : Response: 404 Not Found [text/plain] 
+I, [2019-07-07T12:52:36.927535 #10994]  INFO -- : Request: GET /tests
+I, [2019-07-07T12:52:36.927790 #10994]  INFO -- : Handler: TestsController#index
+I, [2019-07-07T12:52:36.927934 #10994]  INFO -- : Parameters: {}
+I, [2019-07-07T12:52:36.927995 #10994]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2019-07-07T12:53:00.107982 #10994]  INFO -- : Request: GET /tests/1
+I, [2019-07-07T12:53:00.108049 #10994]  INFO -- : Handler: TestsController#show
+I, [2019-07-07T12:53:00.108080 #10994]  INFO -- : Parameters: {:id=>"1"}
+I, [2019-07-07T12:53:00.108103 #10994]  INFO -- : Response: 200 OK [text/html] tests/show.html.erb
+I, [2019-07-07T12:53:29.616579 #10994]  INFO -- : Request: GET /tests/4
+I, [2019-07-07T12:53:29.616644 #10994]  INFO -- : Handler: TestsController#show
+I, [2019-07-07T12:53:29.616674 #10994]  INFO -- : Parameters: {:id=>"4"}
+I, [2019-07-07T12:53:29.616699 #10994]  INFO -- : Response: 200 OK [text/html] tests/show.html.erb
+I, [2019-07-07T12:57:50.594394 #11207]  INFO -- : Request: GET /tests
+I, [2019-07-07T12:57:50.594438 #11207]  INFO -- : Handler: TestsController#index
+I, [2019-07-07T12:57:50.594477 #11207]  INFO -- : Parameters: {}
+I, [2019-07-07T12:57:50.594493 #11207]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
