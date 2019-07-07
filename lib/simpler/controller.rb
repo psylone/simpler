@@ -11,9 +11,10 @@ module Simpler
       @response = Rack::Response.new
     end
 
-    def make_response(action)
+    def make_response(action, params)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+      @request.env['simpler.params'] = params
 
       set_default_headers
       send(action)
@@ -32,6 +33,19 @@ module Simpler
       @response['Content-Type'] = 'text/html'
     end
 
+    def renderer_params(renderer)
+      @response['Content-Type'] = renderer.type.to_s
+      @request.env['simpler.template'] = renderer.template
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def header(key, value)
+      @response.set_header(key, value)
+    end
+
     def write_response
       body = render_body
 
@@ -39,15 +53,17 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      view = View.new(@request.env)
+      renderer_params(view.renderer)
+      view.render(binding)
     end
 
     def params
-      @request.params
+      @request.env['simpler.params']
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(source)
+      @request.env['simpler.render_source'] = source
     end
 
   end
