@@ -9,8 +9,8 @@ module Simpler
       @env = env
     end
 
-    def render(binding)
-      template = File.read(template_path)
+    def render(binding, template = nil)
+      template = File.read(template_path) if template == nil
 
       ERB.new(template).result(binding)
     end

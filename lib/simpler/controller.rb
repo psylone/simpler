@@ -33,9 +33,11 @@ module Simpler
     end
 
     def write_response
-      body = render_body
+      if @response.body.empty?
+        body = render_body
 
-      @response.write(body)
+        @response.write(body)
+      end
     end
 
     def render_body
@@ -47,7 +49,22 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.class == Hash
+        body = View.new(@request.env).render(binding, render_text(template))
+        @response.write(body)
+      else
+        @request.env['simpler.template'] = template
+      end
+    end
+
+    def render_text(hash)
+      text = ''
+      hash.each do |k,v|
+        if k == :plain || :inline
+          text << v
+        end
+      end
+      text
     end
 
   end
