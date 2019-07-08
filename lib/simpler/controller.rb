@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
-    def initialize(env)
+    def initialize(request)
       @name = extract_name
-      @request = Rack::Request.new(env)
+      @request = request
       @response = Rack::Response.new
     end
 
@@ -22,7 +23,15 @@ module Simpler
       @response.finish
     end
 
+    def set_headers
+      @response.headers
+    end
+
     private
+
+    def set_status(number_status)
+      @response.status = number_status
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
@@ -35,7 +44,7 @@ module Simpler
     def write_response
       body = render_body
 
-      @response.write(body)
+      @response.write(body + "\n")
     end
 
     def render_body
@@ -43,12 +52,11 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params']
     end
 
     def render(template)
       @request.env['simpler.template'] = template
     end
-
   end
 end
