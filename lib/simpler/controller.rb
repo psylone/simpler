@@ -9,6 +9,7 @@ module Simpler
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      set_params
     end
 
     def make_response(action)
@@ -44,8 +45,8 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
+    def params(id)
+      @request.params[id]
     end
 
     def render(template)
@@ -70,6 +71,10 @@ module Simpler
 
     def status(code)
       @response.status = code
+    end
+
+    def set_params
+      @request.params[:id] = @request.env["simpler.params"]
     end
 
   end
