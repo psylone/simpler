@@ -1,0 +1,33 @@
+I, [2019-07-09T23:10:22.271826 #6766]  INFO -- : Request: GET /tests/98
+I, [2019-07-09T23:10:22.273688 #6766]  INFO -- : Handler: TestsControllershow
+I, [2019-07-09T23:10:22.273860 #6766]  INFO -- : Parameters: {:id=>98}
+I, [2019-07-09T23:10:22.273959 #6766]  INFO -- : Response: 200 text/html tests/show.html.erb
+I, [2019-07-09T23:11:02.588840 #6766]  INFO -- : Request: GET /tests
+I, [2019-07-09T23:11:02.589036 #6766]  INFO -- : Handler: TestsControllerindex
+I, [2019-07-09T23:11:02.589147 #6766]  INFO -- : Parameters: {:id=>nil}
+I, [2019-07-09T23:11:02.589223 #6766]  INFO -- : Response: 200 text/html tests/index.html.erb
+I, [2019-07-09T23:19:49.023042 #7012]  INFO -- : Request: GET /test
+I, [2019-07-09T23:21:03.905219 #7059]  INFO -- : Request: GET /test
+I, [2019-07-09T23:21:03.905404 #7059]  INFO -- : Handler: No
+I, [2019-07-09T23:22:57.551177 #7126]  INFO -- : Request: GET /test
+I, [2019-07-09T23:22:57.552246 #7126]  INFO -- : Handler: No
+I, [2019-07-09T23:28:19.926266 #7264]  INFO -- : Request: GET /test
+I, [2019-07-09T23:28:19.926445 #7264]  INFO -- : Handler: No
+I, [2019-07-09T23:28:19.926551 #7264]  INFO -- : Parameters: No
+I, [2019-07-09T23:28:19.926623 #7264]  INFO -- : Response: No
+I, [2019-07-09T23:29:51.630121 #7321]  INFO -- : Request: GET /test
+I, [2019-07-09T23:29:51.630375 #7321]  INFO -- : Handler: No
+I, [2019-07-09T23:29:51.630455 #7321]  INFO -- : Parameters: No
+I, [2019-07-09T23:29:51.630570 #7321]  INFO -- : Response: No
+I, [2019-07-09T23:40:46.843330 #7497]  INFO -- : Request: GET /tests
+I, [2019-07-09T23:40:46.848401 #7497]  INFO -- : Handler: TestsControllerindex
+I, [2019-07-09T23:40:46.848553 #7497]  INFO -- : Parameters: {:id=>nil}
+I, [2019-07-09T23:40:46.848644 #7497]  INFO -- : Response: 200 text/html tests/index.html.erb
+I, [2019-07-09T23:40:57.045036 #7497]  INFO -- : Request: GET /tests/23
+I, [2019-07-09T23:40:57.045228 #7497]  INFO -- : Handler: TestsControllershow
+I, [2019-07-09T23:40:57.045316 #7497]  INFO -- : Parameters: {:id=>23}
+I, [2019-07-09T23:40:57.045413 #7497]  INFO -- : Response: 200 text/html tests/show.html.erb
+I, [2019-07-09T23:41:02.168944 #7497]  INFO -- : Request: GET /tests/23sd
+I, [2019-07-09T23:41:02.169102 #7497]  INFO -- : Handler: No
+I, [2019-07-09T23:41:02.169164 #7497]  INFO -- : Parameters: No
+I, [2019-07-09T23:41:02.169226 #7497]  INFO -- : Response: No

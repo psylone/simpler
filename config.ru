@@ -1,4 +1,4 @@
 require_relative 'config/environment'
 
-use Simpler::Logger
+use Simpler::AppLogger
 run Simpler.application
