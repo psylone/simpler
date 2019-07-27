@@ -22,6 +22,10 @@ module Simpler
       @response.finish
     end
 
+    def params
+      @request.env['simpler.params'].merge(@request.params)
+    end
+
     private
 
     def extract_name
@@ -33,21 +37,32 @@ module Simpler
     end
 
     def write_response
-      body = render_body
-
-      @response.write(body)
+      @response.write(render_body) if @response.body.empty?
     end
 
     def render_body
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
+    def render(template)
+      if template[:plain]
+        render_plain(template[:plain])
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render_plain(text)
+      @response.write(text)
+      @response['Content-Type'] = 'text/plain'
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def headers
+      @response
     end
 
   end
