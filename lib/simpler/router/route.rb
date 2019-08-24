@@ -12,7 +12,12 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.match(@path)
+        arr_path = path.split('/')
+        if arr_path.last.to_i > 0
+          @method == method && @path.match(arr_path[1]) && @path.match(':id')
+        else
+          @method == method && path.match(@path)
+        end
       end
 
     end

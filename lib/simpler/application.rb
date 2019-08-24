@@ -9,7 +9,7 @@ module Simpler
 
     include Singleton
 
-    attr_reader :db
+    attr_reader :db, :router
 
     def initialize
       @router = Router.new
@@ -28,6 +28,9 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+
+      return [404, {}, []] if route.nil?
+
       controller = route.controller.new(env)
       action = route.action
 

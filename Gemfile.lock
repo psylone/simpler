@@ -1,0 +1,14 @@
+GEM
+  specs:
+    sequel (5.23.0)
+    sqlite3 (1.4.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  sequel
+  sqlite3
+
+BUNDLED WITH
+   1.17.1

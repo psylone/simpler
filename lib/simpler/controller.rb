@@ -15,11 +15,28 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
+      query_id
+
       send(action)
+      set_default_headers
       write_response
 
-      @response.finish
+      # @response.status = 201
+      # @response['Content-Type'] = 'text/plain' if self.class.template_plain?(@request.env)
+
+      response = @response.finish
+      response[0] = 201 if action == 'create'
+      response[1]['Content-Type'] = 'text/plain' if self.class.template_plain?(@request.env)
+      response
+    end
+
+    def query_id
+      id = @request.env['PATH_INFO'].split('/').last.to_i
+      @request.params[:id] = id if id > 0
+    end
+
+    def self.template_plain?(env)
+      env.has_key?('simpler.template') && env['simpler.template'].has_key?(:plain)
     end
 
     private

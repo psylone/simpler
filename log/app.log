@@ -1,0 +1,73 @@
+# Logfile created on 2019-08-24 17:51:56 +0300 by logger.rb/61378
+I, [2019-08-24T17:52:05.509710 #39552]  INFO -- : mamom=kukun
+I, [2019-08-24T18:20:25.788589 #4428]  INFO -- : {:method=>"GET"}
+I, [2019-08-24T18:37:26.391308 #44905]  INFO -- : {:method=>"GET", :path=>"/tests/147", :contoller=>"TestsController"}
+I, [2019-08-24T18:51:13.017186 #77329]  INFO -- : {:method=>nil, :url=>nil, :path=>nil, :query=>nil, :params=>{"mamom"=>"kukun"}, :controller=>"TestsController", :action=>"show"}
+I, [2019-08-24T18:53:13.818661 #82017]  INFO -- : {:method=>"GET", :url=>"/tests/147?mamom=kukun", :path=>"/tests/147", :query=>"mamom=kukun", :params=>{"mamom"=>"kukun"}, :controller=>"TestsController", :action=>"show"}
+I, [2019-08-24T19:53:37.186666 #25729]  INFO -- : {:Request=>"GET //tests/147?mamom=kukun?mamom=kukun", :Handler=>"TestsController#show", :Parameters=>"{\"mamom\"=>\"kukun\"}"}
+I, [2019-08-24T19:58:07.755394 #36432]  INFO -- : Parameters: {"mamom"=>"kukun"}
+
+I, [2019-08-24T19:59:34.353962 #39946]  INFO -- : Parameters: {"mamom"=>"kukun"}
+
+I, [2019-08-24T20:00:25.310617 #42000]  INFO -- : Request: GET /tests/147?mamom=kukun
+
+    Handler: TestsController#show
+
+    Parameters: {"mamom"=>"kukun"}
+
+I, [2019-08-24T20:01:31.635200 #44465]  INFO -- : Request: GET /tests/147?mamom=kukun
+    Handler: TestsController#show
+    Parameters: {"mamom"=>"kukun"}
+I, [2019-08-24T20:02:13.735002 #46109]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+    Handler: TestsController#show
+    Parameters: {"mamom"=>"kukun"}
+I, [2019-08-24T20:02:51.041815 #47549]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+I, [2019-08-24T20:08:40.831393 #61278]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+Response: .html.erb
+I, [2019-08-24T20:09:57.114088 #64339]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+Response: .html.erb
+I, [2019-08-24T20:34:38.735748 #23528]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+
+I, [2019-08-24T20:35:20.026580 #25059]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+Response: .html.erb
+I, [2019-08-24T20:36:34.797673 #27990]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+Response: .html.erb
+I, [2019-08-24T20:44:31.872117 #46876]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+Response: /Volumes/MacintoshHD/thinknetica/simpler/app/views/tests/show.html.erb.html.erb
+I, [2019-08-24T20:57:39.757013 #77729]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+Response: tests/show.html.erb.html.erb
+I, [2019-08-24T21:01:01.080671 #85483]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+Response: 200 {"Content-Type"=>"text/html", "Content-Length"=>"184"} tests/show.html.erb
+I, [2019-08-24T21:02:26.892038 #88892]  INFO -- : 
+Request: GET /tests/147?mamom=kukun
+Handler: TestsController#show
+Parameters: {"mamom"=>"kukun"}
+Response: 200 [text/html] tests/show.html.erb

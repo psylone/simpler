@@ -10,9 +10,14 @@ module Simpler
     end
 
     def render(binding)
+      return @env['simpler.template'][:plain] if Controller.template_plain?(@env)
       template = File.read(template_path)
 
       ERB.new(template).result(binding)
+    end
+
+    def template_path_relative
+      "#{[controller.name, action].join('/')}.html.erb"
     end
 
     private
