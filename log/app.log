@@ -1,0 +1,3 @@
+# Logfile created on 2019-09-04 16:13:30 +0700 by logger.rb/66358
+I, [2019-09-04T16:13:33.739734 #11130]  INFO -- : {:Request=>"GET /tests", :Handler=>"TestsController#index", :Parameters=>nil, :Response=>"200 [text/html] "}
+I, [2019-09-04T16:14:10.084666 #11130]  INFO -- : {:Request=>"GET /", :Handler=>"NilClass#", :Parameters=>nil, :Response=>"404 [text/plain] "}
