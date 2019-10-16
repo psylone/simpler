@@ -88,7 +88,7 @@ module Simpler
     def no_page
       status 404
       @request.env['simpler.render_option'] = :public
-      @request.env['simpler.template'] = 404
+      @request.env['simpler.render_option_value'] = 404
     end
 
   end
