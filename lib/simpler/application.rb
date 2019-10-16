@@ -27,9 +27,14 @@ module Simpler
     end
 
     def call(env)
-      route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
+      begin
+        route = @router.route_for(env)
+        controller = route.controller.new(env)
+        action = route.action
+      rescue NoMethodError
+        controller = Controller.new(env)
+        action = 'no_page'
+      end
 
       make_response(controller, action)
     end

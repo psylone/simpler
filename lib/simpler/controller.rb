@@ -3,14 +3,18 @@ require_relative 'view'
 module Simpler
   class Controller
 
-    attr_reader :name, :request, :response
+    attr_reader :name, :request, :response, :headers
 
-    RENDER_OPTIONS = %i[ status ].freeze
+    RENDER_OPTIONS = {
+      status: "status",
+      headers: "write_headers"
+    }.freeze
 
     def initialize(env)
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @headers = {}
     end
 
     def make_response(action)
@@ -19,6 +23,7 @@ module Simpler
 
       set_default_headers
       send(action)
+      set_headers
       write_response
 
       @response.finish
@@ -32,6 +37,12 @@ module Simpler
 
     def set_default_headers
       @response['Content-Type'] = 'text/html'
+    end
+
+    def set_headers
+      @headers.each do |header|
+        @response[header[0]] = header[1]
+      end
     end
 
     def write_response
@@ -59,13 +70,25 @@ module Simpler
 
       options.each do |option|
         if RENDER_OPTIONS.include?(option[0])
-          send(option[0], option[1])
+          send(RENDER_OPTIONS[option[0]], option[1])
         end
       end
     end
 
     def status(number)
       @response.status = number
+    end
+
+    def write_headers(hash)
+      hash.each do |i|
+        @headers[i[0]] = i[1]
+      end
+    end
+
+    def no_page
+      status 404
+      @request.env['simpler.render_option'] = :public
+      @request.env['simpler.template'] = 404
     end
 
   end

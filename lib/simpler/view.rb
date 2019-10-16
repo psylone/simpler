@@ -7,7 +7,8 @@ module Simpler
 
     RENDER_TYPES = {
       html: "render_html",
-      plain: "render_plain"
+      plain: "render_plain",
+      public: "render_public"
     }
 
     def initialize(env)
@@ -37,6 +38,11 @@ module Simpler
 
     def render_plain(_binding_from_controller)
       @env['simpler.render_option_value']
+    end
+
+    def render_public(_binding_from_controller)
+      path = Simpler.root.join(VIEW_BASE_PATH, "public/#{template}.html")
+      File.read(path)
     end
 
     def template
