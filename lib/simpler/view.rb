@@ -5,14 +5,18 @@ module Simpler
 
     VIEW_BASE_PATH = 'app/views'.freeze
 
+    RENDER_TYPES = {
+      html: "render_html",
+      plain: "render_plain"
+    }
+
     def initialize(env)
       @env = env
     end
 
-    def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+    def render(binding_from_controller)
+      render_method = @env['simpler.render_option'] || :html
+      send(RENDER_TYPES[render_method], binding_from_controller)
     end
 
     private
@@ -23,6 +27,16 @@ module Simpler
 
     def action
       @env['simpler.action']
+    end
+
+    def render_html(binding_from_controller)
+      template = File.read(template_path)
+
+      ERB.new(template).result(binding_from_controller)
+    end
+
+    def render_plain(_binding_from_controller)
+      @env['simpler.render_option_value']
     end
 
     def template

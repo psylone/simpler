@@ -5,6 +5,8 @@ module Simpler
 
     attr_reader :name, :request, :response
 
+    RENDER_OPTIONS = %i[ status ].freeze
+
     def initialize(env)
       @name = extract_name
       @request = Rack::Request.new(env)
@@ -46,8 +48,24 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(template, options = {})
+      if template.class == Hash
+        @request.env['simpler.render_option_value'] = template.values[0]
+        @request.env['simpler.render_option'] = template.keys[0]
+        options = template.drop(1).to_h
+      else
+        @request.env['simpler.template'] = template
+      end
+
+      options.each do |option|
+        if RENDER_OPTIONS.include?(option[0])
+          send(option[0], option[1])
+        end
+      end
+    end
+
+    def status(number)
+      @response.status = number
     end
 
   end
