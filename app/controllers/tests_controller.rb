@@ -1,11 +1,15 @@
 class TestsController < Simpler::Controller
 
   def index
-    render plain: "olololo", status: 201, headers: { 'Content-Type' => 'text/plain' }
+    @time = params
   end
 
   def create
 
+  end
+
+  def show
+    @params = params
   end
 
 end
