@@ -1,4 +1,5 @@
 require_relative 'view'
+require 'pry'
 
 module Simpler
   class Controller
@@ -9,6 +10,7 @@ module Simpler
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      set_params(env)
     end
 
     def make_response(action)
@@ -48,6 +50,10 @@ module Simpler
 
     def render_body
       View.new(@request.env).render(binding)
+    end
+
+    def set_params(env)
+      @request.params.update(env['simpler.route_params'])
     end
 
     def params

@@ -7,6 +7,8 @@
   <body>
     <h1>Simpler framework at work!</h1>
 
-    <p><%= @time %></p>
+    <% @tests.each do |test| %>
+      <li><%= test.title %> (<%= test.level %>)</li>
+    <% end %>
   </body>
 </html>

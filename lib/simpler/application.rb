@@ -30,12 +30,13 @@ module Simpler
       route = @router.route_for(env)
 
       if route
+        env['simpler.route_params'] = route.params
         controller = route.controller.new(env)
         action = route.action
 
         make_response(controller, action)
       else
-        make_undefined_response
+        make_undefined_response(env)
       end
     end
 
@@ -59,7 +60,7 @@ module Simpler
       controller.make_response(action)
     end
 
-    def make_undefined_response
+    def make_undefined_response(env)
       [404, {'Content-type' => 'text/html'}, ['This page does not exist']]
     end
   end
