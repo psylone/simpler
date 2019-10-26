@@ -1,5 +1,4 @@
 require_relative 'view'
-require 'pry'
 
 module Simpler
   class Controller
@@ -49,7 +48,8 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      renderer = View.renderer(@request.env)
+      renderer.new(@request.env).render(binding)
     end
 
     def set_params(env)
@@ -63,6 +63,5 @@ module Simpler
     def render(template)
       @request.env['simpler.template'] = template
     end
-
   end
 end

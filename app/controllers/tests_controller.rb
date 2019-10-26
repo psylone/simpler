@@ -10,5 +10,7 @@ class TestsController < Simpler::Controller
 
   def show
     @test = Test.find(id: params[:id])
+
+    render plain: 'Test not found' unless @test
   end
 end
