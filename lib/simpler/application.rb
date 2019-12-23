@@ -31,6 +31,7 @@ module Simpler
 
       if route
         controller = route.controller.new(env)
+        controller.request.params.merge!(route.params)
         action = route.action
 
         make_response(controller, action)
