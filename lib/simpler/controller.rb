@@ -20,6 +20,9 @@ module Simpler
       send(action)
       write_response
 
+      @request.env['simpler.response.status'] = @response.status
+      @request.env['simpler.response.header'] = headers['Content-Type']
+
       @response.finish
     end
 

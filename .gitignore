@@ -1,0 +1,5 @@
+# ignore files in folder /log
+log/*
+
+# but keep the folder
+!log/.keep
