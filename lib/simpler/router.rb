@@ -19,7 +19,8 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
 
-      @routes.find { |route| route.match?(method, path) }
+      route = @routes.find { |a_route| a_route.match?(method, path) }
+      route || default_route(method, path)
     end
 
     private
@@ -31,6 +32,11 @@ module Simpler
       route = Route.new(method, path, controller, action)
 
       @routes.push(route)
+    end
+
+    def default_route(method, path)
+      controller = controller_from_string('Default')
+      Route.new(method, path, controller, 'resource_not_found')
     end
 
     def controller_from_string(controller_name)

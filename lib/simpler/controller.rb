@@ -37,7 +37,7 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simple.template'] = template
+      @request.env['simpler.template'] = template
     end
 
     private

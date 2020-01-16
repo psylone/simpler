@@ -28,7 +28,7 @@ module Simpler
     end
 
     def template_content
-      return File.read(template_path) if template.is_a?(String)
+      return File.read(template_path) if template.nil? || template.is_a?(String)
       return template[:plain] if template.is_a?(Hash) && template.include?(:plain)
 
       raise ArgumentError, 'Unknown template format'
