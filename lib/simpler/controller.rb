@@ -22,6 +22,24 @@ module Simpler
       @response.finish
     end
 
+    protected
+
+    def status(code)
+      response.status = code
+    end
+
+    def headers
+      response.headers
+    end
+
+    def params
+      @request.params
+    end
+
+    def render(template)
+      @request.env['simple.template'] = template
+    end
+
     private
 
     def extract_name
@@ -40,14 +58,6 @@ module Simpler
 
     def render_body
       View.new(@request.env).render(binding)
-    end
-
-    def params
-      @request.params
-    end
-
-    def render(template)
-      @request.env['simpler.template'] = template
     end
 
   end
