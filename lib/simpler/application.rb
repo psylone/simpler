@@ -14,7 +14,7 @@ module Simpler
     def initialize
       @router = Router.new
       @db = nil
-      @on_call_handlers = []
+      @on_call_handlers = nil
     end
 
     def bootstrap!
@@ -30,7 +30,7 @@ module Simpler
     def on_call(&block)
       return unless block_given?
 
-      on_call_handlers << block
+      @on_call_handler = block
     end
 
     def call(env)
@@ -47,7 +47,7 @@ module Simpler
 
     private
 
-    attr_reader :on_call_handlers
+    attr_reader :on_call_handler
 
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
@@ -64,9 +64,7 @@ module Simpler
     end
 
     def execute_on_call(controller, action)
-      on_call_handlers.each do |handler|
-        handler.call(controller, action)
-      end
+      on_call_handler.call(controller, action)
     end
 
     def make_response(controller, action)

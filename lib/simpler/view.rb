@@ -24,7 +24,7 @@ module Simpler
     end
 
     def template
-      @template ||= @env['simpler.template'] || template_path.to_s
+      @env['simpler.template'] ||= template_path.to_s
     end
 
     def template_content
