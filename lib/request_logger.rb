@@ -6,31 +6,34 @@ require 'logger'
     def initialize(app)
       @app = app
       @env = nil
+      @logger = nil
+      @app.on(:make_response_event, &method(:log_request).to_proc)
+    end
+
+    def log_request(controller, action)
+      @request = controller.request
+      @controller = controller
+      @action = action
+      logger.info(request_data)
     end
 
     def call(env)
-      @logger = new_logger
-
-      @app.on_call do |controller, action|
-        @request = controller.request
-        @controller = controller
-        @action = action
-        logger.info(request_data)
-      end
       response = @app.call(env)
       logger.info(response_data(@controller.response))
-      logger.close
+      # logger.close
       response
     end
 
     private
 
     attr_reader :request
-    attr_reader :logger
+
+    def logger
+      @logger ||= new_logger
+    end
 
     def new_logger
       log_file = Simpler.root.join('log/app.log')
-      puts log_file
       @logger = Logger.new(
         log_file,
         datetime_format: '%Y.%m.%d %H:%M:%S',

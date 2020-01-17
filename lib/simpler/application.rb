@@ -3,18 +3,20 @@ require 'singleton'
 require 'sequel'
 require_relative 'router'
 require_relative 'controller'
+require_relative '../extentions/events'
 
 module Simpler
   class Application
 
     include Singleton
+    include Events
 
     attr_reader :db
+    event :make_response_event
 
     def initialize
       @router = Router.new
       @db = nil
-      @on_call_handlers = nil
     end
 
     def bootstrap!
@@ -27,12 +29,6 @@ module Simpler
       @router.instance_eval(&block)
     end
 
-    def on_call(&block)
-      return unless block_given?
-
-      @on_call_handler = block
-    end
-
     def call(env)
       request = Rack::Request.new(env)
       route = @router.route_for(env)
@@ -40,14 +36,12 @@ module Simpler
       controller = route.controller.new(request)
       action = route.action
 
-      execute_on_call(controller, action)
+      fire(:make_response_event, controller, action)
 
       make_response(controller, action)
     end
 
     private
-
-    attr_reader :on_call_handler
 
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
@@ -61,10 +55,6 @@ module Simpler
       database_config = YAML.load_file(Simpler.root.join('config/database.yml'))
       database_config['database'] = Simpler.root.join(database_config['database'])
       @db = Sequel.connect(database_config)
-    end
-
-    def execute_on_call(controller, action)
-      on_call_handler.call(controller, action)
     end
 
     def make_response(controller, action)
