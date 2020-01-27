@@ -4,6 +4,7 @@ module Simpler
   class Controller
 
     attr_reader :name, :request, :response
+    alias :headers :response
 
     def initialize(env)
       @name = extract_name
@@ -58,6 +59,10 @@ module Simpler
 
     def set_content_type(template)
       @response['Content-Type'] = "text/#{template.keys[0]}" if template.is_a? Hash
+    end
+
+    def headers=(val)
+      @response[header] = val
     end
   end
 end
