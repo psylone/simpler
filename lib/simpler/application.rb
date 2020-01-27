@@ -30,6 +30,7 @@ module Simpler
       route = @router.route_for(env)
       controller = route.controller.new(env)
       action = route.action
+      env["simpler.route_params"] = route.params(env['PATH_INFO'])
 
       make_response(controller, action)
     end
