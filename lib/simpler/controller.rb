@@ -48,11 +48,16 @@ module Simpler
     end
 
     def render(template)
+      set_content_type(template)
       @request.env['simpler.template'] = template
     end
 
     def status(code)
       @response.status = code
+    end
+
+    def set_content_type(template)
+      @response['Content-Type'] = "text/#{template.keys[0]}" if template.is_a? Hash
     end
   end
 end
