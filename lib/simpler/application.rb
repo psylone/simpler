@@ -28,6 +28,7 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return [404, {}, ['Not found']] unless route
       controller = route.controller.new(env)
       action = route.action
       env["simpler.route_params"] = route.params(env['PATH_INFO'])
