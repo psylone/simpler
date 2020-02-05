@@ -4,11 +4,13 @@ module Simpler
   class Controller
 
     attr_reader :name, :request, :response
+    attr_accessor :headers
 
     def initialize(env)
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @headers = @response.headers
     end
 
     def make_response(action)
