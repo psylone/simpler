@@ -47,7 +47,21 @@ module Simpler
     end
 
     def render(template)
+      return hash_template(template) if template.is_a?(Hash)
+
       @request.env['simpler.template'] = template
+    end
+
+    def hash_template(template)
+      content_header(template)
+      @request.env['simpler.content_type'] = template.keys[0]
+      @request.env['simpler.template'] = template.values[0]
+    end
+
+    def content_header(template)
+      case template.keys[0]
+      when :plain then @response['Content-Type'] = 'text/plain'
+      end
     end
 
   end
