@@ -30,6 +30,8 @@ module Simpler
       route = @router.route_for(env)
       return route_not_found unless route
 
+      route.params(env) if route.is_dynamic
+
       controller = route.controller.new(env)
       action = route.action
 
