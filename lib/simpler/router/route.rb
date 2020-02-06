@@ -24,7 +24,7 @@ module Simpler
       private
 
       def path?(path)
-        return true if path.match(@path)
+        return true if path == @path
 
         dynamic_path?(path)
       end
