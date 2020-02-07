@@ -49,7 +49,7 @@ module Simpler
     end
 
     def params
-      @request.env['params']
+      @request.env['simpler.params']
     end
 
     def render(template)
