@@ -19,7 +19,7 @@ module Simpler
       def params(env)
         return unless @is_dynamic
 
-        find_dynamic_path_part(env['PATH_INFO'])
+        find_dynamic_path_parts(env['PATH_INFO'])
       end
 
       private
