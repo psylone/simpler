@@ -16,7 +16,7 @@ class SimplerLogger
     {
       Request: "#{env['REQUEST_METHOD']} #{env['REQUEST_PATH']}",
       Handler: "#{env['simpler.controller'].class}##{env['simpler.action']}",
-      Parameters: env['params'],
+      Parameters: env['simpler.params'],
       Response: "#{status} [#{headers['Content-Type']}] #{env['simpler.template_path']}"
     }
   end
