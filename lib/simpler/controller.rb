@@ -16,6 +16,7 @@ module Simpler
       @request.env['simpler.action'] = action
 
       set_default_headers
+      set_status(201)
       send(action)
       write_response
 
@@ -30,6 +31,10 @@ module Simpler
 
     def set_default_headers
       @response['Content-Type'] = 'text/html'
+    end
+
+    def set_status(number)
+      @response.status = number
     end
 
     def write_response
