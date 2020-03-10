@@ -39,7 +39,11 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      template = @request.env['simpler.template']
+
+      return View.new(@request.env).render(binding) unless template.is_a?(Hash)
+
+      "#{template[:plain]}\n" if template.key?(:plain)
     end
 
     def params
