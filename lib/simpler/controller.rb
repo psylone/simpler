@@ -16,7 +16,6 @@ module Simpler
       @request.env['simpler.action'] = action
 
       set_headers( { 'Content-Type' => 'text/html' } )
-      set_status(200)
       send(action)
       write_response
 
