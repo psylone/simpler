@@ -29,6 +29,7 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+
       return [404, { 'Content-Type' => 'text/plain' }, []] if route.nil?
 
       controller = route.controller.new(env)
