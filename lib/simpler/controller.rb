@@ -14,7 +14,7 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-      @request.params.merge!(id: record)
+      @request.env['simpler.params'] = @request.params.merge!(id: record)
 
       set_headers( { 'Content-Type' => 'text/html' } )
       send(action)
