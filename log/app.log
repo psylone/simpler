@@ -1,0 +1,10 @@
+2020-03-16 10:14:33 +0500
+Request: GET /tests/111/value
+Handler: TestsController#index
+Parameters: {"finder"=>"222333", :id=>"111"}
+Response: 400 [text] 
+2020-03-16 10:16:46 +0500
+Request: GET /tests/111/value
+Handler: TestsController#index
+Parameters: {"finder"=>"222333", :id=>"111"}
+Response: 200 [text/html] tests/index

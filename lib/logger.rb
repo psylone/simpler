@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
 require 'pathname'
-require_relative 'simpler/application'
+require_relative 'logger/application'
 
-# Simpler rack application
-module Simpler
+# Logger for Simpler
+module Logger
   class << self
-    def application
-      Application.instance
-    end
-
     def root
       Pathname.new(File.expand_path('..', __dir__))
     end

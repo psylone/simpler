@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require_relative 'router/route'
 
 module Simpler
+  # Router for rack application
   class Router
-
     def initialize
       @routes = []
     end
@@ -16,10 +18,7 @@ module Simpler
     end
 
     def route_for(env)
-      method = env['REQUEST_METHOD'].downcase.to_sym
-      path = env['PATH_INFO']
-
-      @routes.find { |route| route.match?(method, path) }
+      @routes.find { |route| route.match?(env) }
     end
 
     private
@@ -36,6 +35,5 @@ module Simpler
     def controller_from_string(controller_name)
       Object.const_get("#{controller_name.capitalize}Controller")
     end
-
   end
 end
