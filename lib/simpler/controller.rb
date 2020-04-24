@@ -35,7 +35,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      headers['Content-Type'] = 'text/html'
     end
 
     def write_response
@@ -68,6 +68,10 @@ module Simpler
 
     def status(code)
       @response.status = code
+    end
+
+    def headers
+      @response
     end
   end
 end
