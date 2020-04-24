@@ -1,7 +1,14 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
   class Controller
+    CONTENT_TYPES = { plain: 'text/plain',
+                      html: 'text/html',
+                      json: 'application/json',
+                      xml: 'application/xml' }.freeze
+
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -32,21 +39,31 @@ module Simpler
     end
 
     def write_response
+      @request.env['simpler.template'] ||= :html
+
       body = render_body
 
       @response.write(body)
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      View.render(@request.env, binding)
     end
 
-    def params
-      @request.params
-    end
+    def render(data)
+      render_data = if data.is_a? Hash
+                      data
+                    else
+                      { html: data }
+                    end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+      content_type = render_data.keys.first
+
+      @response['Content-Type'] = CONTENT_TYPES.fetch([content_type],
+                                                      'text/plain')
+
+      @request.env['simpler.template'] = content_type
+      @request.env['simpler.template.body'] = render_data[content_type]
     end
   end
 end

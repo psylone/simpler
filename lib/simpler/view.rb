@@ -1,37 +1,18 @@
+# frozen_string_literal: true
+
 require 'erb'
+require_relative 'views/render_html'
+require_relative 'views/render_plain'
 
 module Simpler
   class View
-    VIEW_BASE_PATH = 'app/views'.freeze
+    RENDERINGS = { html: RenderHtml, plain: RenderPlain }.freeze
 
-    def initialize(env)
-      @env = env
-    end
+    def self.render(env, binding)
+      return unless RENDERINGS[env['simpler.template']]
 
-    def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
-    end
-
-    private
-
-    def controller
-      @env['simpler.controller']
-    end
-
-    def action
-      @env['simpler.action']
-    end
-
-    def template
-      @env['simpler.template']
-    end
-
-    def template_path
-      path = template || [controller.name, action].join('/')
-
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+      rendering = RENDERINGS[env['simpler.template']]
+      rendering.new(env).render(binding)
     end
   end
 end
