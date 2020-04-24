@@ -1,7 +1,6 @@
 module Simpler
   class Router
     class Route
-
       attr_reader :controller, :action
 
       def initialize(method, path, controller, action)
@@ -14,7 +13,6 @@ module Simpler
       def match?(method, path)
         @method == method && path.match(@path)
       end
-
     end
   end
 end

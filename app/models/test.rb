@@ -4,5 +4,4 @@
 #   Integer :level, default: 0
 # end
 class Test < Sequel::Model
-
 end
