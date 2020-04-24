@@ -65,5 +65,9 @@ module Simpler
       @request.env['simpler.template'] = content_type
       @request.env['simpler.template.body'] = render_data[content_type]
     end
+
+    def status(code)
+      @response.status = code
+    end
   end
 end

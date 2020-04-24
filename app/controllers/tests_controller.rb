@@ -6,6 +6,8 @@ class TestsController < Simpler::Controller
   end
 
   def create
+    status 201
+
     render plain: "Plain text response: we're rending from the create method"
   end
 end
