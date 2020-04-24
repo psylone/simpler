@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require 'singleton'
 require 'sequel'
@@ -27,6 +29,8 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return no_route(env['PATH_INFO']) if route.nil?
+
       controller = route.controller.new(env)
       action = route.action
 
@@ -51,6 +55,14 @@ module Simpler
 
     def make_response(controller, action)
       controller.make_response(action)
+    end
+
+    def no_route(name)
+      [
+        404,
+        { 'Content-Type' => 'text/plain' },
+        ["Unknown resourse #{name}\n"]
+      ]
     end
   end
 end
