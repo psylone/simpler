@@ -31,6 +31,8 @@ module Simpler
       route = @router.route_for(env)
       return no_route(env['PATH_INFO']) if route.nil?
 
+      env['simpler.params'] = route.params(env['PATH_INFO'])
+
       controller = route.controller.new(env)
       action = route.action
 

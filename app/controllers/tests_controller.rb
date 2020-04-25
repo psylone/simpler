@@ -10,4 +10,8 @@ class TestsController < Simpler::Controller
 
     render plain: "Plain text response: we're rending from the create method"
   end
+
+  def show
+    @test_id = params[:id]
+  end
 end

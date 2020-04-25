@@ -73,5 +73,9 @@ module Simpler
     def headers
       @response
     end
+
+    def params
+      @request.env['simpler.params'].merge(@request.params)
+    end
   end
 end
