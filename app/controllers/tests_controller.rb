@@ -14,5 +14,6 @@ class TestsController < Simpler::Controller
 
   def hyper_text
     render html: "<html><h3>HTML response</h3></html>"
+    status 202
   end
 end
