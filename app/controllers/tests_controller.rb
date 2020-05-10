@@ -10,6 +10,7 @@ class TestsController < Simpler::Controller
 
   def plain_text
     render plain: "Plain text response"
+    headers['New-Header'] = 'New header'
   end
 
   def hyper_text

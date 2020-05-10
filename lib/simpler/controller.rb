@@ -32,6 +32,10 @@ module Simpler
       @response.status = status
     end
 
+    def headers
+      @response.headers
+    end
+
     private
 
     def extract_name
