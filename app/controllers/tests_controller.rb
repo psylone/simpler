@@ -8,4 +8,11 @@ class TestsController < Simpler::Controller
 
   end
 
+  def plain_text
+    render plain: "Plain text response"
+  end
+
+  def hyper_text
+    render html: "<html><h3>HTML response</h3></html>"
+  end
 end
