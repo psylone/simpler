@@ -54,6 +54,10 @@ module Simpler
       @request.params
     end
 
+    def status(code)
+      @response.status = code
+    end
+
     def render(template)
       if template.is_a? Hash
         type = CONTENT_TYPES.fetch([template.keys[0]], 'text/plain')
