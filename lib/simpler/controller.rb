@@ -58,6 +58,10 @@ module Simpler
       @response.status = code
     end
 
+    def headers
+      @response.headers
+    end
+
     def render(template)
       if template.is_a? Hash
         type = CONTENT_TYPES.fetch([template.keys[0]], 'text/plain')
