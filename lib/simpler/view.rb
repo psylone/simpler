@@ -10,12 +10,20 @@ module Simpler
     end
 
     def render(binding)
+
+    end
+
+    private
+
+    def render_html(binding)
       template = File.read(template_path)
 
       ERB.new(template).result(binding)
     end
 
-    private
+    def render_plain(binding)
+      template
+    end
 
     def controller
       @env['simpler.controller']
@@ -26,7 +34,7 @@ module Simpler
     end
 
     def template
-      @env['simpler.template']
+      @env['simpler.template.body']
     end
 
     def template_path
