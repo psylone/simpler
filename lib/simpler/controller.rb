@@ -51,7 +51,7 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].merge(@request.params)
     end
 
     def status(code)
