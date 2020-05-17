@@ -18,7 +18,9 @@ module Simpler
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
-
+      puts path
+      # regexp = /\A\/tests\/\d+\z/  
+      # regexp =~ '/tests/101'
       route = @routes.find { |route| route.match?(method, path) }
       route = Route.new(nil, nil, NotFoundController, :not_found) if route.nil?
 
