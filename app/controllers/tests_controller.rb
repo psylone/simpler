@@ -5,7 +5,7 @@ class TestsController < Simpler::Controller
   end
 
   def show
-    @params = @request.env['simpler.params']
+    @params = params #@request.env['simpler.params']
   end
 
   def create; end

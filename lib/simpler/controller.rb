@@ -38,10 +38,10 @@ module Simpler
 
     private
 
-    # def params
-      # @request.env['simpler.params']
+    def params
+      @request.env['simpler.params']
       # @request.params
-    # end
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
