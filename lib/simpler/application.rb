@@ -28,6 +28,8 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      env['simpler.params'] = route.params(env)
+      # p env
       controller = route.controller.new(env)
       action = route.action
 

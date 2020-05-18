@@ -18,8 +18,16 @@ module Simpler
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
+      unless path.split('/')[2] !~ /\D/
+        route = Route.new(method, path, InvalidParameterController, :invalid)
+      else
+        route = @routes.find { |route| route.match?(method, path) }
+        route = Route.new(nil, nil, NotFoundController, :not_found) if route.nil?
+      end
+      # regexp = /\A\/tests\/\d+\z/  
+      # regexp =~ '/tests/101'
 
-      @routes.find { |route| route.match?(method, path) }
+      route
     end
 
     private
@@ -36,6 +44,5 @@ module Simpler
     def controller_from_string(controller_name)
       Object.const_get("#{controller_name.capitalize}Controller")
     end
-
   end
 end

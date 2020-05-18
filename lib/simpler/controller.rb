@@ -15,14 +15,33 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
       send(action)
-      write_response
+
+      if @request.env['simpler.format'] && @request.env['simpler.output']
+        @response['Content-Type'] = header_for(@request.env['simpler.format'])
+        @response.write(@request.env['simpler.output'])
+      else
+        set_default_headers
+        write_response
+      end
 
       @response.finish
     end
 
+    def status(status)
+      @response.status = status
+    end
+
+    def headers
+      @response.headers
+    end
+
     private
+
+    def params
+      @request.env['simpler.params']
+      # @request.params
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
@@ -42,13 +61,26 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
+    def render(argument)
+      case argument
+      when Hash
+        format = argument.keys.first
+        output = argument.values.first
+        @request.env['simpler.format'] = format
+        @request.env['simpler.output'] = output
+      else
+        template = argument
+        @request.env['simpler.template'] = template
+      end
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def header_for(format)
+      case format
+      when :plain
+        'text/plain'
+      when :html
+        'text/html'
+      end
     end
-
   end
 end

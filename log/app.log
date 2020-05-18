@@ -1,0 +1,31 @@
+# Logfile created on 2020-05-18 23:32:16 +0300 by logger.rb/61378
+I, [2020-05-18T23:32:16.364139 #12699]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {nil=>nil}
+Response: 200 [text/html] tests/index.html.erb
+
+I, [2020-05-18T23:33:17.964164 #12699]  INFO -- : 
+Request: GET /tests/101
+Handler: TestsController#show
+Parameters: {:id=>"101"}
+Response: 200 [text/html] tests/show.html.erb
+
+I, [2020-05-18T23:34:56.397732 #12699]  INFO -- : 
+Request: GET /tests/101t
+Handler: InvalidParameterController#invalid
+Parameters: {:"101t"=>"101t"}
+Response: 404 [text/plain] tests/invalid.html.erb
+
+I, [2020-05-18T23:35:07.860812 #12699]  INFO -- : 
+Request: GET /test
+Handler: NotFoundController#not_found
+Parameters: {nil=>nil}
+Response: 404 [text/plain] test/not_found.html.erb
+
+I, [2020-05-18T23:35:15.098671 #12699]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {nil=>nil}
+Response: 200 [text/html] tests/index.html.erb
+
