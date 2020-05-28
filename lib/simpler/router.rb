@@ -17,8 +17,11 @@ module Simpler
 
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
-      path = env['PATH_INFO']
-
+      path = if (match_data = env['PATH_INFO'].match(/\/(?<path>\w+)\/(?<id>\d+)/))
+               "/#{match_data[:path]}/:id"
+             else
+               env['PATH_INFO']
+             end
       @routes.find { |route| route.match?(method, path) }
     end
 
