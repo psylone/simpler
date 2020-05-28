@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -14,7 +15,6 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-
       set_default_headers
       send(action)
       write_response
@@ -39,16 +39,31 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      @request.env['simpler.plain'] || View.new(@request.env).render(binding)
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def headers
+      @response.headers
+    end
+
+    def render(template = nil, **options)
+      if options[:json]
+        @response['Content-Type'] = 'application/json'
+        @request.env['simpler.type'] = :json
+      elsif options[:plain]
+        @response['Content-Type'] = 'text/plain'
+        @request.env['simpler.plain'] = options[:plain]
+      elsif template
+        @request.env['simpler.template']
+      end
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].merge(@request.params)
     end
-
-    def render(template)
-      @request.env['simpler.template'] = template
-    end
-
   end
 end

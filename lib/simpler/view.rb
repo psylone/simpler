@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'erb'
 
 module Simpler
   class View
-
-    VIEW_BASE_PATH = 'app/views'.freeze
+    VIEW_BASE_PATH = 'app/views'
 
     def initialize(env)
       @env = env
@@ -31,9 +32,14 @@ module Simpler
 
     def template_path
       path = template || [controller.name, action].join('/')
-
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+      path = "#{path}.#{define_format}.erb"
+      pp define_format
+      @env['simpler.rendered_template'] = path
+      Simpler.root.join(VIEW_BASE_PATH, path)
     end
 
+    def define_format
+      @env['simpler.type'] == :json ? 'json' : 'html'
+    end
   end
 end
