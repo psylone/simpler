@@ -12,15 +12,12 @@ module Simpler
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
       @headers = @response.headers
-      if (match_data = env['PATH_INFO'].match(/\/(?<path>\w+)\/(?<id>\d+)/))
-        params[:id] = match_data[:id]
-      end
+      env['ROUTE_PARAMS'].each { |k,v| params[k] = v }
     end
 
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-      @request.env['simpler.template'] = action
 
       set_default_headers
       send(action)
@@ -29,16 +26,13 @@ module Simpler
       @response.finish
     end
 
-    def render(template)
-      if template.is_a?(Hash)
-        if RENDER_OPTIONS.key?(template.first[0])
-          @response['Content-Type'] = RENDER_OPTIONS[template.first[0]]
-          @response.write(template.first[1])
-        else
-          raise 'wrong render option'
-        end
+    def render(render_params)
+      if render_params.is_a?(Hash)
+        template = render_params.first
+        set_custom_headers(template)
+        @response.write(View.new(@request.env).send(template.first, template.last))
       else
-        @request.env['simpler.template'] = template.to_s
+        @request.env['simpler.template'] = render_params.to_s
       end
     end
 
@@ -55,6 +49,14 @@ module Simpler
 
     def set_default_headers
       @response['Content-Type'] = 'text/html'
+    end
+
+    def set_custom_headers(template)
+      if RENDER_OPTIONS.key?(template.first)
+        @response['Content-Type'] = RENDER_OPTIONS[template.first]
+      else
+        raise 'wrong render option'
+      end
     end
 
     def write_response(action)

@@ -1,8 +1,7 @@
 class TestsController < Simpler::Controller
 
   def index
-    @time = Time.now
-    params[:test] = 'success'
+    params[:success] = 'oh, yees'
   end
 
   def create
@@ -10,6 +9,7 @@ class TestsController < Simpler::Controller
   end
 
   def show
+
   end
 
 end

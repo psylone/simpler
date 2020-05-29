@@ -31,6 +31,7 @@ module Simpler
     def call(env)
       route = @router.route_for(env)
       return [404, {'Content-Type' => 'text/plain'}, ['ERROR 404: Page not found']] if route.nil?
+      env['ROUTE_PARAMS'] = route.params
       @controller = route.controller.new(env)
       @action = route.action
 
