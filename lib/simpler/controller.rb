@@ -1,4 +1,5 @@
 require_relative 'view'
+require 'byebug'
 
 module Simpler
   class Controller
@@ -21,6 +22,7 @@ module Simpler
 
       set_default_headers
       send(action)
+      @request.env['simpler.template'] ||= action
       write_response(action) if @response.body.empty?
 
       @response.finish

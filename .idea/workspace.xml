@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1327e9bd-3e37-4f35-a101-c0a4b087c944" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.byebug_history" beforeDir="false" afterPath="$PROJECT_DIR$/.byebug_history" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/tests_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tests_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/middleware/logger.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/middleware/logger.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/simpler/controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/simpler/controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/simpler/router/route.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/simpler/router/route.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +148,7 @@
       <workItem from="1590608008193" duration="7277000" />
       <workItem from="1590686479374" duration="5796000" />
       <workItem from="1590746411913" duration="15456000" />
-      <workItem from="1590791483446" duration="1505000" />
+      <workItem from="1590791483446" duration="2596000" />
     </task>
     <servers />
   </component>
