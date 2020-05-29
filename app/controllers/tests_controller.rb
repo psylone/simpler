@@ -1,10 +1,14 @@
 class TestsController < Simpler::Controller
 
   def index
-    @time = Time.now
+    params[:success] = 'oh, yees'
   end
 
   def create
+
+  end
+
+  def show
 
   end
 

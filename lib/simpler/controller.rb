@@ -1,14 +1,19 @@
 require_relative 'view'
+require 'byebug'
 
 module Simpler
   class Controller
 
-    attr_reader :name, :request, :response
+    RENDER_OPTIONS = {plain: 'text/plain', html: 'text/html'}
+
+    attr_reader :name, :request, :response, :headers
 
     def initialize(env)
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @headers = @response.headers
+      env['ROUTE_PARAMS'].each { |k,v| params[k] = v }
     end
 
     def make_response(action)
@@ -17,10 +22,26 @@ module Simpler
 
       set_default_headers
       send(action)
-      write_response
+      @request.env['simpler.template'] ||= action
+      write_response(action) if @response.body.empty?
 
       @response.finish
     end
+
+    def render(render_params)
+      if render_params.is_a?(Hash)
+        template = render_params.first
+        set_custom_headers(template)
+        @response.write(View.new(@request.env).send(template.first, template.last))
+      else
+        @request.env['simpler.template'] = render_params.to_s
+      end
+    end
+
+    def status(number)
+      @response.status = number
+    end
+
 
     private
 
@@ -32,9 +53,16 @@ module Simpler
       @response['Content-Type'] = 'text/html'
     end
 
-    def write_response
-      body = render_body
+    def set_custom_headers(template)
+      if RENDER_OPTIONS.key?(template.first)
+        @response['Content-Type'] = RENDER_OPTIONS[template.first]
+      else
+        raise 'wrong render option'
+      end
+    end
 
+    def write_response(action)
+      body = render_body
       @response.write(body)
     end
 
@@ -46,9 +74,6 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
-    end
 
   end
 end
