@@ -21,7 +21,7 @@ module Simpler
     end
 
     def call(env)
-      route = @router.route_for(env)
+      route = @router.route_for(env) # нужный объект класса Route который находится в массиве @router а попадает туда объект из за метода add_route в классе Router
       controller = route.controller.new(env)
       action = route.action
 

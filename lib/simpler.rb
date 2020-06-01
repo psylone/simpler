@@ -12,5 +12,4 @@ module Simpler
       Pathname.new(File.expand_path('..', __dir__))
     end
   end
-
 end

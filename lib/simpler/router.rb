@@ -19,7 +19,7 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
 
-      @routes.find { |route| route.match?(method, path) }
+      @routes.find { |route| route.match?(method, path) }  # перебираем все объекты класса Route которые находятся в массиве @routes и в каждом объекте вызываем наш метод match? который сравнивает пришедший запрос с теми данными который объект имеет о себе
     end
 
     private
