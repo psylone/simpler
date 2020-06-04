@@ -17,7 +17,7 @@ module Simpler
     end
 
     def routes(&block)
-      @router.instance_eval(&block)
+      @router.instance_eval(&block) # передаем блоком вызов методов(в блоке они вызываются а в Router они реализованы)
     end
 
     def call(env)
