@@ -25,7 +25,7 @@ module Simpler
 
         router_path_parts.each_with_index do |part, index| # 'tests' - 0   ':id' - 1
           if part == ':id'
-            @params ||= {}
+            @params = {}
             @params[part] = request_path_parts[1] # { ':id' => '101' }
           elsif part != request_path_parts[index]
             return false
