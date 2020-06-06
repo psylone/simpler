@@ -1,13 +1,14 @@
 module Simpler
   class Router
     class Route
-      attr_reader :controller, :action
+      attr_reader :controller, :action, :params
 
       def initialize(method, path, controller, action)
         @method = method
         @path = path
         @controller = controller
         @action = action
+        @params = {}
       end
 
       def match?(method, path)
@@ -24,8 +25,8 @@ module Simpler
 
         router_path_parts.each_with_index do |part, index| # 'tests' - 0   ':id' - 1
           if part == ':id'
-            params = {}
-            params[part] = request_path_parts[1]
+            @params ||= {}
+            @params[part] = request_path_parts[1] # { ':id' => '101' }
           elsif part != request_path_parts[index]
             return false
           end

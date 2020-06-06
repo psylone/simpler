@@ -11,6 +11,6 @@ class TestsController < Simpler::Controller
   end
 
   def show
-
+    @parameter = params
   end
 end
