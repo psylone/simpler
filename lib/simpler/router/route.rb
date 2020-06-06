@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Simpler
   class Router
     class Route
-
       attr_reader :controller, :action
 
       def initialize(method, path, controller, action)
@@ -12,9 +13,8 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.match(@path)
+        @method == method && path == @path
       end
-
     end
   end
 end

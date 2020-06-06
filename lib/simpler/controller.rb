@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -42,13 +43,30 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
+    def headers
+      @response
+    end
+
     def params
-      @request.params
+      @request.env['resource.ids']
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def custom_render(format)
+      @response['Content-Type'] = format.header
+      @response.write(format.body)
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a?(Hash)
+        format = Render.new(template).call
+        custom_render(format)
+      else
+        @request.env['simpler.template'] = template # это не хэш а метод квадратные скобки
+      end
     end
-
   end
 end

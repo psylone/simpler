@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 class TestsController < Simpler::Controller
-
   def index
-    @time = Time.now
+    status 201
+    @time = Test.all
   end
 
-  def create
-
+  def show
+    # headers['Content-Type'] = 'text/html'
+    @test = Test.find(params[:id])
+    render plain: 'TEXT'
   end
-
 end
