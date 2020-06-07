@@ -10,11 +10,11 @@ class LogFormat
   end
 
   def formatter
-    headers = @app.call(@env)
+    app_response = @app.call(@env)
     request = "Handler: #{@request.env['simpler.controller'].class}#""#{@request.env['simpler.action']}"
     handler = "Request: #{@request.env['PATH_INFO']}"
     parameters = "Parameters: #{@request.env['resource.ids']}"
-    response = "Responce:  #{headers[0]} #{headers[1]['Content-Type']} #{template_path} \n"
+    response = "Responce:  #{app_response[0]} #{app_response[1]['Content-Type']} #{template_path} \n"
     [handler, request, parameters, response].join("\n")
   end
 
