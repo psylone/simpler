@@ -33,7 +33,7 @@ module Simpler
     end
 
     def write_response
-      body = render_body
+      body = @text || render_body
 
       @response.write(body)
     end
@@ -47,8 +47,11 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      template.class == Hash ? render_format(template) : @request.env['simpler.template'] = template
     end
 
+    def render_format(template)
+      @text = template[:plain] if template.has_key?(:plain)
+    end
   end
 end
