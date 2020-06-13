@@ -51,7 +51,11 @@ module Simpler
     end
 
     def render_format(template)
-      @text = template[:plain] if template.has_key?(:plain)
+      @text = "#{template[:plain]}\n" if template.has_key?(:plain)
+    end
+
+    def status(response_status)
+      @response.status = response_status
     end
   end
 end
