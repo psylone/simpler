@@ -2,7 +2,8 @@ class TestsController < Simpler::Controller
 
   def index
   	render plain: 'Hello Ruslan'
-  	status 201
+  	set_status 201
+  	set_headers 'text/plain'
     # @time = Time.now
   end
 

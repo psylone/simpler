@@ -29,7 +29,11 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      set_headers 'text/html'
+    end
+
+    def set_headers(header)
+      @response['Content-Type'] = header
     end
 
     def write_response
@@ -54,7 +58,7 @@ module Simpler
       @text = "#{template[:plain]}\n" if template.has_key?(:plain)
     end
 
-    def status(response_status)
+    def set_status(response_status)
       @response.status = response_status
     end
   end
