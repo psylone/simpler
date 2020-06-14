@@ -7,7 +7,13 @@ class TestsController < Simpler::Controller
   end
 
   def create
-  	set_status 201
+  	render plain: 'This is POST'
+    set_status 201
   end
 
+  def show
+    @param = params[:id]
+    # set_headers 'text/plain'
+    # render plain: 'Hi MAN'
+  end
 end

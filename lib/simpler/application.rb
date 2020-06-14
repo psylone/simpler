@@ -29,6 +29,9 @@ module Simpler
     def call(env)
       route = @router.route_for(env)
 
+      # менее затрантый по ресурсам вариант и самый простой
+      # return [404, { 'Content-Type' => 'text/plain' }, ["Page not found\n"]] unless route
+
       begin
         controller = route.controller.new(env)
         action = route.action
