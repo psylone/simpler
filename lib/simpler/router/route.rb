@@ -18,16 +18,18 @@ module Simpler
       def check?(path)
         if path == @path
           true
+        elsif(@path.split('/').include?(':id'))
+          check(path) == path
         else
-          check(path) == @path
+          false
         end
       end
 
       def check(path)
-        path = path.split('/')
-        path2 = @path.split('/')
-        path[-1] = path2[-1]
-        path.join('/')
+        path1 = @path.split('/')
+        path2 = path.split('/')
+        path1[-1] = path2[-1]
+        path1.join('/')
       end
     end
   end

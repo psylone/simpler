@@ -16,6 +16,7 @@ module Simpler
       @request.env['simpler.action'] = action
       @request.params[:id] = set_params
       # @request.update_param(:id, set_params)
+      @request.env['simpler.params'] = @request.params[:id]
 
       set_default_headers
       send(action)
