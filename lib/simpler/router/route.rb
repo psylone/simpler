@@ -6,24 +6,28 @@ module Simpler
 
       def initialize(method, path, controller, action)
         @method = method
-        @path = check_id(path)
+        @path = path
         @controller = controller
         @action = action
       end
 
       def match?(method, path)
-        # @method == method && path.match(@path)
-        @method == method && path == @path
+        @method == method && check?(path)
       end
 
-      def check_id(path)
-        if path.split('/')[-1] == ':id'
-          b = path.split('/')
-          b[-1] = '101'
-          b.join('/')
+      def check?(path)
+        if path == @path
+          true
         else
-          path
+          check(path) == @path
         end
+      end
+
+      def check(path)
+        path = path.split('/')
+        path2 = @path.split('/')
+        path[-1] = path2[-1]
+        path.join('/')
       end
     end
   end
