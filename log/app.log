@@ -1,0 +1,20 @@
+I, [2020-06-15T08:52:06.312295 #15225]  INFO -- : Request: GET /tests
+      Handler: TestsController#index
+      Parameters: {:id=>nil}
+      Response: 200 [text/html] app/views/tests/list.html.erb
+I, [2020-06-15T08:52:36.260925 #15225]  INFO -- : Request: GET /tests/101?leng=ru
+      Handler: TestsController#show
+      Parameters: {"leng"=>"ru", :id=>"101"}
+      Response: 200 [text/html] app/views/tests/show.html.erb
+I, [2020-06-15T08:52:51.963674 #15225]  INFO -- : Request: GET /tests/101
+      Handler: TestsController#show
+      Parameters: {:id=>"101"}
+      Response: 200 [text/html] app/views/tests/show.html.erb
+I, [2020-06-15T08:53:00.983632 #15225]  INFO -- : Request: POST /tests
+      Handler: TestsController#create
+      Parameters: {:id=>nil}
+      Response: 201 [text/plain] 
+I, [2020-06-15T08:53:09.919310 #15225]  INFO -- : Request: GET /tes
+      Handler: NilClass#
+      Parameters: 
+      Response: 404 [text/plain] 
