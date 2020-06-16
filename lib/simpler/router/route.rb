@@ -2,7 +2,7 @@ module Simpler
   class Router
     class Route
 
-      attr_reader :controller, :action
+      attr_reader :controller, :action, :params
 
       def initialize(method, path, controller, action)
         @method = method
@@ -30,6 +30,10 @@ module Simpler
         path2 = path.split('/')
         path1[-1] = path2[-1]
         path1.join('/')
+      end
+
+      def params(path)
+        path.split('/')[-1] if path.split('/').size > 2
       end
     end
   end

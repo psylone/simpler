@@ -14,9 +14,6 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-      @request.params[:id] = set_params
-      # @request.update_param(:id, set_params)
-      @request.env['simpler.params'] = @request.params
 
       set_default_headers
       send(action)
@@ -50,12 +47,7 @@ module Simpler
     end
 
     def params
-      @request.params
-    end
-
-    def set_params
-      @request.path_info.split('/')[-1] if @request.path_info.split('/').size > 2
-      # @request.env['PATH_INFO'].split('/')[-1] if @request.env['PATH_INFO'].split('/')[-1]
+      @request.env['simpler.params'] = @request.params.merge(id: @request.env["simpler.params"])
     end
 
     def render(template)
