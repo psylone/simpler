@@ -1,6 +1,8 @@
+require_relative 'format/format'
 require 'erb'
 
 module Simpler
+
   class View
 
     VIEW_BASE_PATH = 'app/views'.freeze
@@ -9,10 +11,13 @@ module Simpler
       @env = env
     end
 
-    def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+    def check_format(bind_context)
+      if (template.class == Hash)
+        # пока только один формат, будем реализовывать без проверки ключа template.has_key?(:plain)
+        PlainRenderer.new(@env).start
+      else
+        HTMLRenderer.new(@env).start(bind_context)
+      end
     end
 
     private
@@ -35,5 +40,11 @@ module Simpler
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
 
+    def render(bind_context = nil)
+      return "#{template[:plain]}\n" if bind_context.nil?
+      template = File.read(template_path)
+
+      ERB.new(template).result(bind_context)
+    end
   end
 end
