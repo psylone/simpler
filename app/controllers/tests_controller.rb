@@ -12,7 +12,7 @@ class TestsController < Simpler::Controller
   end
 
   def show
-    @param = params[:id]
+    # @param = params[:id]
     # set_headers 'text/plain'
     # render plain: 'Hi MAN'
   end

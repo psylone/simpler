@@ -18,22 +18,42 @@ module Simpler
       def check?(path)
         if path == @path
           true
-        elsif(@path.split('/').include?(':id'))
-          check(path) == path
+        elsif(@path.include?(':'))
+          check_path?(path)
         else
           false
         end
       end
 
-      def check(path)
-        path1 = @path.split('/')
-        path2 = path.split('/')
-        path1[-1] = path2[-1]
-        path1.join('/')
+      def check_path?(path)
+        app_path = @path.split('/')
+        request_path = path.split('/')
+
+        request_parsing = []
+        app_parsing = []
+
+        @params_key_value = {}
+
+        if app_path.size == request_path.size
+          app_params = app_path.select { |e| e.include?(':') }
+          app_path_name = app_path.reject { |e| e.include?(':') }
+
+          app_params.each { |word| word.delete!(':') }
+  
+          app_path.each do |i|
+            request_path.each { |elem| request_parsing << request_path.delete(elem) if elem == i }
+          end
+
+          app_params.size.times { |i| @params_key_value[app_params[i]] = request_path[i] }
+
+          app_path_name == request_parsing
+        else
+          false
+        end
       end
 
-      def params(path)
-        path.split('/')[-1] if path.split('/').size > 2
+      def params
+        @params_key_value
       end
     end
   end
