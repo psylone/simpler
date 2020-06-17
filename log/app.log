@@ -1,0 +1,28 @@
+I, [2020-06-17T16:42:28.189154 #31768]  INFO -- : Request: GET /tests
+      Handler: TestsController#index
+      Parameters: 
+      Response: 200 [text/html] app/views/tests/list.html.erb
+I, [2020-06-17T16:42:35.259763 #31768]  INFO -- : Request: GET /tests/101
+      Handler: TestsController#show
+      Parameters: {"id"=>"101"}
+      Response: 200 [text/html] app/views/tests/show.html.erb
+I, [2020-06-17T16:42:50.072734 #31768]  INFO -- : Request: POST /tests
+      Handler: TestsController#create
+      Parameters: 
+      Response: 201 [text/plain] {:plain=>"This is POST"}
+I, [2020-06-17T16:43:57.260575 #31768]  INFO -- : Request: GET /user/ruslan/payments/june/year/2020
+      Handler: UsersController#show
+      Parameters: {"login"=>"ruslan", "month"=>"june", "year"=>"2020"}
+      Response: 200 [text/html] app/views/users/show.html.erb
+I, [2020-06-17T16:44:26.851530 #31768]  INFO -- : Request: GET /test/users/name/ruslan/age/34
+      Handler: UsersController#index
+      Parameters: {"name"=>"ruslan", "age"=>"34"}
+      Response: 200 [text/html] app/views/users/index.html.erb
+I, [2020-06-17T16:44:36.308170 #31768]  INFO -- : Request: GET /te/users/name/ruslan/age/34
+      Handler: NilClass#
+      Parameters: 
+      Response: 404 [text/plain] 
+I, [2020-06-17T16:44:48.869726 #31768]  INFO -- : Request: GET /user/ruslan/pay/june/year/2020
+      Handler: NilClass#
+      Parameters: 
+      Response: 404 [text/plain] 

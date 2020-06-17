@@ -27,14 +27,32 @@ module Simpler
     end
 
     def call(env)
-      route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
+      begin
+        route = @router.route_for(env)
+        env['simpler.params'] = route.params
 
-      make_response(controller, action)
+        # менее затрантый по ресурсам вариант и самый простой
+        # return [404, { 'Content-Type' => 'text/plain' }, ["Page not found\n"]] unless route
+
+      
+        controller = route.controller.new(env)
+        action = route.action
+
+        make_response(controller, action)
+      rescue
+        response
+      end
     end
 
     private
+
+    def response
+      response = Rack::Response.new
+      response.status = 404
+      response.set_header('Content-Type', 'text/plain')
+      response.write("Page not found\n")
+      response.finish
+    end
 
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }

@@ -29,7 +29,11 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      set_headers 'text/html'
+    end
+
+    def set_headers(header)
+      @response['Content-Type'] = header
     end
 
     def write_response
@@ -39,16 +43,19 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      View.new(@request.env).check_format(binding)
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'] = @request.params.merge(id: @request.env["simpler.params"])
     end
 
     def render(template)
       @request.env['simpler.template'] = template
     end
 
+    def set_status(response_status)
+      @response.status = response_status
+    end
   end
 end
