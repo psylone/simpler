@@ -22,6 +22,10 @@ module Simpler
       @response.finish
     end
 
+    def set_content_type(content_type)
+      @response['Content-Type'] = content_type
+    end
+
     private
 
     def extract_name
@@ -29,7 +33,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      @response['Content-Type'] = 'text/html' if @response['Content-Type'].blank?
     end
 
     def write_response
