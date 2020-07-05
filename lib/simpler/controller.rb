@@ -26,6 +26,15 @@ module Simpler
       @response['Content-Type'] = content_type
     end
 
+    # https://www.rubydoc.info/github/rack/rack/master/file/SPEC
+    def set_status(code)
+      @response.status = code
+    end
+
+    def set_headers(headers)
+      headers.each { |key, value| @response[key] = value }
+    end
+
     private
 
     def extract_name
