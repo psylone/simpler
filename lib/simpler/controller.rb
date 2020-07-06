@@ -60,7 +60,12 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if options[:plain]
+        @response['Content-Type'] = 'text/plain'
+        @request.env['simpler.plain'] = options[:plain]
+      elsif template
+        @request.env['simpler.template'] = template
+      end
     end
 
   end
