@@ -67,6 +67,5 @@ module Simpler
         @request.env['simpler.template'] = template
       end
     end
-
   end
 end

@@ -6,7 +6,7 @@ module Simpler
 
       def initialize(method, path, controller, action)
         @method = method
-        @path = path
+        @path = regular_path(path)
         @controller = controller
         @action = action
       end
@@ -14,7 +14,16 @@ module Simpler
       def match?(method, path)
         @method == method && path.match(@path)
       end
+      
+      private
 
+      def regular_path(path)
+        path.gsub!(/^/, '^')
+        path.gsub!(/$/, '$')
+        path.gsub!(/\//, '\/')
+        path.gsub!(/:id\$/, '\d$') if path.end_with?('/:id$')
+        path
+      end
     end
   end
 end

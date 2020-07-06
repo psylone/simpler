@@ -17,7 +17,7 @@ module Simpler
 
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
-      path = env['PATH_INFO']
+      path = env['REQUEST_PATH']
 
       @routes.find { |route| route.match?(method, path) }
     end
