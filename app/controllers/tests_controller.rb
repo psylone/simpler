@@ -6,8 +6,10 @@ class TestsController < Simpler::Controller
     render  plain: 'tests'
   end
 
-  def create
-
+  def show
+    render plain: "trying to show test with id #{params[:id]}"
   end
+
+  def create; end
 
 end

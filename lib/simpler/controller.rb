@@ -14,9 +14,10 @@ module Simpler
       @headers = {}
     end
 
-    def make_response(action)
+    def make_response(action, params)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+      @request.env['simpler.params'] = params
 
       set_default_headers
       send(action)
@@ -51,7 +52,7 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params']
     end
 
     def render(options)

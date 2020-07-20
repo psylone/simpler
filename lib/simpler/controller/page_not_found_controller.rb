@@ -7,7 +7,7 @@ module Simpler
       @response.status = 404
     end
 
-    def make_response(_action)
+    def make_response(*_ignore)
       @request.env['simpler.template'] = '404'
 
       set_default_headers
