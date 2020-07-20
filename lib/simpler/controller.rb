@@ -24,12 +24,17 @@ module Simpler
 
     private
 
-    def extract_name
-      self.class.name.match('(?<name>.+)Controller')[:name].downcase
+    def mime_type(type)
+      @response['Content-Type'] = case type
+                                  when :plain
+                                    'text/plain'
+                                  else
+                                    'text/html'
+                                  end
     end
 
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
+    def extract_name
+      self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
     def write_response
@@ -46,9 +51,12 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
-    end
+    def render(options)
+      raise "Expected 1 argument, passed #{options}" if options.keys.length != 1
 
+      @request.env['simpler.template'] = options[:template]
+      @request.env['simpler.plain'] = options[:plain]
+      mime_type(options.keys[0])
+    end
   end
 end

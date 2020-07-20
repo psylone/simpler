@@ -1,7 +1,7 @@
 class TestsController < Simpler::Controller
 
   def index
-    @time = Time.now
+    render template: 'tests/foo'
   end
 
   def create
