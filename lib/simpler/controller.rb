@@ -3,7 +3,7 @@ require_relative 'view'
 module Simpler
   class Controller
 
-    attr_accessor :status, :headers
+    attr_accessor :headers
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -33,7 +33,7 @@ module Simpler
     end
 
     def set_custom_headers
-      @headers.entries.each {|k, v| @response[k] = v }
+      @headers.entries.each { |k, v| @response[k] = v }
     end
 
     def extract_name
