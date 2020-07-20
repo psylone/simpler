@@ -27,6 +27,10 @@ module Simpler
       @response.finish
     end
 
+    def params
+      @request.env['simpler.params']
+    end
+
     private
 
     def set_default_headers
@@ -51,15 +55,15 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.env['simpler.params']
-    end
 
     def render(options)
-      raise "Expected 1 argument, passed #{options}" if options.keys.length != 1
-
-      @request.env['simpler.template'] = options[:template]
-      @request.env['simpler.plain'] = options[:plain]
+      if options.is_a?(String)
+        plain_text_to_request(options)
+      elsif options[:template]
+        template_to_request(options[:template])
+      elsif options[:plain]
+        plain_text_to_request(options[:plain])
+      end
 
     end
 
@@ -67,6 +71,17 @@ module Simpler
       raise "Invalid code #{code}" unless Rack::Utils::HTTP_STATUS_CODES.key?(code)
 
       @response.status = code
+    end
+
+    def template_to_request(template)
+      @request.env['simpler.template'] = template
+      @request.env['simpler.template_path'] = "#{template}.html.erb"
+      @response['Content-Type'] = 'text/html'
+    end
+
+    def plain_text_to_request(text)
+      @request.env['simpler.plain'] = text
+      @response['Content-Type'] = 'text/plain'
     end
   end
 end
