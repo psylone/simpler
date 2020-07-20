@@ -3,7 +3,7 @@ require_relative 'view'
 module Simpler
   class Controller
 
-    attr_accessor :status
+    attr_accessor :status, :headers
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -11,6 +11,7 @@ module Simpler
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
       @response.status = 200
+      @headers = {}
     end
 
     def make_response(action)
@@ -20,19 +21,19 @@ module Simpler
       set_default_headers
       send(action)
       write_response
+      set_custom_headers
 
       @response.finish
     end
 
     private
 
-    def mime_type(type)
-      @response['Content-Type'] = case type
-                                  when :plain
-                                    'text/plain'
-                                  else
-                                    'text/html'
-                                  end
+    def set_default_headers
+      @response['Content-Type'] = 'text/html'
+    end
+
+    def set_custom_headers
+      @headers.entries.each {|k, v| @response[k] = v }
     end
 
     def extract_name
@@ -58,7 +59,7 @@ module Simpler
 
       @request.env['simpler.template'] = options[:template]
       @request.env['simpler.plain'] = options[:plain]
-      mime_type(options.keys[0])
+
     end
 
     def status(code)
