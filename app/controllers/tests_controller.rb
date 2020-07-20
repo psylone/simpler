@@ -1,7 +1,7 @@
 class TestsController < Simpler::Controller
 
   def index
-    render template: 'tests/foo'
+    render  plain: 'tests'
   end
 
   def create
