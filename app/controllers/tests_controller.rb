@@ -1,11 +1,14 @@
 class TestsController < Simpler::Controller
 
   def index
-    @time = Time.now
+    status(201)
+    render template: 'tests/index'
   end
 
-  def create
-
+  def show
+    render "trying to show test with id #{params[:id]}"
   end
+
+  def create; end
 
 end
