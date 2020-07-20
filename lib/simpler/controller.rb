@@ -3,12 +3,14 @@ require_relative 'view'
 module Simpler
   class Controller
 
+    attr_accessor :status
     attr_reader :name, :request, :response
 
     def initialize(env)
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @response.status = 200
     end
 
     def make_response(action)
@@ -57,6 +59,12 @@ module Simpler
       @request.env['simpler.template'] = options[:template]
       @request.env['simpler.plain'] = options[:plain]
       mime_type(options.keys[0])
+    end
+
+    def status(code)
+      raise "Invalid code #{code}" unless Rack::Utils::HTTP_STATUS_CODES.key?(code)
+
+      @response.status = code
     end
   end
 end
