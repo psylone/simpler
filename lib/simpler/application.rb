@@ -1,6 +1,7 @@
 require 'yaml'
 require 'singleton'
 require 'sequel'
+require 'pry'
 require_relative 'router'
 require_relative 'controller'
 
@@ -28,10 +29,14 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
-
-      make_response(controller, action)
+      if route
+        controller = route.controller.new(env)
+        action = route.action
+        env['simpler.params'] = route.params
+        make_response(controller, action)
+      else
+        make_unsuccess_response
+      end
     end
 
     private
@@ -51,8 +56,14 @@ module Simpler
     end
 
     def make_response(controller, action)
+
       controller.make_response(action)
     end
 
+    def make_unsuccess_response
+      response = Rack::Response.new
+      response.status = 404
+      response.finish
+    end
   end
 end
