@@ -1,0 +1,4 @@
+I, [2020-08-22T22:59:51.952485 #8345]  INFO -- : ["Request: ", "GET", "/tests/101", "TestsController", "{\":id\"=>\"101\"}"]
+I, [2020-08-22T22:59:51.952652 #8345]  INFO -- : ["Response: ", 200, "text/plain", "/home/ears/simpler/app/views/tests/show.html.erb"]
+I, [2020-08-22T23:00:02.725740 #8345]  INFO -- : ["Request: ", "GET", "/tests/101", "TestsController", "{\":id\"=>\"101\"}"]
+I, [2020-08-22T23:00:02.725801 #8345]  INFO -- : ["Response: ", 200, "text/plain", "/home/ears/simpler/app/views/tests/show.html.erb"]
