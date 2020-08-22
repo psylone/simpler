@@ -18,8 +18,19 @@ module Simpler
       set_default_headers
       send(action)
       write_response
+      add_header('Simpler-Controller' => self.class.name)
+      add_header('Params' => params.to_s)
+      add_header('Rendered-Template' => @view.rendered_template.to_s)
 
       @response.finish
+    end
+
+    def add_header(header)
+      @response[header.keys.first] = header.values.first
+    end
+
+    def set_status(status)
+      @response.status = status
     end
 
     private
@@ -29,7 +40,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      @response['Content-Type'] = 'text/plain'
     end
 
     def write_response
@@ -39,11 +50,14 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      @view = View.new(@request.env)
+      @view.render(binding)
     end
 
     def params
-      @request.params
+      last_slash_index = @request.env['REQUEST_PATH'].rindex(/\//) + 1
+      length = @request.env['REQUEST_PATH'].length
+      { @request.env['params'] => @request.env['REQUEST_PATH'][last_slash_index, length] }
     end
 
     def render(template)

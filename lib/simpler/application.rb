@@ -7,6 +7,8 @@ require_relative 'controller'
 module Simpler
   class Application
 
+    INVALID_URL = [404, {'Content-Type' => 'text/plain'}, ['Invalid URL']].freeze
+
     include Singleton
 
     attr_reader :db
@@ -28,6 +30,9 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return INVALID_URL if route.nil?
+
+      env['params'] = route.params
       controller = route.controller.new(env)
       action = route.action
 
