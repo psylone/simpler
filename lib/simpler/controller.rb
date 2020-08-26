@@ -28,8 +28,23 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
+    def set_status(code)
+      @response.status = code.to_i
+    end
+
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      if @request.env['simpler.template'].is_a?(Hash)
+        case template.keys[0]
+        when :plain
+          headers['Content-Type'] ||= 'text/plain'
+        end
+      end
+
+      @response['Content-Type'] ||= 'text/html'
+    end
+
+    def headers
+      @response.headers
     end
 
     def write_response

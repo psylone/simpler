@@ -1,0 +1,41 @@
+# Logfile created on 2020-08-26 19:16:50 +0300 by logger.rb/61378
+I, [2020-08-26T19:16:54.690810 #92742]  INFO -- : Request: GET /tests/index
+I, [2020-08-26T19:16:54.691128 #92742]  INFO -- : Handler: TestsController#index
+I, [2020-08-26T19:16:54.693463 #92742]  INFO -- : Parameters: {}
+I, [2020-08-26T19:16:54.693570 #92742]  INFO -- : Response: 200 OK [text/html]
+      tests/index.html.erb
+I, [2020-08-26T19:20:41.298818 #92742]  INFO -- : Request: GET /tests
+I, [2020-08-26T19:20:41.300186 #92742]  INFO -- : Handler: TestsController#index
+I, [2020-08-26T19:20:41.300355 #92742]  INFO -- : Parameters: {}
+I, [2020-08-26T19:20:41.300412 #92742]  INFO -- : Response: 200 OK [text/html]
+      tests/index.html.erb
+I, [2020-08-26T19:21:42.887940 #92775]  INFO -- : Request: GET /tests
+I, [2020-08-26T19:21:42.888117 #92775]  INFO -- : Handler: TestsController#index
+I, [2020-08-26T19:21:42.889977 #92775]  INFO -- : Parameters: {}
+I, [2020-08-26T19:21:42.890087 #92775]  INFO -- : Response: 200 OK [text/html]
+      tests/index.html.erb
+I, [2020-08-26T19:35:12.031490 #92775]  INFO -- : Request: GET /
+I, [2020-08-26T19:35:12.031615 #92775]  INFO -- : Handler: none
+I, [2020-08-26T19:35:12.031706 #92775]  INFO -- : Parameters: {}
+I, [2020-08-26T19:35:12.031770 #92775]  INFO -- : Response: 404 Not Found [text/plain]
+      none
+I, [2020-08-26T19:35:21.664756 #92775]  INFO -- : Request: GET /tests
+I, [2020-08-26T19:35:21.664865 #92775]  INFO -- : Handler: TestsController#index
+I, [2020-08-26T19:35:21.664975 #92775]  INFO -- : Parameters: {}
+I, [2020-08-26T19:35:21.665041 #92775]  INFO -- : Response: 200 OK [text/html]
+      tests/index.html.erb
+I, [2020-08-26T19:38:30.469050 #92891]  INFO -- : Request: GET /tests
+I, [2020-08-26T19:38:30.469155 #92891]  INFO -- : Handler: TestsController#index
+I, [2020-08-26T19:38:30.471016 #92891]  INFO -- : Parameters: {}
+I, [2020-08-26T19:38:30.471127 #92891]  INFO -- : Response: 200 OK [text/html]
+      tests/index.html.erb
+I, [2020-08-26T19:49:38.154890 #92963]  INFO -- : Request: GET /time
+I, [2020-08-26T19:49:38.155987 #92963]  INFO -- : Handler: none
+I, [2020-08-26T19:49:38.158297 #92963]  INFO -- : Parameters: {}
+I, [2020-08-26T19:49:38.158435 #92963]  INFO -- : Response: 404 Not Found [text/plain]
+      none
+I, [2020-08-26T19:49:52.685804 #92963]  INFO -- : Request: GET /tests
+I, [2020-08-26T19:49:52.685940 #92963]  INFO -- : Handler: TestsControllerindex
+I, [2020-08-26T19:49:52.686034 #92963]  INFO -- : Parameters: {}
+I, [2020-08-26T19:49:52.686112 #92963]  INFO -- : Response: 200 OK [text/html]
+      tests/index.html.erb
