@@ -1,0 +1,13 @@
+# Logfile created on 2020-10-15 23:48:03 +0300 by logger.rb/v1.4.2
+I, [2020-10-15T23:48:04.674403 #14580]  INFO -- : Request: GET /
+I, [2020-10-15T23:48:04.674478 #14580]  INFO -- : Handler: NilClass#
+I, [2020-10-15T23:48:10.125610 #14580]  INFO -- : Request: GET /tests
+I, [2020-10-15T23:48:10.125743 #14580]  INFO -- : Handler: TestsController#index
+I, [2020-10-15T23:48:10.125856 #14580]  INFO -- : Parameters: {:id=>nil}
+I, [2020-10-15T23:48:10.125927 #14580]  INFO -- : Response: 200 [text/html] 
+
+I, [2020-10-15T23:48:22.267711 #14580]  INFO -- : Request: GET /tests/2
+I, [2020-10-15T23:48:22.267947 #14580]  INFO -- : Handler: TestsController#show
+I, [2020-10-15T23:48:22.268089 #14580]  INFO -- : Parameters: {:id=>"2"}
+I, [2020-10-15T23:48:22.268214 #14580]  INFO -- : Response: 200 [text/html] 
+
