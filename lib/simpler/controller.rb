@@ -22,6 +22,10 @@ module Simpler
       @response.finish
     end
 
+    def status(status)
+      @response.status = status
+    end
+
     private
 
     def extract_name
