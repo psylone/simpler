@@ -8,6 +8,7 @@ module Simpler
     def initialize(env)
       @name = extract_name
       @request = Rack::Request.new(env)
+      @request.env['simpler.type_render'] = :erb
       @response = Rack::Response.new
       set_default_headers
     end
@@ -51,11 +52,22 @@ module Simpler
     end
 
     def params
-      @request.params
+      route_params = @request.env['Simpler.Route.Params']
+      route_params ||= {}
+      @request.params.merge(route_params)
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(params)
+      case params
+      when String
+        @request.env['simpler.template'] = params
+      when Hash
+        if params[:plain]
+          @request.env['simpler.type_render'] = :plain
+          headers['Content-Type'] = 'text/plain'
+          @request.env['simpler.plain'] = params[:plain]
+        end
+      end
     end
 
   end

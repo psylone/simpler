@@ -29,6 +29,7 @@ module Simpler
     def call(env)
       route = @router.route_for(env)
       return not_found unless route
+
       controller = route.controller.new(env)
       action = route.action
 
