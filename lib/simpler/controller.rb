@@ -20,6 +20,8 @@ module Simpler
       send(action)
       write_response
 
+      create_log_info
+
       @response.finish
     end
 
@@ -32,6 +34,39 @@ module Simpler
     end
 
     private
+
+    def create_log_info
+      @request.env['Simpler.Log.Request'] =
+        "Request: #{@request.request_method} #{@request.fullpath}"
+
+      @request.env['Simpler.Log.Handler'] =
+        "Handler: #{controller_name}##{controller_action}"
+
+      @request.env['Simpler.Log.Parameters'] = "Parameters: #{params}"
+
+      @request.env['Simpler.Log.Response'] =
+        "Response: #{response_status} [#{content_type}] #{view}"
+    end
+
+    def view
+      "#{@request.env['simpler.template'] || [controller_name, controller_action].join('/')}.html.erb"
+    end
+
+    def response_status
+      Rack::Utils::HTTP_STATUS_CODES[@response.status]
+    end
+
+    def content_type
+      headers['Content-Type']
+    end
+
+    def controller_name
+      self.class.name
+    end
+
+    def controller_action
+      @request.env['simpler.action']
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase

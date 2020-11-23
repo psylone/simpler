@@ -1,0 +1,4 @@
+I, [2020-11-23T17:34:38.639286 #21969]  INFO -- : Request: GET /tests/1/df
+I, [2020-11-23T17:34:38.639753 #21969]  INFO -- : Handler: TestsController#show
+I, [2020-11-23T17:34:38.639820 #21969]  INFO -- : Parameters: {:id=>"1"}
+I, [2020-11-23T17:34:38.639876 #21969]  INFO -- : Response: OK [text/plain] TestsController/show.html.erb
