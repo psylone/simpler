@@ -18,11 +18,19 @@ module Simpler
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
-
       @routes.find { |route| route.match?(method, path) }
     end
 
     private
+
+    def params_from_path(path)
+      params = path.split('/')[1]
+      if params
+        env['PARAMS_ID'] = params
+      else
+        path
+      end
+    end
 
     def add_route(method, path, route_point)
       route_point = route_point.split('#')
