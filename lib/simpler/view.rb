@@ -29,10 +29,19 @@ module Simpler
       @env['simpler.template']
     end
 
+    def content_type
+      case @env['simpler.content_type']
+      when :plain then 'text'
+      else 'html'
+      end
+    end
+
     def template_path
       path = template || [controller.name, action].join('/')
+      template_path = "#{path}.#{content_type}.erb"
+      @env['simpler.template_path'] = template_path
 
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+      Simpler.root.join(VIEW_BASE_PATH, template_path)
     end
 
   end
