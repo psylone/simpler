@@ -2,12 +2,16 @@ class TestsController < Simpler::Controller
 
   def index
     render 'tests/index'
-    # render plain: "Plain text responce"
+    # render plain: "Simpler Plain text responce "
 
     @time = Time.now
   end
 
   def create
+
+  end
+
+  def show
 
   end
 

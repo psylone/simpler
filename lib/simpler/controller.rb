@@ -55,7 +55,12 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a?(Hash)
+        @response['Content-Type'] = 'text/plain'
+        @request.env['simpler.plain'] = template[:plain]
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
     def respond_to
