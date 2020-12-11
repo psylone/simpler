@@ -22,6 +22,9 @@ module Simpler
       @response.finish
     end
 
+    def params
+      @request.params
+    end
 
     private
 
@@ -50,8 +53,8 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
+    def route_params
+      @request.env['simpler.route_params']
     end
 
     def render(template)

@@ -12,7 +12,8 @@ class TestsController < Simpler::Controller
   end
 
   def show
-
+    @params = route_params
+    render 'tests/show'
   end
 
 end
