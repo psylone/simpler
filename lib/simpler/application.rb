@@ -28,6 +28,8 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return not_found unless route
+
       controller = route.controller.new(env)
       action = route.action
 
@@ -54,5 +56,8 @@ module Simpler
       controller.make_response(action)
     end
 
+    def not_found
+      Rack::Response.new(nil, 404, {}).finish
+    end
   end
 end

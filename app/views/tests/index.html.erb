@@ -5,8 +5,18 @@
     <title>Index | Simpler application</title>
   </head>
   <body>
-    <h1>Simpler framework at work!</h1>
-
-    <p><%= @time %></p>
+    <div class="container" style="margin: 10px auto; text-align: center;">
+      <h1 style="text-align: center;">Simpler framework at work!</h1>
+      <div style="margin: 2rem; text-align: <%= @tests.nil? ? 'center' : 'left' %>">
+        Time now: <%= @time %>
+      </div>
+      <% if  @tests.nil? %>
+        <div>Tests not found!</div>
+      <% else %>
+        <div style="margin: 2rem; text-align: left;">
+          <div><strong>Tests count:</strong> <%= @tests.count %></div>
+        </div>
+      <% end %>
+    </div>
   </body>
 </html>
