@@ -1,4 +1,5 @@
 require_relative 'view'
+require_relative 'utils/headers'
 
 module Simpler
   class Controller
@@ -28,6 +29,14 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
+    def status(code)
+      @response.status = code
+    end
+
+    def headers
+      Headers.new(@response)
+    end
+
     def set_default_headers
       @response['Content-Type'] = 'text/html'
     end
@@ -43,12 +52,16 @@ module Simpler
     end
 
     def params
-      @request.params
+      @params ||= @request.params.merge(@request.env['Url-Params'])
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a?(String)
+        @request.env['simpler.template'] = template
+      else
+        @request.env['simpler.template.type'] = template.keys.first
+        @request.env['simpler.template.data'] = template.values.first
+      end
     end
-
   end
 end

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Show | Simpler application</title>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Simpler framework at work!</h1>
+
+    <div class="container" style="margin: 10px auto; text-align: center;">
+      <div style="margin: 2rem; text-align: <%= @test.nil? ? 'center' : 'left' %>">
+        <strong>Return params:</strong> <%= @object_id %>
+      </div>
+      <% if  @test.nil? %>
+        <div>Test with id: <%= @object_id %> not found!</div>
+      <% else %>
+        <div style="margin: 2rem; text-align: left;">
+          <div><strong>Test id:</strong> <%= @test.id %></div>
+          <div><strong>Test title:</strong> <%= @test.title %></div>
+          <div><strong>Test level:</strong> <%= @test.level %></div>
+        </div>
+      <% end %>
+  </div>
+  </body>
+</html>

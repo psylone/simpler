@@ -8,4 +8,9 @@ class TestsController < Simpler::Controller
 
   end
 
+  def show
+    @test = Test.find(id: params[:id])
+    @object_id = params[:id]
+  end
+
 end
