@@ -10,7 +10,11 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
+      if File.exist?(template_path)
+        template = File.read(template_path)
+      else
+        template = @env["simpler.template"]
+      @env["simpler.template-path"] = "#{@path}.html.erb"
 
       ERB.new(template).result(binding)
     end
