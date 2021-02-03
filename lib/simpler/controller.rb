@@ -15,6 +15,7 @@ module Simpler
       @request.env['simpler.action'] = action
 
       set_default_headers
+      @request.params.merge!(@request.env['simpler.params'])
       send(action)
       write_response
 
@@ -28,7 +29,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      set_headers('Content-Type', 'text/html')
     end
 
     def set_headers(type, value)

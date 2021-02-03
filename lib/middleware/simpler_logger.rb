@@ -22,6 +22,5 @@ class SimplerLogger
     "Response: #{status} [#{headers['Content-Type']}] #{env['simpler.template_path']}\n" \
     "Action: #{env['simpler.action']}\n" \
     "Params: #{env['simpler.params']}\n" \
-    "#{env}\n" \
   end
 end

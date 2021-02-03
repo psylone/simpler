@@ -32,7 +32,7 @@ module Simpler
 
       controller = route.controller.new(env)
       action = route.action
-
+      env['simpler.params'] = route.params
       make_response(controller, action)
     end
 
