@@ -20,6 +20,7 @@ module Simpler
       setup_database
       require_app
       require_routes
+      require_helpers
     end
 
     def routes(&block)
@@ -42,6 +43,10 @@ module Simpler
 
     def require_routes
       require Simpler.root.join('config/routes')
+    end
+
+    def require_helpers
+      require_relative 'controller/helpers_controller'
     end
 
     def setup_database

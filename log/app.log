@@ -1,0 +1,75 @@
+I, [2021-02-04T18:56:08.610064 #19351]  INFO -- : Request: GET /tests?category=Backend
+I, [2021-02-04T18:56:08.619612 #19351]  INFO -- : Handler: TestsController#index
+I, [2021-02-04T18:56:08.619821 #19351]  INFO -- : Parameters: {"category"=>"Backend"}
+I, [2021-02-04T18:56:08.619972 #19351]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2021-02-04T18:56:08.620053 #19351]  INFO -- : ------------
+I, [2021-02-04T18:56:20.081836 #19351]  INFO -- : Request: GET /tests/new
+I, [2021-02-04T18:56:20.084048 #19351]  INFO -- : Handler: TestsController#new
+I, [2021-02-04T18:56:20.084243 #19351]  INFO -- : Parameters: {}
+I, [2021-02-04T18:56:20.084405 #19351]  INFO -- : Response: 200 OK [text/html] tests/new.html.erb
+I, [2021-02-04T18:56:20.084503 #19351]  INFO -- : ------------
+I, [2021-02-04T18:56:39.787202 #19351]  INFO -- : Request: POST /tests
+I, [2021-02-04T18:56:39.801051 #19351]  INFO -- : Handler: TestsController#create
+I, [2021-02-04T18:56:39.801204 #19351]  INFO -- : Parameters: {"test"=>{"title"=>"test", "level"=>"123"}}
+I, [2021-02-04T18:56:39.801310 #19351]  INFO -- : Response: 302 Found [text/html]
+I, [2021-02-04T18:56:39.801361 #19351]  INFO -- : ------------
+I, [2021-02-04T18:56:39.820808 #19351]  INFO -- : Request: GET /tests/11
+I, [2021-02-04T18:56:39.822923 #19351]  INFO -- : Handler: TestsController#show
+I, [2021-02-04T18:56:39.823073 #19351]  INFO -- : Parameters: {:id=>"11"}
+I, [2021-02-04T18:56:39.823170 #19351]  INFO -- : Response: 200 OK [text/html] tests/show.html.erb
+I, [2021-02-04T18:56:39.823219 #19351]  INFO -- : ------------
+I, [2021-02-04T18:57:11.112013 #19351]  INFO -- : Request: GET /tests/12
+I, [2021-02-04T18:57:11.112739 #19351]  INFO -- : Handler: TestsController#show
+I, [2021-02-04T18:57:11.113599 #19351]  INFO -- : Parameters: {:id=>"12"}
+I, [2021-02-04T18:57:11.113699 #19351]  INFO -- : Response: 404 Not Found [text/plain]
+I, [2021-02-04T18:57:11.113748 #19351]  INFO -- : ------------
+I, [2021-02-04T18:57:43.131442 #19351]  INFO -- : Request: GET /tests/11
+I, [2021-02-04T18:57:43.133169 #19351]  INFO -- : Handler: TestsController#show
+I, [2021-02-04T18:57:43.133358 #19351]  INFO -- : Parameters: {:id=>"11"}
+I, [2021-02-04T18:57:43.133456 #19351]  INFO -- : Response: 200 OK [text/html] tests/show.html.erb
+I, [2021-02-04T18:57:43.133514 #19351]  INFO -- : ------------
+I, [2021-02-04T18:57:49.012470 #19351]  INFO -- : Request: GET /tests
+I, [2021-02-04T18:57:49.015762 #19351]  INFO -- : Handler: TestsController#index
+I, [2021-02-04T18:57:49.018746 #19351]  INFO -- : Parameters: {}
+I, [2021-02-04T18:57:49.019019 #19351]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2021-02-04T18:57:49.019170 #19351]  INFO -- : ------------
+I, [2021-02-04T18:57:55.170464 #19351]  INFO -- : Request: GET /tests/11
+I, [2021-02-04T18:57:55.176222 #19351]  INFO -- : Handler: TestsController#show
+I, [2021-02-04T18:57:55.176763 #19351]  INFO -- : Parameters: {:id=>"11"}
+I, [2021-02-04T18:57:55.176964 #19351]  INFO -- : Response: 200 OK [text/html] tests/show.html.erb
+I, [2021-02-04T18:57:55.183089 #19351]  INFO -- : ------------
+I, [2021-02-04T18:57:59.681479 #19351]  INFO -- : Request: GET /tests
+I, [2021-02-04T18:57:59.690284 #19351]  INFO -- : Handler: TestsController#index
+I, [2021-02-04T18:57:59.690584 #19351]  INFO -- : Parameters: {}
+I, [2021-02-04T18:57:59.690760 #19351]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2021-02-04T18:57:59.690873 #19351]  INFO -- : ------------
+I, [2021-02-04T18:58:04.540785 #19351]  INFO -- : Request: GET /tests/11/edit
+I, [2021-02-04T18:58:04.545290 #19351]  INFO -- : Handler: TestsController#edit
+I, [2021-02-04T18:58:04.545778 #19351]  INFO -- : Parameters: {:id=>"11"}
+I, [2021-02-04T18:58:04.546006 #19351]  INFO -- : Response: 200 OK [text/html] tests/edit.html.erb
+I, [2021-02-04T18:58:04.546121 #19351]  INFO -- : ------------
+I, [2021-02-04T18:58:25.792854 #19351]  INFO -- : Request: POST /tests/11
+I, [2021-02-04T18:58:25.797210 #19351]  INFO -- : Handler: TestsController#update
+I, [2021-02-04T18:58:25.797380 #19351]  INFO -- : Parameters: {:id=>"11", "_method"=>"patch", "test"=>{"title"=>"test 1", "level"=>"1"}}
+I, [2021-02-04T18:58:25.797513 #19351]  INFO -- : Response: 302 Found [text/html]
+I, [2021-02-04T18:58:25.797585 #19351]  INFO -- : ------------
+I, [2021-02-04T18:58:25.815184 #19351]  INFO -- : Request: GET /tests/11
+I, [2021-02-04T18:58:25.817299 #19351]  INFO -- : Handler: TestsController#show
+I, [2021-02-04T18:58:25.817442 #19351]  INFO -- : Parameters: {:id=>"11"}
+I, [2021-02-04T18:58:25.817507 #19351]  INFO -- : Response: 200 OK [text/html] tests/show.html.erb
+I, [2021-02-04T18:58:25.817537 #19351]  INFO -- : ------------
+I, [2021-02-04T18:58:56.324627 #19351]  INFO -- : Request: GET /tests
+I, [2021-02-04T18:58:56.325961 #19351]  INFO -- : Handler: TestsController#index
+I, [2021-02-04T18:58:56.326068 #19351]  INFO -- : Parameters: {}
+I, [2021-02-04T18:58:56.326138 #19351]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2021-02-04T18:58:56.326176 #19351]  INFO -- : ------------
+I, [2021-02-04T18:59:07.074918 #19351]  INFO -- : Request: GET /tests/11?_method=delete
+I, [2021-02-04T18:59:07.083486 #19351]  INFO -- : Handler: TestsController#destroy
+I, [2021-02-04T18:59:07.083623 #19351]  INFO -- : Parameters: {"_method"=>"delete", :id=>"11"}
+I, [2021-02-04T18:59:07.083686 #19351]  INFO -- : Response: 301 Moved Permanently [text/html]
+I, [2021-02-04T18:59:07.083722 #19351]  INFO -- : ------------
+I, [2021-02-04T18:59:07.100518 #19351]  INFO -- : Request: GET /tests
+I, [2021-02-04T18:59:07.102644 #19351]  INFO -- : Handler: TestsController#index
+I, [2021-02-04T18:59:07.103429 #19351]  INFO -- : Parameters: {}
+I, [2021-02-04T18:59:07.103582 #19351]  INFO -- : Response: 200 OK [text/html] tests/index.html.erb
+I, [2021-02-04T18:59:07.103674 #19351]  INFO -- : ------------

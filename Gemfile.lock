@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    puma (3.12.6)
+    rack (2.2.3)
+    sequel (5.40.0)
+    sqlite3 (1.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  puma (~> 3.11)
+  rack
+  sequel
+  sqlite3
+
+RUBY VERSION
+   ruby 2.5.8p224
+
+BUNDLED WITH
+   2.1.4

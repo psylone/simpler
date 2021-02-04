@@ -4,6 +4,7 @@ module Simpler
   class View
 
     VIEW_BASE_PATH = 'app/views'.freeze
+    VIEW_TYPE_FILE = '.html.erb'.freeze
 
     def initialize(env)
       @env = env
@@ -12,7 +13,9 @@ module Simpler
     def render(binding)
       template = File.read(template_path)
 
-      ERB.new(template).result(binding)
+      render_layout do
+        ERB.new(template).result(binding)
+      end
     end
 
     private
@@ -32,7 +35,17 @@ module Simpler
     def template_path
       path = template || [controller.name, action].join('/')
 
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+      file = "#{path}#{VIEW_TYPE_FILE}"
+
+      @env['simpler.template_file'] = file
+
+      Simpler.root.join(VIEW_BASE_PATH, file)
+    end
+
+    def render_layout
+      layout = File.read(Simpler.root.join(VIEW_BASE_PATH,"layouts/app#{VIEW_TYPE_FILE}"))
+      
+      ERB.new(layout).result(binding)
     end
 
   end

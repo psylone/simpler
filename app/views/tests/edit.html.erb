@@ -1,0 +1,19 @@
+<h2>Edit test</h2>
+
+<form action="/tests/<%= @test.id %>" method="POST">
+  <input type="hidden" name="_method" value="patch">
+
+  <p>
+    <label for="test_title">Title</label><br>
+    <input id="test_title" type="text" name="test[title]" value="<%= @test.title %>" >
+  </p>
+
+  <p>
+    <label for="test_level">Level</label><br>
+    <input id="test_level" type="number" name="test[level]" value="<%= @test.level %>" >
+  </p>
+
+  <button type="submit">Update</button>
+</form>
+
+<a href="/tests">back</a>
