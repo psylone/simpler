@@ -1,0 +1,126 @@
+I, [2021-02-09T12:38:28.507164 #43672]  INFO -- : 
+Request: GET /tests/5
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T12:38:31.989524 #43672]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [ text/html] tests/index.html.erb
+
+I, [2021-02-09T12:39:20.715514 #43672]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T12:39:51.155051 #43672]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [ text/html] tests/index.html.erb
+
+I, [2021-02-09T12:48:59.897158 #52683]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [ text/html] tests/index.html.erb
+
+I, [2021-02-09T12:49:03.337804 #52683]  INFO -- : 
+Request: GET /tests/5
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T12:56:22.727715 #64725]  INFO -- : 
+Request: GET /test
+Handler: Controller#
+Parameters: {}
+Response: 404 [ text/html] 
+
+I, [2021-02-09T12:56:42.028534 #64725]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [ text/html] tests/index.html.erb
+
+I, [2021-02-09T12:56:45.456988 #64725]  INFO -- : 
+Request: GET /tests/4
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:01:35.117723 #64725]  INFO -- : 
+Request: GET /tests/4
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:01:44.105464 #69683]  INFO -- : 
+Request: GET /tests/4
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:15:41.719923 #81408]  INFO -- : 
+Request: GET /tests/44
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:20:00.551889 #84065]  INFO -- : 
+Request: GET /tests/44
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:20:03.883967 #84065]  INFO -- : 
+Request: GET /tests/4
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:20:07.761506 #84065]  INFO -- : 
+Request: GET /tests/101
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:20:13.881869 #84065]  INFO -- : 
+Request: GET /tests/10
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:20:21.839547 #84065]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [ text/html] tests/index.html.erb
+
+I, [2021-02-09T13:20:25.608673 #84065]  INFO -- : 
+Request: GET /tests/3
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:26:04.813802 #91310]  INFO -- : 
+Request: GET /tests/3
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:26:07.670589 #91310]  INFO -- : 
+Request: GET /tests/34
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [ text/html] tests/show.html.erb
+
+I, [2021-02-09T13:26:13.943729 #91310]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [ text/html] tests/index.html.erb
+

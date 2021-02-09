@@ -28,13 +28,27 @@ module Simpler
       route_point = route_point.split('#')
       controller = controller_from_string(route_point[0])
       action = route_point[1]
-      route = Route.new(method, path, controller, action)
+      path, template = get_path_template(path)
+
+      route = Route.new(method, path, controller, action, template)
 
       @routes.push(route)
     end
 
     def controller_from_string(controller_name)
       Object.const_get("#{controller_name.capitalize}Controller")
+    end
+
+    def get_path_template(path)
+      if path.gsub!(/:id/,'\d+')
+        template = path.delete('\d+')
+      else
+        template = false
+      end
+      path += '$'
+      path = Regexp.new(path)
+
+      [path, template]
     end
 
   end
