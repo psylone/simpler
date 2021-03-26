@@ -5,6 +5,8 @@ module Simpler
 
     attr_reader :name, :request, :response
 
+    RENDER_TYPE = { html:  'text/html', plain: 'text/plain' }.freeze
+
     def initialize(env)
       @name = extract_name
       @request = Rack::Request.new(env)
@@ -28,6 +30,16 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
+    def set_status(code)
+      @response.status = code
+    end
+
+    def set_headers_type(type)
+      render_type_valid!(type)
+      @response['Content-Type'] = RENDER_TYPE[type]
+      @request.env['simpler.content_type'] = type
+    end
+
     def set_default_headers
       @response['Content-Type'] = 'text/html'
     end
@@ -46,8 +58,32 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(data)
+      data = parse_render_data(data)
+      set_headers_type(data[:type])
+      @request.env['simpler.template'] = data[:body]
+    end
+
+    def parse_render_data(data)
+      parsed_data = { body: nil, type: :html }
+
+      if data.is_a?(Hash)
+        parsed_data[:type] = data.keys[0]
+        parsed_data[:body] = data[parsed_data[:type]]
+      else
+        parsed_data[:body] = data
+      end
+
+      parsed_data
+    end
+
+    def render_type_valid!(type)
+      controller_action = "#{self.class.name}##{@request.env['simpler.action']}"
+      raise "Unknown content type `#{type}` in #{controller_action}" unless render_type_valid?(type)
+    end
+
+    def render_type_valid?(type)
+      RENDER_TYPE.has_key?(type)
     end
 
   end
