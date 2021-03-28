@@ -41,7 +41,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      set_headers_type(:html)
     end
 
     def write_response
@@ -55,7 +55,8 @@ module Simpler
     end
 
     def params
-      @request.params
+      # @request.params
+      @request.params.merge!(@request.env['simpler.params'])
     end
 
     def render(data)

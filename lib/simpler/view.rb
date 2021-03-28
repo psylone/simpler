@@ -5,7 +5,7 @@ require_relative 'view/plain'
 module Simpler
   class View
 
-    VIEW_BASE_PATH = 'app/views'.freeze
+    VIEW_BASE_PATH = 'app/view'.freeze
 
     def initialize(env)
       @env = env
@@ -26,6 +26,7 @@ module Simpler
     def to_view_name(name)
       "Simpler::View::#{name.capitalize}"
     end
+
 
     def get_view_name(name)
       view_validate!(name)
