@@ -1,15 +1,25 @@
 class TestsController < Simpler::Controller
 
   def index
-    @time = Time.now
-  end
-
-  def create
-
+    @tests = Test.all
+    # render plain: "Who who !"
+    render 'tests/index'
   end
 
   def show
-    @params = params
+    @test = Test[set_params]
+    status 201
+    render 'tests/show'
+  end
+
+  def create
+    
+  end
+
+  private
+
+  def set_params
+    params[:id]
   end
 
 end
