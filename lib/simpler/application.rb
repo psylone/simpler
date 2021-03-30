@@ -28,10 +28,13 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+
+      return page_not_found if route.nil?
+
       controller = route.controller.new(env)
       action = route.action
 
-      make_response(controller, action)
+      make_response(controller, action, env)
     end
 
     private
@@ -50,8 +53,16 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action)
-      controller.make_response(action)
+    def make_response(controller, action, env)
+      controller.make_response(action, env)
+    end
+
+    def page_not_found
+      [
+        404,
+        { "Content-Type" => "text/html" },
+        ["Error 404: Page not found\n"]
+      ]
     end
 
   end
