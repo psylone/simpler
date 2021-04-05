@@ -3,7 +3,6 @@ require 'singleton'
 require 'sequel'
 require_relative 'router'
 require_relative 'controller'
-
 module Simpler
   class Application
 

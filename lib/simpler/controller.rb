@@ -45,6 +45,11 @@ module Simpler
       @response.status = status
     end
 
+    def not_found
+      status 404
+      render plain:'Not Found'
+    end
+
     def headers
       @response
     end
