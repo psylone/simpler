@@ -45,6 +45,10 @@ module Simpler
       @response.status = status
     end
 
+    def headers
+      @response
+    end
+
     def params
       @request.params
     end
@@ -52,7 +56,7 @@ module Simpler
     def render(template=nil, plain:nil)
       @request.env['simpler.template'] = template
       if plain
-        @response['Content-Type'] = 'text/plain'
+        headers = 'text/plain'
         @request.env['simpler.text'] = plain
       end
     end
