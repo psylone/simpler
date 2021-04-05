@@ -1,5 +1,4 @@
 require_relative 'view'
-
 module Simpler
   class Controller
 
@@ -40,6 +39,10 @@ module Simpler
 
     def render_body
       View.new(@request.env).render(binding)
+    end
+
+    def status(status)
+      @response.status = status
     end
 
     def params
