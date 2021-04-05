@@ -1,3 +1,4 @@
+require 'pry'
 class TestsController < Simpler::Controller
 
   def index
@@ -9,6 +10,12 @@ class TestsController < Simpler::Controller
 
   def create
 
+  end
+
+  def show
+  	binding.pry
+  	params
+  	render plain:'Hello from show'
   end
 
 end

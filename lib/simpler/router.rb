@@ -18,8 +18,8 @@ module Simpler
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
-
       route = @routes.find { |route| route.match?(method, path) }
+      env['.simpler_params'] = params_from_url(path) if route.path.match(':id')
       route || Route.not_found
     end
 
@@ -32,6 +32,10 @@ module Simpler
       route = Route.new(method, path, controller, action)
 
       @routes.push(route)
+    end
+
+    def params_from_url(path)
+      path.scan(/(\w+\/\d+)/).map{|i| i[0].split('/') }.to_h
     end
 
     def controller_from_string(controller_name)
