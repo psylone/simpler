@@ -14,11 +14,10 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-
       set_default_headers
       send(action)
       write_response
-
+      headers['Log']=make_log
       @response.finish
     end
 
@@ -39,7 +38,9 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      view = View.new(@request.env)
+      params['template_path'] = [@request.env['simpler.controller'].name, @request.env['simpler.action']].join('/')
+      view.render(binding)
     end
 
     def status(status)
@@ -65,6 +66,13 @@ module Simpler
         headers = 'text/plain'
         @request.env['simpler.text'] = plain
       end
+    end
+
+    def make_log
+      {Request: "#{@request.env['REQUEST_METHOD']} #{@request.path}",
+       Handler: "#{@request.env['simpler.controller'].name}##{@request.env['simpler.action']}",
+       Parameters: @request.env['QUERY_STRING'],
+       Response: "#{status '200'} #{headers['Content-Type']} #{@request.params['template_path']}"}.to_s
     end
 
   end

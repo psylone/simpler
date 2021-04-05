@@ -1,0 +1,4 @@
+# Logfile created on 2021-04-05 23:40:13 +0500 by logger.rb/v1.4.2
+I, [2021-04-05T23:40:18.387715 #6246]  INFO -- : {:Request=>"/tests/5", :Handler=>"tests#", :Parameters=>"", :Response=>"200 text/html tests/show"}
+I, [2021-04-05T23:41:40.673054 #6367]  INFO -- : {:Request=>"/tests/5", :Handler=>"tests#", :Parameters=>"", :Response=>"200 text/html tests/show"}
+I, [2021-04-05T23:42:50.861036 #6429]  INFO -- : {:Request=>"/tests/5", :Handler=>"tests#show", :Parameters=>"", :Response=>"200 text/html tests/show"}
