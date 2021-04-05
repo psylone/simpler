@@ -46,8 +46,12 @@ module Simpler
       @request.params
     end
 
-    def render(template)
+    def render(template=nil, plain:nil)
       @request.env['simpler.template'] = template
+      if plain
+        @response['Content-Type'] = 'text/plain'
+        @request.env['simpler.text'] = plain
+      end
     end
 
   end
