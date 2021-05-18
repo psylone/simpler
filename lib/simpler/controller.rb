@@ -15,7 +15,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-
+      set_params
       send(action)
       set_headers
       set_status
@@ -67,6 +67,12 @@ module Simpler
         render_format
       else
         View.new(@request.env).render(binding)
+      end
+    end
+
+    def set_params
+      if @request.env['simpler.action'] == 'show'
+        @request.params['id'] = @request.env['REQUEST_PATH'].gsub(/\D+/, '')
       end
     end
 

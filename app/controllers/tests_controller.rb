@@ -6,6 +6,10 @@ class TestsController < Simpler::Controller
     render plain: "Plain text response", status: 201
   end
 
+  def show
+    p params
+  end
+
   def create
 
   end
