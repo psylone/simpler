@@ -26,13 +26,13 @@ module Simpler
       @router.instance_eval(&block)
     end
 
-    def call(env)
+    def call(env, logger)
       route = @router.route_for(env)
 
       if route
         controller = route.controller.new(env)
         action = route.action
-        make_response(controller, action)
+        make_response(controller, action, logger
       else
         response_error
       end
@@ -54,8 +54,8 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action)
-      controller.make_response(action)
+    def make_response(controller, action, logger)
+      controller.make_response(action, logger)
     end
 
     def response_error

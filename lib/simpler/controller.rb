@@ -11,11 +11,12 @@ module Simpler
       @response = Rack::Response.new
     end
 
-    def make_response(action)
+    def make_response(action, logger)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
       set_params
+      log_request(logger)
       send(action)
       set_headers
       set_status
@@ -88,6 +89,14 @@ module Simpler
       if @request.env['simpler.template'].keys.first == :plain
         @request.env['simpler.template'].values.first
       end
+    end
+
+    def log_request(logger)
+      logger.info("Handler: #{@request.env['simpler.controller'].class}##{@request.env['simpler.action']}\nParameters: #{params}" )
+    end
+
+    def log_response(logger)
+      logger.info("Response: #{@response.status} [#{@response['Content-Type']}] #{@request.env['simpler.template'] || [extract_name, @request.env['simpler.action']].join('/') + '.html.erb'}")
     end
 
   end
