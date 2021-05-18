@@ -32,7 +32,7 @@ module Simpler
       if route
         controller = route.controller.new(env)
         action = route.action
-        make_response(controller, action, logger
+        make_response(controller, action, logger)
       else
         response_error
       end
