@@ -26,12 +26,16 @@ module Simpler
       @router.instance_eval(&block)
     end
 
-    def call(env)
+    def call(env, logger)
       route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
 
-      make_response(controller, action)
+      if route
+        controller = route.controller.new(env)
+        action = route.action
+        make_response(controller, action, logger)
+      else
+        response_error
+      end
     end
 
     private
@@ -50,8 +54,17 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action)
-      controller.make_response(action)
+    def make_response(controller, action, logger)
+      controller.make_response(action, logger)
+    end
+
+    def response_error
+      response = Rack::Response.new
+
+      response['Content-Type'] = 'text/plain'
+      response.status = 404
+      response.write('The requested URL was not found')
+      response.finish
     end
 
   end
