@@ -15,7 +15,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
+      set_headers
       send(action)
       write_response
 
@@ -34,20 +34,39 @@ module Simpler
 
     def write_response
       body = render_body
-
-      @response.write(body)
+      @response.write(body) if @response.body.length == 0
     end
 
     def render_body
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
+    def render(template)
+      if template.is_a?(Hash)
+        @response['Content-Type'] = template.first[0].to_sym == :plain ? 'text/plain' : 'text/html'
+
+        @response.body = ["#{template[template.first[0].to_sym]}\n"]
+        @response.status = 201
+        @response.finish
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def set_headers(options=nil)
+      if(options)
+        options.each {|key, value| @response[key] = value}
+      else
+        set_default_headers
+      end
+    end
+
+    def status(status)
+      @response.status = status
+    end
+
+    def params
+      @request.env['simpler.route_params']
     end
 
   end

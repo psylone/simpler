@@ -32,6 +32,7 @@ module Simpler
     def template_path
       path = template || [controller.name, action].join('/')
 
+      # return path if template.is_a?(Hash)
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
 
