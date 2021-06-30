@@ -1,12 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    logger (1.4.3)
     sequel (5.45.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  logger
   sequel
 
 BUNDLED WITH
