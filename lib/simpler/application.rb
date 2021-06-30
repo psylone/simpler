@@ -28,6 +28,8 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return not_found_url(env) unless route
+
       controller = route.controller.new(env)
       action = route.action
 
@@ -52,6 +54,14 @@ module Simpler
 
     def make_response(controller, action)
       controller.make_response(action)
+    end
+
+    def not_found_url(env)
+      [
+        404,
+        { 'Content-Type' => 'text/plain' },
+        ["Error 404: Page Not Found: #{env['PATH_INFO']}\n"]
+      ]
     end
 
   end
