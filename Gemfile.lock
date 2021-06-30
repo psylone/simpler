@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    sequel (5.45.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  sequel
+
+BUNDLED WITH
+   2.1.4
