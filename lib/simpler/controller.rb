@@ -2,6 +2,12 @@ require_relative 'view'
 
 module Simpler
   class Controller
+    HEADERS_TYPES = {
+      html: 'text/html',
+      plain: 'text/plain'
+    }.freeze
+
+    class ValidationError < StandardError; end
 
     attr_reader :name, :request, :response
 
@@ -12,15 +18,25 @@ module Simpler
     end
 
     def make_response(action)
-      @request.env['simpler.controller'] = self
-      @request.env['simpler.action'] = action
-      @request.env['simpler.params'] = @request.params
+      request.env['simpler.controller'] = self
+      request.env['simpler.action'] = action
 
-      set_default_headers
+      set_headers(:html)
       send(action)
       write_response
 
-      @response.finish
+      response.finish
+    end
+
+    def set_status(code)
+      response.status = code
+    end
+
+    def set_headers(type)
+      raise ValidationError unless validate!(type)
+
+      response['Content-Type'] = HEADERS_TYPES[type]
+      request.env['simpler.content_type'] = type
     end
 
     private
@@ -29,26 +45,26 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
-    end
-
     def write_response
       body = render_body
 
-      @response.write(body)
+      response.write(body)
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      View.new(request.env).render(binding)
     end
 
     def params
-      @request.params
+      request.params.merge!(request.env['simpler.params'])
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      request.env['simpler.template'] = template
+    end
+
+    def validate!(type)
+      HEADERS_TYPES.has_key?(type)
     end
 
   end
