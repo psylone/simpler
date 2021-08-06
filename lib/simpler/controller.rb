@@ -3,6 +3,8 @@ require_relative 'view'
 module Simpler
   class Controller
 
+    RESPONSE_HEADERS = { plain: 'text/plain', html: 'text/html' }.freeze
+
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -29,7 +31,17 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      set_headers(:html)
+    end
+
+    def headers_type(content_type)
+      content_type_valid!(content_type)
+      @response['Content-Type'] = RESPONSE_HEADERS[content_type]
+      @request.env['simpler.content_type'] = content_type
+    end
+
+    def status_code(code)
+      @response.status = code
     end
 
     def write_response
@@ -43,11 +55,37 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.params.merge!(@request.env['simpler.params'])
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(data)
+      data = parse_data(data)
+      set_headers(data[:type])
+
+      @request.env['simpler.template'] = data[:body]
+    end
+
+    def parse_data(data)
+      parsed_data = { body: nil, type: :html }
+
+      if data.is_a?(Hash)
+        parsed_data[:type] = data.keys[0]
+        parsed_data[:body] = data[parsed_data[:type]]
+      else
+        parsed_data[:body] = data
+      end
+
+      parsed_data
+    end
+
+    def content_type_valid!(type)
+      controller_action = "#{self.class.name}##{@request.env['simpler.action']}"
+
+      raise "Неизвестный content type `#{type}` в #{controller_action}" unless content_type_valid?(type)
+    end
+
+    def content_type_valid?(type)
+      RESPONSE_HEADERS.key?(type)
     end
 
   end

@@ -1,5 +1,9 @@
 require 'erb'
 
+require_relative 'view/html'
+require_relative 'view/plain'
+require_relative 'view/json'
+
 module Simpler
   class View
 
@@ -10,29 +14,34 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
+      view_name = to_view_name(content_type)
+      view = get_view_name(view_name)
 
-      ERB.new(template).result(binding)
+      view.new(@env).render(binding)
     end
 
     private
 
-    def controller
-      @env['simpler.controller']
+    def content_type
+      @env['simpler.content_type']
     end
 
-    def action
-      @env['simpler.action']
+    def to_view_name(name)
+      "Simpler::View::#{name.capitalize}"
     end
 
-    def template
-      @env['simpler.template']
+    def get_view_name(name)
+      view_validate!(name)
+
+      Object.const_get(name)
     end
 
-    def template_path
-      path = template || [controller.name, action].join('/')
+    def view_available?(name)
+      Object.const_defined?(name)
+    end
 
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+    def view_validate!(name)
+      raise "Can't render type #{content_type}" unless view_available?(name)
     end
 
   end
