@@ -18,7 +18,7 @@ module Simpler
       set_default_headers
       send(action)
       write_response
-
+      
       @response.finish
     end
 
@@ -50,5 +50,8 @@ module Simpler
       @request.env['simpler.template'] = template
     end
 
+    def set_status(code)
+      @response.status = code
+    end
   end
 end
