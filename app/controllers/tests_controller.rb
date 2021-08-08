@@ -4,8 +4,9 @@ class TestsController < Simpler::Controller
     @time = Time.now
   end
 
-  def create
+  def create; end
 
+  def show
+    @params = params.self
   end
-
 end
