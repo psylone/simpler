@@ -3,6 +3,8 @@ require_relative 'view'
 module Simpler
   class Controller
 
+    HEADERS_TYPES = {html: 'text/html', plain: 'text/plain'}.freeze
+
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -14,11 +16,11 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-
+      
       set_default_headers
       send(action)
       write_response
-      
+
       @response.finish
     end
 
@@ -29,7 +31,7 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      set_header('html')
     end
 
     def write_response
@@ -52,6 +54,10 @@ module Simpler
 
     def set_status(code)
       @response.status = code
+    end
+
+    def set_header(type)
+      @response['Content-type'] = HEADERS_TYPES[type.to_sym]
     end
   end
 end
