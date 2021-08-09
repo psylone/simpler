@@ -2,8 +2,7 @@ require_relative 'view'
 
 module Simpler
   class Controller
-
-    HEADERS_TYPES = {html: 'text/html', plain: 'text/plain'}.freeze
+    HEADERS_TYPES = { html: 'text/html', plain: 'text/plain' }.freeze
 
     attr_reader :name, :request, :response
 
@@ -69,7 +68,7 @@ module Simpler
 
     def header_type_valid?(type)
       controller_action = "#{self.class.name}##{@request.env['simpler.action']}"
-      raise "Unknown content type `#{type}` in #{controller_action}" if !HEADERS_TYPES.key?(type)
+      raise "Unknown content type `#{type}` in #{controller_action}" unless HEADERS_TYPES.key?(type)
     end
   end
 end
