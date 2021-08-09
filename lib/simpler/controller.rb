@@ -9,6 +9,7 @@ module Simpler
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @request.env['simpler.route.params'].each { |key, value| @request.update_param(key.to_sym, value) }
     end
 
     def make_response(action)
@@ -46,9 +47,24 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(options)
+      case options
+      when String
+        @request.env['simpler.template'] = options
+      when Hash
+        if options[:plain]
+          headers['Content-Type'] = 'text/plain'
+          @request.env['simpler.plain_text'] = options[:plain]
+        end
+      end
     end
 
+    def status(status)
+      @response.status = status
+    end
+
+    def headers
+      @response
+    end
   end
 end
