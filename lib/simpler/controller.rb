@@ -17,6 +17,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
       
+      set_params
       set_default_headers
       send(action)
       write_response
@@ -44,12 +45,12 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
-    end
-
     def render(template)
       @request.env['simpler.template'] = template
+    end
+
+    def set_params
+      @request.params.merge!(@request.env['simpler.params'])
     end
 
     def set_status(code)
