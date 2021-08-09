@@ -46,7 +46,11 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a?(Hash)
+        @request.env['simpler.plain_text'] = template.first[1]
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
     def set_params
