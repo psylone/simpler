@@ -1,11 +1,17 @@
 class TestsController < Simpler::Controller
 
   def index
-    @time = Time.now
+    @tests = Test.all
+    status 200
+    headers['Content-Type'] = 'text/html'
   end
 
   def create
 
+  end
+
+  def show
+    @parameter = params[:id]
   end
 
 end
