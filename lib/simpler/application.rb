@@ -33,7 +33,7 @@ module Simpler
         action = route.action
         make_response(controller, action)
       else
-        [404, {'Content-Type' => 'text/plain'}, ['404 ERROR']]
+        response(404, '404 ERROR')
       end
     end
 
@@ -55,6 +55,11 @@ module Simpler
 
     def make_response(controller, action)
       controller.make_response(action)
+    end
+
+    def response(status, body)
+      response = Rack::Response.new([body], status, {'Content-Type' => 'text/plain'})
+      response.finish
     end
 
   end

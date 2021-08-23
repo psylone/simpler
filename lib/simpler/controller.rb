@@ -20,7 +20,6 @@ module Simpler
       write_response
       params
 
-      pp @response
       @response.finish
     end
 
