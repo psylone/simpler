@@ -10,9 +10,15 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      case template
+      when Hash
+        if template.has_key?(:plain)
+          template[:plain]
+        end
+      else
+        template_file = File.read(template_path)
+        ERB.new(template_file).result(binding)
+      end
     end
 
     private
@@ -31,6 +37,7 @@ module Simpler
 
     def template_path
       path = template || [controller.name, action].join('/')
+      @env['simpler.template'] = "#{path}.html.erb"
 
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
