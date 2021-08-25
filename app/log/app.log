@@ -1,0 +1,1 @@
+I, [2021-08-25T21:18:40.081231 #20183]  INFO -- : {:Request=>"GET /tests/101", :Handler=>"tests#show", :Parameters=>"", :Response=>"200 text/html tests/show"}
