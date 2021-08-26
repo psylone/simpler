@@ -30,8 +30,12 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
+    def headers
+      @response.header
+    end
+
     def set_headers(type = :html)
-      @response.header['Content-Type'] = DOCUMENT_TYPES.fetch(type, :html)
+      headers['Content-Type'] = DOCUMENT_TYPES.fetch(type, :html)
     end
 
     def write_response
