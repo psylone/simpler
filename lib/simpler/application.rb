@@ -28,6 +28,11 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+
+      return not_found if route.nil?
+
+      env['simpler.params'] = fetch_params(env, route)
+
       controller = route.controller.new(env)
       action = route.action
 
@@ -35,6 +40,14 @@ module Simpler
     end
 
     private
+
+    def fetch_params(env, route)
+      users_path = env['PATH_INFO'].split('/')
+      route_path = route.path.split('/')
+      zipped_params = route_path.zip(users_path)
+
+      Hash[zipped_params.map { _1 }].transform_keys{|k| k.include?(':') ? k.gsub(':', '').to_sym : k.to_sym }
+    end
 
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
@@ -54,5 +67,8 @@ module Simpler
       controller.make_response(action)
     end
 
+    def not_found
+      [404, { 'Content-Type' => 'text/plain' }, ['404, not found.']]
+    end
   end
 end

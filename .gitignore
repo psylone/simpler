@@ -1,0 +1,6 @@
+.byebug-history
+
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep

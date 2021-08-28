@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>List | Simpler application</title>
+  </head>
+  <body>
+    <% if @test %>
+      <%= @test.title %> - Level <%= @test.level %>
+    <% else %>
+      Test is not found
+    <% end %>
+  </body>
+</html>
