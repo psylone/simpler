@@ -1,0 +1,12 @@
+GEM
+  specs:
+    sequel (5.47.0)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  sequel
+
+BUNDLED WITH
+   2.2.26
