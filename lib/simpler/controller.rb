@@ -9,16 +9,16 @@ module Simpler
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
-      env['.simpler_params'].each{|k,v| @request.params[k]= v }
     end
 
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+
       set_default_headers
       send(action)
       write_response
-      headers['Log']=make_log
+
       @response.finish
     end
 
@@ -34,45 +34,42 @@ module Simpler
 
     def write_response
       body = render_body
+      
       @response.write(body)
     end
 
     def render_body
-      view = View.new(@request.env)
-      params['template_path'] = [@request.env['simpler.controller'].name, @request.env['simpler.action']].join('/')
-      view.render(binding)
-    end
-
-    def status(status)
-      @response.status = status
-    end
-
-    def not_found
-      status 404
-      render plain:'Not Found'
-    end
-
-    def headers
-      @response
+      View.new(@request.env).render(binding)
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].merge!(@request.params)
     end
 
-    def render(template=nil, plain:nil)
-      @request.env['simpler.template'] = template
-      if plain
-        headers = 'text/plain'
-        @request.env['simpler.text'] = plain
+    def render(template)
+      if template[:plain]
+        plain(template[:plain])
+      elsif template[:inline]
+        inline(template[:inline])
+      else
+        @request.env['simpler.template'] = template
       end
     end
 
-    def make_log
-      { Request: "#{@request.env['REQUEST_METHOD']} #{@request.path}",
-       Handler: "#{@request.env['simpler.controller'].name}##{@request.env['simpler.action']}",
-       Parameters: @request.env['QUERY_STRING'],
-       Response: "#{status '200'} #{headers['Content-Type']} #{@request.params['template_path']}" }.to_s
+    def plain(body)
+      @response.write(body)
+    end
+
+    def inline(body)
+      @response.write(ERB.new(body).resuilt(binding))
+    end
+
+    def set_status(status)
+      @response.status = status
+    end
+    
+    def set_headers(title, value)
+      @response["#{title}"] = "#{value}"
     end
   end
 end
