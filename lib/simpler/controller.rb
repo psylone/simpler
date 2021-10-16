@@ -2,7 +2,6 @@ require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -16,6 +15,7 @@ module Simpler
       @request.env['simpler.action'] = action
 
       set_default_headers
+      set_default_status
       send(action)
       write_response
 
@@ -29,7 +29,19 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      headers['Content-Type'] = 'text/html'
+    end
+
+    def headers
+      @response.headers
+    end
+
+    def set_default_status
+      status 200
+    end
+
+    def status(code)
+      @response.status = code
     end
 
     def write_response
@@ -43,12 +55,18 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].merge!(@request.params)
     end
 
     def render(template)
+      case template
+      when String
+        headers['Content-Type'] = 'text/html'
+      when Hash
+        headers['Content-Type'] = 'text/plain' if template.key?(:plain)
+      end
+
       @request.env['simpler.template'] = template
     end
-
   end
 end
