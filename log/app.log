@@ -1,0 +1,50 @@
+I, [2021-10-27T15:39:27.735505 #13179]  INFO -- : Request: GET /tests
+I, [2021-10-27T15:39:27.735636 #13179]  INFO -- : Handler: TestsController#index
+I, [2021-10-27T15:39:27.735706 #13179]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:39:27.735757 #13179]  INFO -- : Response: 200 text/plain {:plain=>"Plain text response"}
+
+I, [2021-10-27T15:39:27.906283 #13179]  INFO -- : Request: GET /favicon.ico
+I, [2021-10-27T15:39:27.906375 #13179]  INFO -- : Handler: NilClass#
+I, [2021-10-27T15:39:27.906430 #13179]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:39:27.906458 #13179]  INFO -- : Response: 404 text/html 
+
+I, [2021-10-27T15:40:26.518103 #13179]  INFO -- : Request: GET /show
+I, [2021-10-27T15:40:26.518181 #13179]  INFO -- : Handler: NilClass#
+I, [2021-10-27T15:40:26.518226 #13179]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:40:26.518266 #13179]  INFO -- : Response: 404 text/html 
+
+I, [2021-10-27T15:43:29.802152 #13179]  INFO -- : Request: GET /index
+I, [2021-10-27T15:43:29.802239 #13179]  INFO -- : Handler: NilClass#
+I, [2021-10-27T15:43:29.802287 #13179]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:43:29.802325 #13179]  INFO -- : Response: 404 text/html 
+
+I, [2021-10-27T15:43:44.557155 #13179]  INFO -- : Request: GET /text/html
+I, [2021-10-27T15:43:44.557242 #13179]  INFO -- : Handler: NilClass#
+I, [2021-10-27T15:43:44.557286 #13179]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:43:44.557320 #13179]  INFO -- : Response: 404 text/html 
+
+I, [2021-10-27T15:43:55.176988 #13179]  INFO -- : Request: GET /text/plain
+I, [2021-10-27T15:43:55.177078 #13179]  INFO -- : Handler: NilClass#
+I, [2021-10-27T15:43:55.177126 #13179]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:43:55.177160 #13179]  INFO -- : Response: 404 text/html 
+
+I, [2021-10-27T15:44:37.032582 #13179]  INFO -- : Request: GET /tests
+I, [2021-10-27T15:44:37.032674 #13179]  INFO -- : Handler: TestsController#index
+I, [2021-10-27T15:44:37.032721 #13179]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:44:37.032775 #13179]  INFO -- : Response: 200 text/plain {:plain=>"Plain text response"}
+
+I, [2021-10-27T15:44:48.199904 #13335]  INFO -- : Request: GET /tests
+I, [2021-10-27T15:44:48.199985 #13335]  INFO -- : Handler: TestsController#index
+I, [2021-10-27T15:44:48.200039 #13335]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:44:48.200082 #13335]  INFO -- : Response: 200 text/html 
+
+I, [2021-10-27T15:51:48.902914 #13489]  INFO -- : Request: GET /tests
+I, [2021-10-27T15:51:48.903009 #13489]  INFO -- : Handler: TestsController#index
+I, [2021-10-27T15:51:48.903050 #13489]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:51:48.903075 #13489]  INFO -- : Response: 200 text/html 
+
+I, [2021-10-27T15:51:50.244929 #13489]  INFO -- : Request: GET /tests
+I, [2021-10-27T15:51:50.245005 #13489]  INFO -- : Handler: TestsController#index
+I, [2021-10-27T15:51:50.245057 #13489]  INFO -- : Params:  GET: , POST: 
+I, [2021-10-27T15:51:50.245102 #13489]  INFO -- : Response: 200 text/html 
+
