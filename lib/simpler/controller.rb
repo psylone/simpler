@@ -34,8 +34,18 @@ module Simpler
 
     def write_response
       body = render_body
-
       @response.write(body)
+    end
+
+    def status(status_code)
+      @response.status = status_code
+      binding.pry
+    end
+
+    def headers(*args)
+      args.each do |h|
+        @response.set_header(h.key, h.value)
+      end
     end
 
     def render_body
