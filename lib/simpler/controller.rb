@@ -18,7 +18,6 @@ module Simpler
       set_default_headers
       send(action)
       write_response
-
       @response.finish
     end
 
@@ -39,7 +38,6 @@ module Simpler
 
     def status(status_code)
       @response.status = status_code
-      binding.pry
     end
 
     def headers(*args)

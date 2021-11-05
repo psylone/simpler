@@ -18,11 +18,14 @@ module Simpler
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
-
-      @routes.find { |route| route.match?(method, path) }
+      @routes.find { |route| route.match?(method, path) } || routing_errors
     end
 
     private
+
+    def routing_errors
+      @routes.find { |route| route.match?(:get, "/not_found") }
+    end
 
     def add_route(method, path, route_point)
       route_point = route_point.split('#')
