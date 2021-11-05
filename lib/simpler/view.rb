@@ -1,4 +1,5 @@
 require 'erb'
+require_relative 'view/template'
 
 module Simpler
   class View
@@ -7,32 +8,17 @@ module Simpler
 
     def initialize(env)
       @env = env
+      @template = template
     end
 
     def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      ERB.new(@template.body).result(binding)
     end
 
     private
 
-    def controller
-      @env['simpler.controller']
-    end
-
-    def action
-      @env['simpler.action']
-    end
-
     def template
-      @env['simpler.template']
-    end
-
-    def template_path
-      path = template || [controller.name, action].join('/')
-
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+      Template.new(@env)
     end
 
   end

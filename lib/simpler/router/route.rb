@@ -3,7 +3,7 @@ module Simpler
     class Route
 
       attr_reader :controller, :action
-
+      print "Class Route loaded"
       def initialize(method, path, controller, action)
         @method = method
         @path = path
