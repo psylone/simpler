@@ -1,0 +1,37 @@
+# Logfile created on 2021-11-18 16:38:50 +0300 by logger.rb/v1.4.3
+I, [2021-11-18T16:50:41.871288 #23608]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/html] "}
+I, [2021-11-19T09:33:15.016869 #5439]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/html] "}
+I, [2021-11-19T09:50:05.788946 #5739]  INFO -- : {:Request=>"GET /tests", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T09:52:46.191230 #5739]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/html] "}
+I, [2021-11-19T10:36:17.897687 #7165]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T10:36:53.085893 #7165]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:41:29.898536 #9395]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/html] "}
+I, [2021-11-19T11:52:14.924348 #9639]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:52:34.628175 #9639]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:53:00.593824 #9639]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:53:00.757838 #9639]  INFO -- : {:Request=>"GET /favicon.ico", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"favicon.ico"}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:53:41.481777 #9639]  INFO -- : {:Request=>"GET /tests", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:53:41.538484 #9639]  INFO -- : {:Request=>"GET /favicon.ico", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"favicon.ico"}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:53:46.728504 #9639]  INFO -- : {:Request=>"GET /tests", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:54:53.152027 #9639]  INFO -- : {:Request=>"GET /tests/101", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:54:53.207224 #9639]  INFO -- : {:Request=>"GET /favicon.ico", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"favicon.ico"}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:55:16.582690 #9639]  INFO -- : {:Request=>"GET /tests/101", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:55:18.651621 #9639]  INFO -- : {:Request=>"GET /tests/101", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:56:01.042272 #9814]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:56:26.961635 #9814]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:56:42.943058 #9814]  INFO -- : {:Request=>"GET /tests/101", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T11:57:36.803192 #9903]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/html] "}
+I, [2021-11-19T11:57:51.924429 #9903]  INFO -- : {:Request=>"GET /tests/101", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T11:57:51.988478 #9903]  INFO -- : {:Request=>"GET /favicon.ico", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"favicon.ico"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T11:58:02.954755 #9903]  INFO -- : {:Request=>"GET /tests/", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T11:58:03.001436 #9903]  INFO -- : {:Request=>"GET /favicon.ico", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"favicon.ico"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T11:58:14.530665 #9903]  INFO -- : {:Request=>"GET /tests/101", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T12:12:08.188586 #9903]  INFO -- : {:Request=>"GET /tests/101", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T12:12:08.269552 #9903]  INFO -- : {:Request=>"GET /favicon.ico", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"favicon.ico"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T12:12:23.995416 #10270]  INFO -- : {:Request=>"GET /tests/101", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T16:21:45.864117 #17754]  INFO -- : {:Request=>"GET /tests", :Handler=>"TestsController#index", :Parameters=>{:""=>"", :tests=>"tests", "category"=>"backend"}, :Response=>"200 [text/html] "}
+I, [2021-11-19T16:54:19.722878 #4041]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"200 [text/plain] "}
+I, [2021-11-19T16:58:05.320347 #4698]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"404 [text/html] "}
+I, [2021-11-19T16:58:40.027162 #4698]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"404 [text/html] "}
+I, [2021-11-19T17:00:15.092190 #4894]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"404 [text/html] "}
+I, [2021-11-19T17:12:00.581007 #5862]  INFO -- : {:Request=>"GET /", :Handler=>"TestsController#index", :Parameters=>{:""=>nil, :tests=>nil}, :Response=>"404 [text/html] tests/index.html.erb"}
