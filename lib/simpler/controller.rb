@@ -9,12 +9,13 @@ module Simpler
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @path = env['PATH_INFO']
+      set_params
     end
 
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-
       set_default_headers
       send(action)
       write_response
@@ -22,6 +23,14 @@ module Simpler
     end
 
     private
+
+    def set_params
+      @request.params[:id] = instance_id
+    end
+
+    def instance_id
+      @path.match(/\d++/).to_s
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase

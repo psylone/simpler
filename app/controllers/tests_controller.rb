@@ -8,4 +8,9 @@ class TestsController < Simpler::Controller
 
   end
 
+  def show
+    @test = Test.where(id: params[:id]).first
+    status 404 unless @test
+  end
+
 end
