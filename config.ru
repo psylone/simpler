@@ -1,3 +1,6 @@
+require_relative 'lib/middleware/simpler_logger'
 require_relative 'config/environment'
 
+use SimplerLogger, logdev: File.expand_path('log/app.log', __dir__)
+#use SimplerLogger
 run Simpler.application
