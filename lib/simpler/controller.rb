@@ -48,8 +48,12 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
+    # def params
+    #   @request.params
+    # end
+
+    def set_params
+      @request.params.merge!(@request.env['simpler.params'])
     end
 
     def render(template)

@@ -32,6 +32,9 @@ module Simpler
       controller = route.controller.new(env)
       action = route.action
 
+      route.add_params(env['PATH_INFO'])
+      env['simpler.params'] = route.params
+
       make_response(controller, action)
     end
 
