@@ -35,7 +35,7 @@ module Simpler
     end
 
     def set_default_headers
-      set_header('html')
+      set_headers(:plain)
     end
 
     def write_response
@@ -48,10 +48,6 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    # def params
-    #   @request.params
-    # end
-
     def set_params
       @request.params.merge!(@request.env['simpler.params'])
     end
@@ -60,8 +56,15 @@ module Simpler
       @request.env['simpler.template'] = template
     end
 
-    def set_header(type)
-      @response['Content-type'] = HEADERS_TYPES[type.to_sym]
+    def set_headers(type)
+      header_type_valid?(type)
+      @response['Content-type'] = HEADERS_TYPES[type]
+      @request.env['simpler.content_type'] = type
+    end
+
+    def header_type_valid?(type)
+      controller_action = "#{self.class.name}##{@request.env['simpler.action']}"
+      raise "Unknown content type `#{type}` in #{controller_action}" unless HEADERS_TYPES.key?(type)
     end
 
   end
