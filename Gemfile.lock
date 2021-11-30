@@ -1,0 +1,14 @@
+GEM
+  specs:
+    logger (1.4.2)
+    sequel (5.50.0)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  logger
+  sequel
+
+BUNDLED WITH
+   2.2.32

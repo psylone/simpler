@@ -7,7 +7,6 @@ class TestsController < Simpler::Controller
   def create; end
 
   def show
-    # @params = params.self
     @test_id = @request.params[:id]
   end
 
