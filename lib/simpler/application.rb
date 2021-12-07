@@ -20,6 +20,7 @@ module Simpler
       setup_database
       require_app
       require_routes
+      require_logger
     end
 
     def routes(&block)
@@ -28,6 +29,7 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return not_found if route.nil?
       controller = route.controller.new(env)
       action = route.action
 
@@ -36,8 +38,16 @@ module Simpler
 
     private
 
+    def not_found
+      Rack::Response.new("<h1>Not Found</h1>", 404, {'Content-Type' => 'text/html'}).finish
+    end
+
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
+    end
+
+    def require_logger
+      require Simpler.root.join('middleware/logger')
     end
 
     def require_routes
