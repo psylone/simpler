@@ -59,5 +59,9 @@ module Simpler
     def status(status_code)
       @response.status = status_code
     end
+
+    def headers
+      @response
+    end
   end
 end
