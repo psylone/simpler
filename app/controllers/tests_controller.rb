@@ -1,5 +1,6 @@
-class TestsController < Simpler::Controller
+# frozen_string_literal: true
 
+class TestsController < Simpler::Controller
   def index
     @time = Time.now
     @tests = Test.all
@@ -19,5 +20,4 @@ class TestsController < Simpler::Controller
       render plain: 'Not found'
     end
   end
-
 end

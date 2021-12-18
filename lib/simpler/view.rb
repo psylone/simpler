@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'erb'
 
 module Simpler
   class View
-
-    VIEW_BASE_PATH = 'app/views'.freeze
+    VIEW_BASE_PATH = 'app/views'
 
     def initialize(env)
       @env = env
@@ -19,7 +20,7 @@ module Simpler
     private
 
     def plain?
-      template.is_a?(Hash) && template.has_key?(:plain)
+      template.is_a?(Hash) && template.key?(:plain)
     end
 
     def plain
@@ -43,6 +44,5 @@ module Simpler
 
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
-
   end
 end

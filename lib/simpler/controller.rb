@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -23,7 +24,7 @@ module Simpler
       send(action)
       write_response
 
-      @logger.info("Response: #{@response.status} [#{@response.content_type}] #{self.name}.html.erb")
+      @logger.info("Response: #{@response.status} [#{@response.content_type}] #{name}.html.erb")
 
       @response.finish
     end
