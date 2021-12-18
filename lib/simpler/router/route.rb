@@ -12,9 +12,19 @@ module Simpler
       end
 
       def match?(method, path)
+        path = __path(path) if entity_action?
         @method == method && path.match("^#{@path}$")
       end
 
+      private
+
+      def entity_action?
+        @path.match(':id')
+      end
+
+      def __path(path)
+        "#{path.split(/\/\d/).first}/:id"
+      end
     end
   end
 end
