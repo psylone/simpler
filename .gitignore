@@ -1,0 +1,4 @@
+.idea
+.gemset
+log/*.log*
+playground.rb
