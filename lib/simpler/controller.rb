@@ -11,13 +11,19 @@ module Simpler
       @response = Rack::Response.new
     end
 
-    def make_response(action)
+    def make_response(action, logger)
+      @logger = logger
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+
+      @logger.info("Handler: #{self.class.name}\##{action}")
+      @logger.info("Parameters: #{@request.params}")
 
       set_default_headers
       send(action)
       write_response
+
+      @logger.info("Response: #{@response.status} [#{@response.content_type}] #{self.name}.html.erb")
 
       @response.finish
     end

@@ -11,7 +11,7 @@ class AppLogger
   # TODO: add error log
   def call(env)
     @logger.info(log_string(env))
-    @app.call(env)
+    @app.call(env, @logger)
   end
 
   # TODO: add handler + response!!!

@@ -26,7 +26,8 @@ module Simpler
       @router.instance_eval(&block)
     end
 
-    def call(env)
+    def call(env, logger)
+      @logger = logger
       route = @router.route_for(env)
       controller = route.controller.new(env)
       action = route.action
@@ -51,7 +52,7 @@ module Simpler
     end
 
     def make_response(controller, action)
-      controller.make_response(action)
+      controller.make_response(action, @logger)
     end
 
   end
