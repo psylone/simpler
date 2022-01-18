@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -11,13 +12,19 @@ module Simpler
       @response = Rack::Response.new
     end
 
+    def change_status
+      @response.status = 201
+    end
+
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
+      change_status
       set_default_headers
       send(action)
       write_response
+      name
 
       @response.finish
     end
@@ -43,12 +50,15 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.params.update(@request.env['simpler.params'])
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a?(Hash)
+        @request.env['simpler.render_options'] = template[:plain]
+      else
+        @request.env['simpler.template'] = template
+      end
     end
-
   end
 end

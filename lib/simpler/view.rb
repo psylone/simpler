@@ -1,18 +1,23 @@
+# frozen_string_literal: true
+
 require 'erb'
 
 module Simpler
   class View
-
-    VIEW_BASE_PATH = 'app/views'.freeze
+    VIEW_BASE_PATH = 'app/views'
 
     def initialize(env)
       @env = env
     end
 
     def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      if @env['simpler.render_options']
+        ERB.new(@env['simpler.render_options']).result(binding)
+      else
+        @env['simpler.template_name'] = template_name
+        template = File.read(template_path)
+        ERB.new(template).result(binding)
+      end
     end
 
     private
@@ -35,5 +40,9 @@ module Simpler
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
 
+    def template_name
+      path = [controller.name, action].join('/')
+      "#{path}.html.erb"
+    end
   end
 end
