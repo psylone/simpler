@@ -1,0 +1,17 @@
+
+I, [2022-01-18T13:50:28.342239 #10163]  INFO -- : Request: GET: /tests/1
+I, [2022-01-18T13:50:28.342380 #10163]  INFO -- : Handler: TestsController#show
+I, [2022-01-18T13:50:28.342448 #10163]  INFO -- : Params: {:id=>"1"}
+I, [2022-01-18T13:50:28.342484 #10163]  INFO -- : Response: 201 [text/html] tests/show.html.erb
+I, [2022-01-18T13:50:29.808907 #10163]  INFO -- : Request: GET: /tests
+I, [2022-01-18T13:50:29.809018 #10163]  INFO -- : Handler: TestsController#index
+I, [2022-01-18T13:50:29.809109 #10163]  INFO -- : Params: {}
+I, [2022-01-18T13:50:29.809160 #10163]  INFO -- : Response: 201 [text/html] tests/index.html.erb
+I, [2022-01-18T14:59:47.979762 #13689]  INFO -- : Request: GET: /tests/1
+I, [2022-01-18T14:59:47.979850 #13689]  INFO -- : Handler: TestsController#show
+I, [2022-01-18T14:59:47.979892 #13689]  INFO -- : Params: {:id=>"1"}
+I, [2022-01-18T14:59:47.979922 #13689]  INFO -- : Response: 201 [text/html] tests/show.html.erb
+I, [2022-01-18T14:59:54.655704 #13689]  INFO -- : Request: GET: /tests
+I, [2022-01-18T14:59:54.655780 #13689]  INFO -- : Handler: TestsController#index
+I, [2022-01-18T14:59:54.655838 #13689]  INFO -- : Params: {}
+I, [2022-01-18T14:59:54.655870 #13689]  INFO -- : Response: 201 [text/html] tests/index.html.erb
