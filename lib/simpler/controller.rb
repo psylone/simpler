@@ -18,6 +18,7 @@ module Simpler
       set_default_headers
       send(action)
       write_response
+      params
 
       @response.finish
     end
@@ -43,11 +44,23 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].merge!(@request.params)
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(**args)
+      if args[:plain]
+        headers['Content-Type'] = 'text/plain'
+      end
+
+      @request.env['simpler.template'] = args
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def headers
+      @response.headers
     end
 
   end
