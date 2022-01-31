@@ -34,7 +34,7 @@ module Simpler
         action = route.action
         make_response(controller, action)
       else
-        response(404, '404 ERROR')
+        response(404, '404. Page not found.')
       end
     end
 
