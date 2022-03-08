@@ -1,4 +1,5 @@
 require_relative 'view'
+require 'byebug'
 
 module Simpler
   class Controller
@@ -11,9 +12,10 @@ module Simpler
       @response = Rack::Response.new
     end
 
-    def make_response(action)
+    def make_response(action, params)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+      @request.env['simpler.params'] = params
 
       set_default_headers
       send(action)
@@ -43,11 +45,26 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params']
     end
 
     def render(template)
+      set_header(template)
       @request.env['simpler.template'] = template
+    end
+
+    def set_header(template)
+      if template.is_a?(Hash)
+        @response['Content-Type'] = 'text/plain' if template.include?(:plain)
+      end
+    end
+
+    def status(status)
+      @response.status = status
+    end
+
+    def headers
+      @response.headers
     end
 
   end

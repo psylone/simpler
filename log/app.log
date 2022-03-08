@@ -1,0 +1,44 @@
+# Logfile created on 2022-03-08 18:20:18 +0300 by logger.rb/v1.4.2
+      Request: GET /tests?category=Backend
+      Handler: TestsController#index
+      Parameters: {'category' => 'Backend'}
+      Response: 200 OK [text/html] tests/index.html.erb
+      Request: GET /test/101
+      Handler: #<TestsController:0x000055dad1632cc8>#show
+      Parameters: {"id"=>"101"}
+      Response: 200 [text/html] 
+      Request: GET /tests/
+      Handler: #<TestsController:0x000055dad11ea378>#index
+      Parameters: {}
+      Response: 200 [text/html] 
+      Request: GET /tests/
+      Handler: TestsController#index
+      Parameters: {}
+      Response: 200 [text/html] <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Index | Simpler application</title>
+  </head>
+  <body>
+    <h1>Simpler framework at work!</h1>
+
+    <p><%= @time %></p>
+  </body>
+</html>
+      Request: GET /tests/
+      Handler: TestsController#index
+      Parameters: {}
+      Response: 200 [text/html] /mnt/c/code/thinknetica/simpler/app/views/tests/index.html.erb
+      Request: GET /tests/
+      Handler: TestsController#index
+      Parameters: {}
+      Response: 200 [text/html] tests/index.html.erb
+      Request: GET /test/101
+      Handler: TestsController#show
+      Parameters: {"id"=>"101"}
+      Response: 200 [text/html] tests/show.html.erb
+      Request: POST /tests/
+      Handler: TestsController#create
+      Parameters: {}
+      Response: 200 [text/plain] 

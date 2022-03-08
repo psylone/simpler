@@ -28,10 +28,14 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return custom_response("", 404) unless route
+
+
       controller = route.controller.new(env)
       action = route.action
+      params = route.route_params
 
-      make_response(controller, action)
+      make_response(controller, action, params)
     end
 
     private
@@ -50,9 +54,16 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action)
-      controller.make_response(action)
+    def make_response(controller, action, params)
+      controller.make_response(action, params)
     end
 
+    def custom_response(body = nil, status)
+      Rack::Response.new(body, status, {'Content-Type' => 'plain/text'}).finish
+    end
+
+    def find_params(params)
+
+    end
   end
 end
