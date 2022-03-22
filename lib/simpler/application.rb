@@ -28,10 +28,18 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
+      if route.nil?
+        self.not_found
+      else
+        controller = route.controller.new(env)
+        action = route.action
 
-      make_response(controller, action)
+        route.add_params(env['PATH_INFO'])
+        env['simpler.params'] = route.params
+
+
+        make_response(controller, action)
+      end
     end
 
     private
@@ -42,6 +50,15 @@ module Simpler
 
     def require_routes
       require Simpler.root.join('config/routes')
+    end
+
+    def not_found
+      response = Rack::Response.new(
+        ['404 Not Found'],
+        404,
+        { 'Content-Type' => 'text/plain' }
+      )
+      response.finish
     end
 
     def setup_database

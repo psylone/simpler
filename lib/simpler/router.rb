@@ -20,9 +20,11 @@ module Simpler
       path = env['PATH_INFO']
 
       @routes.find { |route| route.match?(method, path) }
+
     end
 
     private
+
 
     def add_route(method, path, route_point)
       route_point = route_point.split('#')
