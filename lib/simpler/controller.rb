@@ -11,15 +11,25 @@ module Simpler
       @response = Rack::Response.new
     end
 
-    def make_response(action, headers = {})
+    def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      headers ? set_custom_headers(headers) : set_default_headers
+      set_default_headers
       send(action)
       write_response
 
       @response.finish
+    end
+
+    protected
+
+    def set_status(status_code)
+      @response.status = status_code
+    end
+
+    def set_custom_headers(headers)
+      headers.each { |key, value| @response[key] = value }
     end
 
     private
@@ -30,10 +40,6 @@ module Simpler
 
     def set_default_headers
       @response['Content-Type'] = 'text/html'
-    end
-
-    def set_custom_headers(headers)
-      headers.each { |key, value| @response[key] = value }
     end
 
     def write_response

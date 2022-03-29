@@ -30,11 +30,8 @@ module Simpler
       route = @router.route_for(env)
       controller = route.controller.new(env)
       action = route.action
-      # Change this param to pass any custom headers
-      headers = { 'Content-Type' => 'text/plain',
-                  'X-Custom-Token' => 'Xz2313YuJ' }
 
-      make_response(controller, action, headers)
+      make_response(controller, action)
     end
 
     private
@@ -53,8 +50,8 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action, headers = {})
-      controller.make_response(action, headers)
+    def make_response(controller, action)
+      controller.make_response(action)
     end
 
   end
