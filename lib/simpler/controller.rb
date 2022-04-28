@@ -3,6 +3,7 @@ require_relative 'view'
 module Simpler
   class Controller
 
+
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -19,7 +20,7 @@ module Simpler
       send(action)
       write_response
 
-      @response.finish
+      @request.env['simpler.response'] = @response.finish
     end
 
     private
@@ -34,20 +35,42 @@ module Simpler
 
     def write_response
       body = render_body
-
       @response.write(body)
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+       if @request.env['simpler.template'] != 0
+         View.new(@request.env).render(binding)
+       end
+    end
+
+    def status(status)
+      @response.status = status
+    end
+
+    def headers(headers)
+      headers.each do |k, v|
+        key = k.to_s.split(/_/).map(&:capitalize).join("-")
+        @response[key] = v
+      end
     end
 
     def params
-      @request.params
+      @request.env['simpler.params']
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      #нужно исправить render method
+      if template.is_a?(Hash)
+        render_handler(template)
+        @request.env['simpler.template'] = 0
+      else
+        @request.env['simpler.template'] = template
+      end
+    end
+
+    def render_handler(t)
+      @response.write(t[:plain])
     end
 
   end

@@ -1,3 +1,4 @@
+require 'byebug'
 require 'yaml'
 require 'singleton'
 require 'sequel'
@@ -9,7 +10,7 @@ module Simpler
 
     include Singleton
 
-    attr_reader :db
+    attr_reader :db, :router
 
     def initialize
       @router = Router.new
@@ -28,10 +29,16 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
-
-      make_response(controller, action)
+      begin
+        path = env['PATH_INFO']
+        env['simpler.params'] = route.env_params(path)
+        controller = route.controller.new(env)
+        action = route.action
+        make_response(controller, action)
+      rescue => e
+        r = Rack::Response.new('No route match!!!!', 404, {'Content-Type' => 'text/plain'} )
+        r.finish
+      end
     end
 
     private

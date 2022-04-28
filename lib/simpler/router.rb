@@ -3,8 +3,11 @@ require_relative 'router/route'
 module Simpler
   class Router
 
+    attr_accessor :route
+
     def initialize
       @routes = []
+      @route = nil
     end
 
     def get(path, route_point)
@@ -19,7 +22,7 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
 
-      @routes.find { |route| route.match?(method, path) }
+      @route = @routes.find { |route| route.match?(method, path) }
     end
 
     private
@@ -28,7 +31,7 @@ module Simpler
       route_point = route_point.split('#')
       controller = controller_from_string(route_point[0])
       action = route_point[1]
-      route = Route.new(method, path, controller, action)
+      @route = Route.new(method, path, controller, action)
 
       @routes.push(route)
     end
