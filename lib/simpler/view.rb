@@ -10,12 +10,32 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      extend? ? extending_render : file_render(binding)
     end
 
     private
+    
+    def extending_render
+      send(key_hash)
+    end
+
+    def key_hesh
+      @env['simpler.template'].keys[0]
+    end
+
+    def plain
+      @env['simpler.template'].values[0] + "\n"
+    end
+
+    def file_render(binding)
+      template = File.read(template_path)
+      
+      ERB.new(template).result(binding)
+    end
+
+    def extend?
+      @env['simpler.template'].class == Hash
+    end
 
     def controller
       @env['simpler.controller']

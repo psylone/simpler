@@ -22,7 +22,7 @@ module Simpler
       @routes.find { |route| route.match?(method, path) }
     end
 
-    private
+    private7
 
     def add_route(method, path, route_point)
       route_point = route_point.split('#')
