@@ -27,11 +27,14 @@ module Simpler
     end
 
     def call(env)
-      route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
+      if (route = @router.route_for(env))
+        controller = route.controller.new(env)
+        action = route.action
 
-      make_response(controller, action)
+        make_response(controller, action)
+      else
+        Rack::Response.new("Resource not exist!\n", 404, {}).finish
+      end
     end
 
     private
