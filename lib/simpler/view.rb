@@ -19,7 +19,7 @@ module Simpler
       send(key_hash)
     end
 
-    def key_hesh
+    def key_hash
       @env['simpler.template'].keys[0]
     end
 

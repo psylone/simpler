@@ -6,7 +6,8 @@ class TestsController < Simpler::Controller
   end
 
   def create
-
+    set_headers('text/html')
+    render plain: "This is text from Plain create"
   end
 
 end
