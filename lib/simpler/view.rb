@@ -2,7 +2,6 @@ require 'erb'
 
 module Simpler
   class View
-
     VIEW_BASE_PATH = 'app/views'.freeze
 
     def initialize(env)
@@ -14,7 +13,7 @@ module Simpler
     end
 
     private
-    
+
     def extending_render
       send(key_hash)
     end
@@ -29,12 +28,12 @@ module Simpler
 
     def file_render(binding)
       template = File.read(template_path)
-      
+
       ERB.new(template).result(binding)
     end
 
     def extend?
-      @env['simpler.template'].class == Hash
+      @env['simpler.template'].instance_of?(Hash)
     end
 
     def controller
@@ -54,6 +53,5 @@ module Simpler
 
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
-
   end
 end

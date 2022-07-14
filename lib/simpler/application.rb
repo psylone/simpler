@@ -6,7 +6,6 @@ require_relative 'controller'
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -33,11 +32,15 @@ module Simpler
 
         make_response(controller, action)
       else
-        Rack::Response.new("Resource not exist!\n", 404, {}).finish
+        not_found
       end
     end
 
     private
+
+    def not_found
+      Rack::Response.new("Resource not exist!\n", 404, {}).finish
+    end
 
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
@@ -56,6 +59,5 @@ module Simpler
     def make_response(controller, action)
       controller.make_response(action)
     end
-
   end
 end
