@@ -1,0 +1,32 @@
+2022-07-15 23:47:13 +0500
+    Request: GET /tests?level=2 
+    Handler: TestsController#index
+    Parameters: {"level"=>"2"} 
+    Index: 
+    Response: 200 [text/html] tests/index.html.erb 
+
+2022-07-15 23:48:18 +0500
+    Request: GET /tests?level=2 
+    Handler: TestsController#index
+    Parameters: {"level"=>"2"} 
+    Index: 
+    Response: 200 [text/html] tests/index.html.erb 
+
+2022-07-15 23:58:08 +0500
+    Request: GET /tests/102 
+    Handler: TestsController#show
+    Parameters: {} 
+    Response: 200 [text/html]  
+
+2022-07-15 23:58:11 +0500
+    Request: GET /tests?level=2 
+    Handler: TestsController#index
+    Parameters: {"level"=>"2"} 
+    Response: 200 [text/html] tests/index.html.erb 
+
+2022-07-15 23:58:17 +0500
+    Request: POST /tests 
+    Handler: TestsController#create
+    Parameters: {} 
+    Response: 201 [text/html]  
+
