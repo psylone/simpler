@@ -6,7 +6,6 @@ require_relative 'controller'
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -20,6 +19,7 @@ module Simpler
       setup_database
       require_app
       require_routes
+      require_logger
     end
 
     def routes(&block)
@@ -27,14 +27,22 @@ module Simpler
     end
 
     def call(env)
-      route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
+      if (route = @router.route_for(env))
+        env['simpler.route_params'] = route.params
+        controller = route.controller.new(env)
+        action = route.action
 
-      make_response(controller, action)
+        make_response(controller, action)
+      else
+        not_found
+      end
     end
 
     private
+
+    def not_found
+      Rack::Response.new("Resource not exist!\n", 404, {}).finish
+    end
 
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
@@ -42,6 +50,10 @@ module Simpler
 
     def require_routes
       require Simpler.root.join('config/routes')
+    end
+
+    def require_logger
+      require_relative '../logger'
     end
 
     def setup_database
@@ -53,6 +65,5 @@ module Simpler
     def make_response(controller, action)
       controller.make_response(action)
     end
-
   end
 end
