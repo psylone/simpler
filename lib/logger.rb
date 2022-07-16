@@ -28,7 +28,7 @@ class Logger
     controller = request.env['simpler.controller']
     action = request.env['simpler.action']
     pattern = request.env['simpler.pattern']
-    params = request.params
+    params = request.env['simpler.route_params']
 
     "#{Time.now}
     Request: #{method} #{url}

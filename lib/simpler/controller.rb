@@ -56,13 +56,11 @@ module Simpler
     end
 
     def params
-      form_param
-      @request.params
+      @request.params.merge(form_param)
     end
 
     def form_param
-      path_parse = @request.path.split('/')
-      @request.params[:id] = path_parse[2].to_i if path_parse.size > 2 && path_parse[2] =~ /^\d+$/
+      @request.env['simpler.route_params'].merge!(@request.params)
     end
 
     def render(template)

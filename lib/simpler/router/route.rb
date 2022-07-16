@@ -1,13 +1,14 @@
 module Simpler
   class Router
     class Route
-      attr_reader :controller, :action
+      attr_reader :controller, :action, :params
 
       def initialize(method, path, controller, action)
         @method = method
         @path = path
         @controller = controller
         @action = action
+        @params = {}
       end
 
       def match?(method, path)
@@ -26,9 +27,16 @@ module Simpler
         return false if path_request.size != path_router.size
 
         path_router.each_with_index do |item, index|
-          next if item =~ /^:[\d\w]+$/ && path_request[index] =~ /^\d+$/
+          if item =~ /^:[\d\w]+$/
+            save_params(item, path_request[index])
+            next
+          end
           return false if item != path_request[index]
         end
+      end
+
+      def save_params(key, value)
+        @params[key] = value
       end
     end
   end
