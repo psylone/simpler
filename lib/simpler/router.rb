@@ -5,6 +5,7 @@ module Simpler
 
     def initialize
       @routes = []
+      @params = {}
     end
 
     def get(path, route_point)
@@ -19,7 +20,12 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
 
-      @routes.find { |route| route.match?(method, path) }
+      route = @routes.find { |route| route.match?(method, path) }
+      if route == nil
+        raise "404"
+      else
+        route
+      end
     end
 
     private
@@ -29,6 +35,9 @@ module Simpler
       controller = controller_from_string(route_point[0])
       action = route_point[1]
       route = Route.new(method, path, controller, action)
+
+      path = path.split('/')
+      Controller.params[:id] = path.last
 
       @routes.push(route)
     end

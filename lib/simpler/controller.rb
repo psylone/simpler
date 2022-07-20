@@ -3,12 +3,14 @@ require_relative 'view'
 module Simpler
   class Controller
 
-    attr_reader :name, :request, :response
+    attr_reader :name, :request, :response, :headers
+    attr_writer :headers
 
     def initialize(env)
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @headers = @response
     end
 
     def make_response(action)
@@ -32,6 +34,14 @@ module Simpler
       @response['Content-Type'] = 'text/html'
     end
 
+    def status(int_status)
+      @response.status = int_status
+    end
+
+    def set_headers(template)
+      @response['Content-Type'] = "text/#{template.first[0]}"
+    end
+
     def write_response
       body = render_body
 
@@ -47,6 +57,11 @@ module Simpler
     end
 
     def render(template)
+      if template.is_a(Hash)
+        set_headers(template)
+      else
+        set_default_headers
+      end
       @request.env['simpler.template'] = template
     end
 
