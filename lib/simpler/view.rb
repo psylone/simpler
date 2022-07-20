@@ -7,12 +7,17 @@ module Simpler
 
     def initialize(env)
       @env = env
+      @templates = { plain: Hash.new { |hash, value| hash[value] = ERB.new(value) } }
     end
 
     def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      template = @env['simpler.template'].to_a.flatten
+      if @templates[template[0]]
+        @templates[template[0]][template[1]].result(binding)
+      else
+        template = File.read(template_path)
+        ERB.new(template).result(binding)
+      end
     end
 
     private
