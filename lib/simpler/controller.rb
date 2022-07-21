@@ -1,9 +1,8 @@
-require_relative 'view'
+# frozen_string_literal: true
 
 module Simpler
   class Controller
-
-    attr_reader :name, :request, :response
+    attr_reader :name
 
     def initialize(env)
       @name = extract_name
@@ -49,6 +48,5 @@ module Simpler
     def render(template)
       @request.env['simpler.template'] = template
     end
-
   end
 end
