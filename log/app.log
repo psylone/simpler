@@ -1,0 +1,5 @@
+# Logfile created on 2022-08-19 22:34:26 +0300 by logger.rb/v1.5.0
+I, [2022-08-19T22:34:38.176146 #12180]  INFO -- : Request: GET /tests/101
+I, [2022-08-19T22:34:38.176472 #12180]  INFO -- : Handler: tests#show
+I, [2022-08-19T22:34:38.176610 #12180]  INFO -- : Parameters: {:id=>"101"}
+I, [2022-08-19T22:34:38.176793 #12180]  INFO -- : Response: 200 [text/html] tests/show.html.erb

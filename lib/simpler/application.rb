@@ -27,10 +27,18 @@ module Simpler
     end
 
     def call(env)
-      route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
-
+      route       = @router.route_for(env)
+      if route
+        controller  = route.controller.new(env, route.route_params)
+        action      = route.action
+      else
+        controller  = Controller.new(env)
+      end
+      
+      env['simpler.handler']  = "#{controller.name}##{action}"
+      env['simpler.params']   = controller.request.params 
+      env['simpler.erb'] = "#{[controller.name, action].join('/')}.html.erb"
+      
       make_response(controller, action)
     end
 

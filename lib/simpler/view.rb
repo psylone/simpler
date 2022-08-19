@@ -11,7 +11,6 @@ module Simpler
 
     def render(binding)
       template = File.read(template_path)
-
       ERB.new(template).result(binding)
     end
 
