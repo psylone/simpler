@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response, :params
     attr_accessor :headers
 
@@ -22,7 +23,7 @@ module Simpler
       determine_params
       set_default_headers
       send(action)
-      write_response     
+      write_response
 
       @response.finish
     end
@@ -47,10 +48,10 @@ module Simpler
 
     def write_response
       body = if @request.env['simpler.template'].is_a?(Hash) && @request.env['simpler.template'].key?(:plain)
-        @request.env['simpler.template'][:plain]
-      else
-        render_body
-      end
+               @request.env['simpler.template'][:plain]
+             else
+               render_body
+             end
 
       @response.write(body)
     end
@@ -66,6 +67,5 @@ module Simpler
     def render(template)
       @request.env['simpler.template'] = template
     end
-
   end
 end

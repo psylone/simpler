@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Simpler
   class Router
     class Route
-
       attr_reader :controller, :action, :params
 
       def initialize(method, path, controller, action)
@@ -19,7 +20,7 @@ module Simpler
       def determ_params(env)
         user_path = env['PATH_INFO']
         values = user_path.match(regexp_path)
-        keys = @path.gsub(':','').match(regexp_path) 
+        keys = @path.gsub(':', '').match(regexp_path)
 
         @params = Hash[keys.captures.zip(values.captures)]
       end
@@ -31,7 +32,7 @@ module Simpler
       end
 
       def regexp_path
-        Regexp.new (@path.gsub(/(:\w+)/, "(\\w+)") + '\Z')
+        Regexp.new("#{@path.gsub(/(:\w+)/, '(\\w+)')}\\Z")
       end
     end
   end
