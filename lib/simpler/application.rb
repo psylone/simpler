@@ -32,9 +32,9 @@ module Simpler
       route = @router.route_for(env)
 
       return no_route unless route
-      
+
       route.determ_params(env)
-      controller = route.controller.new(env)  
+      controller = route.controller.new(env)
       controller.params = route.params
       action = route.action
 
