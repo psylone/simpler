@@ -30,10 +30,12 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      route.determ_params(env)
-      return no_route unless route
 
-      controller = route.controller.new(env)
+      return no_route unless route
+      
+      route.determ_params(env)
+      controller = route.controller.new(env)  
+      controller.params = route.params
       action = route.action
 
       make_response(controller, action)

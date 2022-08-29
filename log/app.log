@@ -1,0 +1,18 @@
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: 
+Response: 200 [text/html] 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: 
+Response: 200 [text/html] 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: 
+Response: 200 [text/html] 
+
+Request: GET /tests
+Handler: TestsController#index
+Parameters: 
+Response: 201 [text/html] 
+

@@ -22,7 +22,7 @@ module Simpler
         values = user_path.match(regexp_path)
         keys = @path.gsub(':', '').match(regexp_path)
 
-        @params = Hash[keys.captures.zip(values.captures)]
+        @params = Hash[keys.captures.map(&:to_sym).zip(values.captures)]
       end
 
       private

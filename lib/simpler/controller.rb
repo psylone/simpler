@@ -4,8 +4,8 @@ require_relative 'view'
 
 module Simpler
   class Controller
-    attr_reader :name, :request, :response, :params
-    attr_accessor :headers
+    attr_reader :name, :request, :response
+    attr_accessor :headers, :params
 
     def initialize(env)
       @name = extract_name
@@ -18,9 +18,8 @@ module Simpler
     def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-      @request.env['simpler.controller.params'] = @request.env['PATH_INFO'].split('/')
+      @request.env['simpler.controller.params'] = @incoming_params
 
-      determine_params
       set_default_headers
       send(action)
       write_response
@@ -29,10 +28,6 @@ module Simpler
     end
 
     private
-
-    def determine_params
-      @params[:id] = @request.env['simpler.controller.params'][2]
-    end
 
     def status(status)
       @response.status = status
@@ -58,10 +53,6 @@ module Simpler
 
     def render_body
       View.new(@request.env).render(binding)
-    end
-
-    def params
-      @request.params
     end
 
     def render(template)
