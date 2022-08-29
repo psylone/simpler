@@ -4,7 +4,6 @@ class HistoryLogger
   def initialize(app)
     @app = app
     @out_params = {}
-    #@logger = Logger.new(Simpler.root.join('log/app.log'))
   end
 
   def call(env)
