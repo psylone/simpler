@@ -1,0 +1,28 @@
+I, [2022-09-10T15:40:58.047779 #34083]  INFO -- : Request: POST /tests
+I, [2022-09-10T15:40:58.047902 #34083]  INFO -- : Handler: tests#create
+I, [2022-09-10T15:40:58.047929 #34083]  INFO -- : Parameters: {}
+I, [2022-09-10T15:40:58.047951 #34083]  INFO -- : Response: 200 [application/json] 
+I, [2022-09-10T15:41:27.281397 #34083]  INFO -- : Request: GET /tests/1
+I, [2022-09-10T15:41:27.281474 #34083]  INFO -- : Handler: tests#show
+I, [2022-09-10T15:41:27.281508 #34083]  INFO -- : Parameters: {:id=>"1"}
+I, [2022-09-10T15:41:27.281534 #34083]  INFO -- : Response: 200 [text/html] tests/show
+I, [2022-09-10T15:41:46.453167 #34083]  INFO -- : Request: GET /tests
+I, [2022-09-10T15:41:46.453231 #34083]  INFO -- : Handler: tests#index
+I, [2022-09-10T15:41:46.453258 #34083]  INFO -- : Parameters: {}
+I, [2022-09-10T15:41:46.453283 #34083]  INFO -- : Response: 204 [] 
+I, [2022-09-10T15:44:06.595116 #40118]  INFO -- : Request: GET /tests/plain_text
+I, [2022-09-10T15:44:06.595201 #40118]  INFO -- : Handler: tests#plain_text
+I, [2022-09-10T15:44:06.595229 #40118]  INFO -- : Parameters: {}
+I, [2022-09-10T15:44:06.595252 #40118]  INFO -- : Response: 200 [text/plain] 
+I, [2022-09-10T15:44:23.208996 #40118]  INFO -- : Request: GET /tests
+I, [2022-09-10T15:44:23.209063 #40118]  INFO -- : Handler: tests#index
+I, [2022-09-10T15:44:23.209090 #40118]  INFO -- : Parameters: {}
+I, [2022-09-10T15:44:23.209114 #40118]  INFO -- : Response: 200 [text/html] tests/index
+I, [2022-09-10T15:44:47.565818 #40118]  INFO -- : Request: GET /abc
+I, [2022-09-10T15:44:47.565897 #40118]  INFO -- : Handler: simpler::#not_found
+I, [2022-09-10T15:44:47.565928 #40118]  INFO -- : Parameters: {}
+I, [2022-09-10T15:44:47.565954 #40118]  INFO -- : Response: 404 [text/plain] 
+I, [2022-09-10T15:55:42.581412 #52368]  INFO -- : Request: GET /tests/1
+I, [2022-09-10T15:55:42.583421 #52368]  INFO -- : Handler: tests#show
+I, [2022-09-10T15:55:42.583469 #52368]  INFO -- : Parameters: {:id=>"1"}
+I, [2022-09-10T15:55:42.583500 #52368]  INFO -- : Response: 200 [text/html] tests/show
