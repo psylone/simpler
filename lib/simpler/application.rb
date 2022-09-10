@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require 'singleton'
 require 'sequel'
@@ -6,7 +8,6 @@ require_relative 'controller'
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -28,8 +29,13 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      controller = route.controller.new(env)
-      action = route.action
+      if route
+        controller = route.controller.new(env, route.params)
+        action = route.action
+      else
+        controller = Controller.new(env)
+        action = :not_found
+      end
 
       make_response(controller, action)
     end
@@ -37,7 +43,7 @@ module Simpler
     private
 
     def require_app
-      Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
+      Dir["#{Simpler.root}/app/**/*.rb"].sort.each { |file| require file }
     end
 
     def require_routes
@@ -53,6 +59,5 @@ module Simpler
     def make_response(controller, action)
       controller.make_response(action)
     end
-
   end
 end
