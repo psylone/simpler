@@ -36,6 +36,11 @@ module Simpler
       @request.status = status
     end
 
+    def set_headers(headers)
+      headers.each {|key, value| @response[key] = value}
+    end
+
+
     def write_response
       body = render_body
 
@@ -51,8 +56,12 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a?(Hash)
+        @response['Content-Type'] = 'text/plain'
+        @request.env['simpler.plain_text'] = template[:plain]
+      else
+        @request.env['simpler.template'] = template
+      end
     end
-
   end
 end

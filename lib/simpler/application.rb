@@ -28,12 +28,21 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return not_found unless route
       controller = route.controller.new(env)
       action = route.action
 
       make_response(controller, action)
     end
 
+    def not_found
+      response = Rack::Response.new(
+        [404,
+         {"Content-Type" => "text/plain"},
+         "Not found"]
+      )
+      response.finish
+    end
     private
 
     def require_app
