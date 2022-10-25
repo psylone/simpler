@@ -1,0 +1,16 @@
+I, [2022-10-25T22:54:40.913440 #10948]  INFO -- : Request: GET /
+I, [2022-10-25T22:54:40.913805 #10948]  INFO -- : Handler: NilClass # 
+I, [2022-10-25T22:54:40.913904 #10948]  INFO -- : Parameters: 
+I, [2022-10-25T22:54:40.913981 #10948]  INFO -- : 404 [text/plain] 
+I, [2022-10-25T22:54:41.824050 #10948]  INFO -- : Request: GET /favicon.ico
+I, [2022-10-25T22:54:41.824392 #10948]  INFO -- : Handler: NilClass # 
+I, [2022-10-25T22:54:41.824493 #10948]  INFO -- : Parameters: 
+I, [2022-10-25T22:54:41.824898 #10948]  INFO -- : 404 [text/plain] 
+I, [2022-10-25T22:54:48.787383 #10948]  INFO -- : Request: GET /tests
+I, [2022-10-25T22:54:48.787683 #10948]  INFO -- : Handler: TestsController # index
+I, [2022-10-25T22:54:48.787848 #10948]  INFO -- : Parameters: {}
+I, [2022-10-25T22:54:48.788159 #10948]  INFO -- : 200 [text/html] tests/index.html.erb
+I, [2022-10-25T22:55:15.034593 #10948]  INFO -- : Request: GET /tests/1
+I, [2022-10-25T22:55:15.034882 #10948]  INFO -- : Handler: TestsController # show
+I, [2022-10-25T22:55:15.034998 #10948]  INFO -- : Parameters: {:id=>"1"}
+I, [2022-10-25T22:55:15.035067 #10948]  INFO -- : 200 [text/html] tests/show.html.erb
