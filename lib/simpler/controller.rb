@@ -46,9 +46,9 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(template = nil, **options)
+      options[:template] = template if template
+      @request.env['simpler.render_options'] = options
     end
-
   end
 end
