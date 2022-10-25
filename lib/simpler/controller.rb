@@ -9,6 +9,7 @@ module Simpler
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @status = 200
     end
 
     def make_response(action)
@@ -49,6 +50,20 @@ module Simpler
     def render(template = nil, **options)
       options[:template] = template if template
       @request.env['simpler.render_options'] = options
+    end
+
+    def status(status_code)
+      @response.status = status_code
+    end
+
+    # Common action(s)
+
+    def page_not_found
+      not_found_page_path = Simpler.root.join("public/404.html")
+      file_content = File.read(not_found_page_path)
+
+      status 404
+      render html: file_content
     end
   end
 end
