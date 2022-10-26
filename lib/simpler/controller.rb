@@ -9,7 +9,6 @@ module Simpler
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
-      @status = 200
     end
 
     def make_response(action)
