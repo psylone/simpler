@@ -19,6 +19,7 @@ module Simpler
 
       set_default_headers
       send(action)
+      set_default_render_options_if_not_specified
       write_response
 
       response.finish
@@ -45,12 +46,18 @@ module Simpler
     end
 
     def params
-      request.params.merge(request.env['route_params'])
+      request.params.merge(request.env['simpler.route_params'])
     end
 
     def render(template = nil, **options)
       options[:template] = template if template
       request.env['simpler.render_options'] = options
+    end
+
+    def set_default_render_options_if_not_specified
+      if request.env['simpler.render_options'].nil?
+        request.env['simpler.render_options'] = {:template => nil}
+      end
     end
 
     def status(status_code)

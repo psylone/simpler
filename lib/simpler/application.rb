@@ -31,7 +31,7 @@ module Simpler
       route = @router.route_for(env)
 
       if route
-        env['route_params'] = route.params
+        env['simpler.route_params'] = route.params
         controller = route.controller.new(env)
         action = route.action
       else

@@ -4,8 +4,6 @@ module Simpler
   class View
     include ViewRender
 
-    VIEW_BASE_PATH = 'app/views'.freeze
-
     def initialize(env)
       @env = env
     end

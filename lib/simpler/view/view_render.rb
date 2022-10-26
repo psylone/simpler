@@ -5,6 +5,8 @@ require 'active_support/core_ext'
 
 module Simpler
   module ViewRender
+    VIEW_BASE_PATH = 'app/views'.freeze
+
     private
 
     def render_template(binding)
@@ -35,9 +37,10 @@ module Simpler
     def template_path
       template = type_of_render == :template ? rendering_value : nil
 
-      path = template || [controller.name, action].join('/')
+      path = "#{template || [controller.name, action].join('/')}.html.erb"
+      @env['simpler.template_path'] = path
 
-      Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+      Simpler.root.join(VIEW_BASE_PATH, path)
     end
   end
 end

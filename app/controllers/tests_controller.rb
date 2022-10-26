@@ -1,7 +1,7 @@
 class TestsController < Simpler::Controller
 
   def index
-    # render 'tests/list'
+    render 'tests/show'
 
     # render plain: "Plain text"
 
@@ -10,10 +10,10 @@ class TestsController < Simpler::Controller
 
     # render html: "<p>It's <strong>STRONG</strong></p>"
 
-    @test = Test.first
-    status 201
-    headers['X-Content'] = "XXXXX"
-    render json: @test
+    # @test = Test.first
+    # status 201
+    # headers['X-Content'] = "XXXXX"
+    # render json: @test
 
     # @test = Test.first
     # render xml: @test
@@ -23,7 +23,6 @@ class TestsController < Simpler::Controller
   end
 
   def show
-    render plain: "id = #{params[:id]}"
   end
 
 end
