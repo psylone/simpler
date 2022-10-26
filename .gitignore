@@ -56,6 +56,7 @@ build-iPhoneSimulator/
 .idea/modules.xml
 .idea/simpler.iml
 .idea/vcs.xml
+.DS_Store
 
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*

@@ -1,0 +1,12 @@
+GEM
+  specs:
+    sequel (5.61.0)
+
+PLATFORMS
+  x86_64-darwin-20
+
+DEPENDENCIES
+  sequel
+
+BUNDLED WITH
+   2.3.24
