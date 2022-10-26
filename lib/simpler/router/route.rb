@@ -14,9 +14,7 @@ module Simpler
 
       def match?(method, path)
         match_data = path.match(regex_for_route_path(@path))
-        if match_data
-          @params = match_data&.named_captures.map {|k, v| [k.to_sym, v] }.to_h
-        end
+        set_params_from_match(match_data)
 
         @method == method && match_data
       end
@@ -35,6 +33,15 @@ module Simpler
           .join("/")
 
         "^#{regex_part}/?$"
+      end
+
+      def set_params_from_match(match_data)
+        if match_data
+          @params = match_data
+            .named_captures
+            .map {|k, v| [k.to_sym, v] }
+            .to_h
+        end
       end
     end
   end
