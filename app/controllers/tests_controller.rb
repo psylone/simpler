@@ -12,7 +12,7 @@ class TestsController < Simpler::Controller
 
     @test = Test.first
     status 201
-    headers['X-Content'] = "!!!"
+    headers['X-Content'] = "XXXXX"
     render json: @test
 
     # @test = Test.first

@@ -1,24 +1,24 @@
 require_relative 'view'
+require_relative 'controller/headers_setter'
 
 module Simpler
   class Controller
 
-    attr_reader :name, :request, :response, :headers
+    attr_reader :name, :request, :response
 
     def initialize(env)
-      @headers = {}
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @headers_setter = HeadersSetter.new(@response)
     end
 
     def make_response(action)
       request.env['simpler.controller'] = self
       request.env['simpler.action'] = action
 
-      send(action)
       set_default_headers
-      set_headers
+      send(action)
       write_response
 
       response.finish
@@ -32,12 +32,6 @@ module Simpler
 
     def set_default_headers
       response['Content-Type'] = 'text/html'
-    end
-
-    def set_headers
-      headers.each do |key, value|
-        response[key] = value
-      end
     end
 
     def write_response
@@ -61,6 +55,10 @@ module Simpler
 
     def status(status_code)
       response.status = status_code
+    end
+
+    def headers
+      @headers_setter
     end
 
     # Common action(s)
