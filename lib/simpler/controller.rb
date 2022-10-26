@@ -3,23 +3,25 @@ require_relative 'view'
 module Simpler
   class Controller
 
-    attr_reader :name, :request, :response
+    attr_reader :name, :request, :response, :headers
 
     def initialize(env)
+      @headers = {}
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
     end
 
     def make_response(action)
-      @request.env['simpler.controller'] = self
-      @request.env['simpler.action'] = action
+      request.env['simpler.controller'] = self
+      request.env['simpler.action'] = action
 
-      set_default_headers
       send(action)
+      set_default_headers
+      set_headers
       write_response
 
-      @response.finish
+      response.finish
     end
 
     private
@@ -29,30 +31,36 @@ module Simpler
     end
 
     def set_default_headers
-      @response['Content-Type'] = 'text/html'
+      response['Content-Type'] = 'text/html'
+    end
+
+    def set_headers
+      headers.each do |key, value|
+        response[key] = value
+      end
     end
 
     def write_response
       body = render_body
 
-      @response.write(body)
+      response.write(body)
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      View.new(request.env).render(binding)
     end
 
     def params
-      @request.params
+      request.params
     end
 
     def render(template = nil, **options)
       options[:template] = template if template
-      @request.env['simpler.render_options'] = options
+      request.env['simpler.render_options'] = options
     end
 
     def status(status_code)
-      @response.status = status_code
+      response.status = status_code
     end
 
     # Common action(s)

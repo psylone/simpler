@@ -11,6 +11,8 @@ class TestsController < Simpler::Controller
     # render html: "<p>It's <strong>STRONG</strong></p>"
 
     @test = Test.first
+    status 201
+    headers['X-Content'] = "!!!"
     render json: @test
 
     # @test = Test.first
