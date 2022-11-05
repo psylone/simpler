@@ -15,7 +15,6 @@ module Simpler
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
       @headers = {}
-      @params = {}
     end
 
     def make_response(action)
@@ -28,10 +27,6 @@ module Simpler
       write_response
 
       @response.finish
-    end
-
-    def add_param(param, value)
-      @request.params[param] = value
     end
 
     private
@@ -54,6 +49,7 @@ module Simpler
       body = if RENDER_OPTIONS.keys.include? @request.env['simpler.template']
                send(RENDER_OPTIONS[@request.env['simpler.template']])
              else
+               @request.env['simpler.template_path'] = "#{[@name, @request.env['simpler.action']].join('/')}.html.erb"
                render_body
              end
 

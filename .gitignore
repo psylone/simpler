@@ -1,2 +1,4 @@
 .rubocop.yml
+.byebug_history
 .idea/
+log/
