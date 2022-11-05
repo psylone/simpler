@@ -2,6 +2,11 @@ require_relative 'view'
 
 module Simpler
   class Controller
+    RENDER_OPTIONS = {
+      plain: :render_plain,
+      html: :render_html,
+      inline: :render_inline
+    }.freeze
 
     attr_reader :name, :request, :response
 
@@ -33,9 +38,28 @@ module Simpler
     end
 
     def write_response
-      body = render_body
+      body = if RENDER_OPTIONS.keys.include? @request.env['simpler.template']
+               send(RENDER_OPTIONS[@request.env['simpler.template']])
+             else
+               render_body
+             end
 
       @response.write(body)
+    end
+
+    def render_plain
+      @response['Content-Type'] = 'text/plain'
+      @render_value
+    end
+
+    def render_html
+      @response['Content-Type'] = 'text/html'
+      @render_value
+    end
+
+    def render_inline
+      @response['Content-Type'] = 'text/html'
+      ERB.new(@render_value).result
     end
 
     def render_body
@@ -47,7 +71,12 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a? Hash
+        @request.env['simpler.template'] = template.keys.first
+        @render_value = template.values.first
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
   end
