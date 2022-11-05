@@ -29,6 +29,8 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return [404, { 'content-type' => 'text/html' }, ['Route for requested URL was not found']] if route.nil?
+
       controller = route.controller.new(env)
       action = route.action
 
