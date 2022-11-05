@@ -32,6 +32,7 @@ module Simpler
       return [404, { 'content-type' => 'text/html' }, ['Route for requested URL was not found']] if route.nil?
 
       controller = route.controller.new(env)
+      controller.add_param(:id, route.id) unless route.id.nil?
       action = route.action
 
       make_response(controller, action)
