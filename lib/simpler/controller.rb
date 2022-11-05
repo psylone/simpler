@@ -79,5 +79,10 @@ module Simpler
       end
     end
 
+    def status(status)
+      return unless status.between?(100, 599)
+
+      @response.status = status
+    end
   end
 end
