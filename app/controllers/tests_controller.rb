@@ -4,6 +4,7 @@ class TestsController < Simpler::Controller
     @tests = Test.all
     render inline: '<h1><%= Time.now %></h1'
     status 202
+    headers['X-Test'] = 'test'
   end
 
   def create; end

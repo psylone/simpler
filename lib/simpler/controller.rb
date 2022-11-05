@@ -8,12 +8,13 @@ module Simpler
       inline: :render_inline
     }.freeze
 
-    attr_reader :name, :request, :response
+    attr_reader :name, :request, :response, :headers
 
     def initialize(env)
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @headers = {}
     end
 
     def make_response(action)
@@ -22,6 +23,7 @@ module Simpler
 
       set_default_headers
       send(action)
+      add_custom_headers
       write_response
 
       @response.finish
@@ -35,6 +37,12 @@ module Simpler
 
     def set_default_headers
       @response['Content-Type'] = 'text/html'
+    end
+
+    def add_custom_headers
+      @headers.each do |k, v|
+        @response[k] = v
+      end
     end
 
     def write_response
