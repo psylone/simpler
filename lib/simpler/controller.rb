@@ -44,10 +44,27 @@ module Simpler
 
     def params
       @request.params
+      
     end
 
+    def status(code)
+      @response.status = code
+    end
+
+    def headers
+      @response.headers
+    end
+
+
+
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a?(Hash)
+        template_type = template.keys.first
+        @request.env['simpler.template_type'] = template_type
+        @request.env['simpler.template_body'] = template[template_type]
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
   end
