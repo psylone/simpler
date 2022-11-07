@@ -1,0 +1,25 @@
+# Logfile created on 2022-11-07 08:12:17 +0300 by logger.rb/v1.4.3
+I, [2022-11-07T08:12:23.880410 #552]  INFO -- : 
+Request: GET /tests/3
+Handler: TestsController#show
+Parameters: {:id=>"3"}
+Response: 200 [text/html] 
+
+I, [2022-11-07T08:12:27.328328 #552]  INFO -- : 
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 [text/html] 
+
+I, [2022-11-07T08:12:30.273324 #552]  INFO -- : 
+Request: GET /tests/2
+Handler: TestsController#show
+Parameters: {:id=>"2"}
+Response: 200 [text/html] 
+
+I, [2022-11-07T08:12:47.366059 #552]  INFO -- : 
+Request: GET /users/2
+Handler: NilClass#
+Parameters: {}
+Response: 404 [text/plain] 
+
