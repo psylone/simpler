@@ -44,6 +44,7 @@ module Simpler
 
     def params
       @request.params
+      @request.env['simpler.route_params'].merge!(@request.params)
       
     end
 
@@ -54,7 +55,6 @@ module Simpler
     def headers
       @response.headers
     end
-
 
 
     def render(template)
