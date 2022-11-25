@@ -1,12 +1,11 @@
-require 'yaml'
-require 'singleton'
-require 'sequel'
-require_relative 'router'
-require_relative 'controller'
+require "yaml"
+require "singleton"
+require "sequel"
+require_relative "router"
+require_relative "controller"
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -26,11 +25,15 @@ module Simpler
       @router.instance_eval(&block)
     end
 
-    def call(env)
+    def call(env, logger)
+      @logger = logger
       route = @router.route_for(env)
-      controller = route.controller.new(env)
+      return not_found_page unless route
+
+      controller = route.controller.new(env, @logger)
       action = route.action
 
+      @logger.info("Handler: " + controller.class.to_s + "#" + action.to_s)
       make_response(controller, action)
     end
 
@@ -41,12 +44,12 @@ module Simpler
     end
 
     def require_routes
-      require Simpler.root.join('config/routes')
+      require Simpler.root.join("config/routes")
     end
 
     def setup_database
-      database_config = YAML.load_file(Simpler.root.join('config/database.yml'))
-      database_config['database'] = Simpler.root.join(database_config['database'])
+      database_config = YAML.load_file(Simpler.root.join("config/database.yml"))
+      database_config["database"] = Simpler.root.join(database_config["database"])
       @db = Sequel.connect(database_config)
     end
 
@@ -54,5 +57,12 @@ module Simpler
       controller.make_response(action)
     end
 
+    def not_found_page
+      [
+        404,
+        { "Content-Type" => "text/html" },
+        ["<h1>404 Page Not Found</h1>"],
+      ]
+    end
   end
 end
