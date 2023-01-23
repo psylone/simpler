@@ -73,5 +73,9 @@ module Simpler
       end
     end
 
+    def status(status_code)
+      @response.status = status_code
+    end
+
   end
 end
