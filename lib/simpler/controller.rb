@@ -40,6 +40,10 @@ module Simpler
       @response['Content-type'] = 'text/plain'
     end
 
+    def set_header(key, value)
+       @response[key] = value
+    end
+
     def write_response
       body = render_body
 
