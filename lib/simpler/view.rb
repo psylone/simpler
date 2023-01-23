@@ -29,6 +29,10 @@ module Simpler
       @env['simpler.template']
     end
 
+    def template_format
+      @env['simpler.template_format']
+    end
+
     def template_path
       path = template || [controller.name, action].join('/')
 

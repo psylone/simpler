@@ -32,6 +32,14 @@ module Simpler
       @response['Content-Type'] = 'text/html'
     end
 
+    def set_content_type_json
+      @response['Content-type'] = 'application/json'
+    end
+
+    def set_content_type_plain_text
+      @response['Content-type'] = 'text/plain'
+    end
+
     def write_response
       body = render_body
 
@@ -47,7 +55,22 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a? Hash
+        set_content_format(template)
+      else
+        @request.env['simpler.template'] = template
+      end
+    end
+
+    def set_content_format(template)
+      case template.keys[0]
+      when :plain
+        set_content_type_plain_text
+      when :json
+        set_content_type_json
+      else
+        set_default_headers
+      end
     end
 
   end
