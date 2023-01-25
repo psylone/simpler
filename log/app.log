@@ -1,0 +1,7 @@
+# Logfile created on 2023-01-25 18:54:55 +0300 by logger.rb/v1.5.1
+I, [2023-01-25T18:54:58.296576 #34843]  INFO -- : 
+Request: GET /tests/2
+Handler: TestsController#show
+Parameters: {"handler"=>"TestsController#show", "Content-Type"=>"text/html", "id"=>"2", "Content-Length"=>"285"}
+Response: 200 text/html 
+

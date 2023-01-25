@@ -4,7 +4,7 @@ class TestsController < Simpler::Controller
     @time = Time.now
     @tests = Test.all
     render 'tests/list'
-    status 201
+
     set_header 'Content-type', 'text/plain'
     set_header 'Content-type', 'text/html'
   end
@@ -13,7 +13,7 @@ class TestsController < Simpler::Controller
   end
 
   def show
-    @test = Test.find(id: params[:id].to_i)
+    @test = Test.find(id: params[:id])
   end
 
 end

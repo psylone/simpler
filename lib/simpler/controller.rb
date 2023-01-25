@@ -15,6 +15,9 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
+      handler = {"handler" => "#{self.class.name}##{action}"}
+      log_to_headers(handler)
+
       set_default_headers
       send(action)
       write_response
@@ -30,6 +33,13 @@ module Simpler
 
     def set_default_headers
       @response['Content-Type'] = 'text/html'
+      
+    end
+
+    def log_to_headers(hash)
+      hash.each_pair do |key, value|
+        set_header(key.to_s, value)
+      end
     end
 
     def set_content_type_json
@@ -56,6 +66,9 @@ module Simpler
 
     def params
       @request.params[:id] = find_id_in_path
+      log_to_headers(@request.params)
+
+      p "------>>>> #{@request.params} <<<<<<<-------"
       @request.params
     end
 
@@ -69,6 +82,8 @@ module Simpler
       else
         @request.env['simpler.template'] = template
       end
+
+      log_to_headers({'template_path' => template})
     end
 
     def set_content_format(template)
