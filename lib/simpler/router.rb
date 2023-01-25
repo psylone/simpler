@@ -28,6 +28,9 @@ module Simpler
       route_point = route_point.split('#')
       controller = controller_from_string(route_point[0])
       action = route_point[1]
+      path[":id"] = "[0-9]+" if path.include? ":id"
+      path.insert(-1,"$")
+      
       route = Route.new(method, path, controller, action)
 
       @routes.push(route)

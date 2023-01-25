@@ -55,7 +55,12 @@ module Simpler
     end
 
     def params
+      @request.params[:id] = find_id_in_path
       @request.params
+    end
+
+    def find_id_in_path
+      @request.path.split('/')[2]
     end
 
     def render(template)
