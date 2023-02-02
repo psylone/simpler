@@ -6,7 +6,7 @@ module Simpler
 
       def initialize(method, path, controller, action)
         @method = method
-        @path = path
+        @path = path_regexp(path)
         @controller = controller
         @action = action
       end

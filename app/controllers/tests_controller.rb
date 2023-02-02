@@ -3,6 +3,9 @@
 class TestsController < Simpler::Controller
   def index
     @time = Time.now
+    @tests = Test.all
+    headers["Content-Type"] = "text/html"
+    status 201
   end
 
   def create; end
@@ -13,8 +16,7 @@ class TestsController < Simpler::Controller
   end
 
   def show
-    @id = params[:id]
-    render plain: "This is an object (show tests method) with id #{@id}"
+    @test = Test.find(id: params[:id])
   end
 
   def question
