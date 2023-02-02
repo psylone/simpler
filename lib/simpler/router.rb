@@ -1,5 +1,4 @@
 require_relative 'router/route'
-
 module Simpler
   class Router
 
@@ -19,7 +18,9 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
 
-      @routes.find { |route| route.match?(method, path) }
+      route = @routes.find { |route| route.match?(method, path) }
+      route&.set_params(env, path)
+      route
     end
 
     private
@@ -29,13 +30,11 @@ module Simpler
       controller = controller_from_string(route_point[0])
       action = route_point[1]
       route = Route.new(method, path, controller, action)
-
       @routes.push(route)
     end
 
     def controller_from_string(controller_name)
       Object.const_get("#{controller_name.capitalize}Controller")
     end
-
   end
 end
