@@ -38,6 +38,14 @@ module Simpler
       @response.write(body)
     end
 
+    def status(code)
+      @response.status = code
+    end
+
+    def headers(key, value)
+      @response[key] = value
+    end
+
     def render_body
       View.new(@request.env).render(binding)
     end
@@ -47,7 +55,11 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a?(Hash)
+        @request.env['simpler.plain_text'] = template[:plain]
+      else
+        @request.env['simpler.template'] = template
+      end
     end
 
   end
