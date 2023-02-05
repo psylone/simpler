@@ -51,7 +51,8 @@ module Simpler
     end
 
     def params
-      @request.params
+      # @request.params
+      @request.params.merge(@request.env['simpler.params'])
     end
 
     def render(template)
