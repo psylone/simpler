@@ -1,4 +1,5 @@
 require_relative 'view'
+require 'byebug'
 
 module Simpler
   class Controller
@@ -51,9 +52,11 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template if template.class == String
-
-      @request.env['simpler.plain_text'] = template[:plain] if template.has_key? :plain
+      if template.class == String
+        @request.env['simpler.template'] = template 
+      elsif template.class == Hash
+        @request.env['simpler.plain_text'] = template[:plain] if template[:plain]
+      end
     end
   end
 end
