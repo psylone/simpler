@@ -16,7 +16,9 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
+      set_headers
+      status
+
       send(action)
       write_response
 
@@ -29,8 +31,12 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
+    def set_headers(type = 'text/html')
+      @response['Content-Type'] = type
+    end
+
+    def status(sym = :ok)
+      @response.status = Rack::Utils::SYMBOL_TO_STATUS_CODE[sym]
     end
 
     def write_response
