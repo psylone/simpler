@@ -17,7 +17,7 @@ module Simpler
       @request.env['simpler.action'] = action
 
       set_headers
-      status
+      set_status
 
       send(action)
       write_response
@@ -35,7 +35,7 @@ module Simpler
       @response['Content-Type'] = type
     end
 
-    def status(sym = :ok)
+    def set_status(sym = :ok)
       @response.status = Rack::Utils::SYMBOL_TO_STATUS_CODE[sym]
     end
 
@@ -58,9 +58,9 @@ module Simpler
     end
 
     def render(template)
-      if template.class == String
+      if template.is_a? String
         @request.env['simpler.template'] = template 
-      elsif template.class == Hash
+      elsif template.is_a? Hash
         @request.env['simpler.plain_text'] = template[:plain] if template[:plain]
       end
     end

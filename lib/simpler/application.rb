@@ -28,7 +28,10 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      controller = route.controller.new(env)
+      controller = route.controller.new(env) 
+    rescue 
+      invalid_request_path
+    else
       action = route.action
 
       make_response(controller, action)
@@ -54,5 +57,11 @@ module Simpler
       controller.make_response(action)
     end
 
+    def invalid_request_path
+      response = Rack::Response.new
+      response.status = 404
+      response.write("Route for this URL not found")
+      response.finish
+    end
   end
 end
