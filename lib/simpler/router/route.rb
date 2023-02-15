@@ -12,7 +12,8 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.match(@path)
+        path_regexp = /^#{@path}$/
+        @method == method && path.match(path_regexp)
       end
 
     end
