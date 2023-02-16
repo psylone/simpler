@@ -31,7 +31,7 @@ module Simpler
       def compare(req_p, route_p)
         return false unless req_p.size == route_p.size
         req_p.each_index do |i|
-          
+        end
       end
     end
   end
