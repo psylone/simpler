@@ -60,7 +60,7 @@ module Simpler
     def invalid_request_path
       response = Rack::Response.new
       response.status = 404
-      response.write("Route for this URL not found")
+      response.write("Route for this URL not found\n")
       response.finish
     end
   end

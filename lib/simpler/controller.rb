@@ -16,6 +16,8 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
+      byebug
+      
       set_headers
       set_status
 
