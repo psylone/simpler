@@ -3,6 +3,7 @@ require 'singleton'
 require 'sequel'
 require_relative 'router'
 require_relative 'controller'
+require 'byebug'
 
 module Simpler
   class Application
@@ -33,8 +34,9 @@ module Simpler
       invalid_request_path
     else
       action = route.action
+      params = route.params
 
-      make_response(controller, action)
+      make_response(controller, action, params)
     end
 
     private
@@ -53,8 +55,8 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action)
-      controller.make_response(action)
+    def make_response(controller, action, params)
+      controller.make_response(action,params)
     end
 
     def invalid_request_path

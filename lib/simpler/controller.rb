@@ -12,12 +12,12 @@ module Simpler
       @response = Rack::Response.new
     end
 
-    def make_response(action)
+    def make_response(action,params)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-
-      byebug
       
+      set_params(params)
+
       set_headers
       set_status
 
@@ -39,6 +39,10 @@ module Simpler
 
     def set_status(sym = :ok)
       @response.status = Rack::Utils::SYMBOL_TO_STATUS_CODE[sym]
+    end
+
+    def set_params(hash)
+      hash.each {|key,value| @request.update_param(key, value) }
     end
 
     def write_response
