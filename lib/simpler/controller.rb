@@ -1,9 +1,7 @@
 require_relative 'view'
-require 'byebug'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -12,11 +10,12 @@ module Simpler
       @response = Rack::Response.new
     end
 
-    def make_response(action,params)
+    def make_response(action, params)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-      
+
       set_params(params)
+      @request.env['simpler.params'] = self.params
 
       set_headers
       set_status
@@ -38,11 +37,11 @@ module Simpler
     end
 
     def set_status(sym = :ok)
-      @response.status = Rack::Utils::SYMBOL_TO_STATUS_CODE[sym]
+      @response.status = "#{Rack::Utils::SYMBOL_TO_STATUS_CODE[sym]} #{sym}"
     end
 
     def set_params(hash)
-      hash.each {|key,value| @request.update_param(key, value) }
+      hash.each { |key, value| @request.update_param(key, value) }
     end
 
     def write_response
@@ -52,11 +51,7 @@ module Simpler
     end
 
     def render_body
-      if @request.env['simpler.plain_text']
-        @request.env['simpler.plain_text']
-      else
-        View.new(@request.env).render(binding)
-      end
+      @request.env['simpler.plain_text'] || View.new(@request.env).render(binding)
     end
 
     def params
@@ -65,7 +60,7 @@ module Simpler
 
     def render(template)
       if template.is_a? String
-        @request.env['simpler.template'] = template 
+        @request.env['simpler.template'] = template
       elsif template.is_a? Hash
         @request.env['simpler.plain_text'] = template[:plain] if template[:plain]
       end

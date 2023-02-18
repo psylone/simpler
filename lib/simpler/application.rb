@@ -3,11 +3,9 @@ require 'singleton'
 require 'sequel'
 require_relative 'router'
 require_relative 'controller'
-require 'byebug'
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -29,8 +27,8 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      controller = route.controller.new(env) 
-    rescue 
+      controller = route.controller.new(env)
+    rescue StandardError
       invalid_request_path
     else
       action = route.action
@@ -56,7 +54,7 @@ module Simpler
     end
 
     def make_response(controller, action, params)
-      controller.make_response(action,params)
+      controller.make_response(action, params)
     end
 
     def invalid_request_path
