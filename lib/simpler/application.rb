@@ -6,7 +6,6 @@ require_relative 'controller'
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -29,9 +28,13 @@ module Simpler
     def call(env)
       route = @router.route_for(env)
       controller = route.controller.new(env)
+    rescue StandardError
+      invalid_request_path
+    else
       action = route.action
+      params = route.params
 
-      make_response(controller, action)
+      make_response(controller, action, params)
     end
 
     private
@@ -50,9 +53,15 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action)
-      controller.make_response(action)
+    def make_response(controller, action, params)
+      controller.make_response(action, params)
     end
 
+    def invalid_request_path
+      response = Rack::Response.new
+      response.status = 404
+      response.write("Route for this URL not found\n")
+      response.finish
+    end
   end
 end

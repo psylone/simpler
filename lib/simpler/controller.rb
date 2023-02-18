@@ -2,7 +2,6 @@ require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -11,11 +10,16 @@ module Simpler
       @response = Rack::Response.new
     end
 
-    def make_response(action)
+    def make_response(action, params)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
+      set_params(params)
+      @request.env['simpler.params'] = self.params
+
+      set_headers
+      set_status
+
       send(action)
       write_response
 
@@ -28,8 +32,16 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
+    def set_headers(type = 'text/html')
+      @response['Content-Type'] = type
+    end
+
+    def set_status(sym = :ok)
+      @response.status = "#{Rack::Utils::SYMBOL_TO_STATUS_CODE[sym]} #{sym}"
+    end
+
+    def set_params(hash)
+      hash.each { |key, value| @request.update_param(key, value) }
     end
 
     def write_response
@@ -39,7 +51,7 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      @request.env['simpler.plain_text'] || View.new(@request.env).render(binding)
     end
 
     def params
@@ -47,8 +59,11 @@ module Simpler
     end
 
     def render(template)
-      @request.env['simpler.template'] = template
+      if template.is_a? String
+        @request.env['simpler.template'] = template
+      elsif template.is_a? Hash
+        @request.env['simpler.plain_text'] = template[:plain] if template[:plain]
+      end
     end
-
   end
 end
