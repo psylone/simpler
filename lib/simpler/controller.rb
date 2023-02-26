@@ -22,6 +22,15 @@ module Simpler
       @response.finish
     end
 
+    def status(code)
+      @response.status = code
+    end
+    
+    def headers
+      @response.headers
+    end  
+
+
     private
 
     def extract_name
@@ -47,6 +56,12 @@ module Simpler
     end
 
     def render(template)
+      case template
+      when String
+        headers['Content-Type'] = 'text/html'
+      when Hash
+        headers['Contetnt-Type'] = 'text/plain' if template.key?(:plain)
+      end    
       @request.env['simpler.template'] = template
     end
 
