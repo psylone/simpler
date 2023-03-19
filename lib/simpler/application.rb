@@ -28,7 +28,11 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+
+      return root_not_found if route.nil?
+      
       controller = route.controller.new(env)
+      controller.request.params.merge!(route.params)
       action = route.action
 
       make_response(controller, action)
@@ -52,6 +56,14 @@ module Simpler
 
     def make_response(controller, action)
       controller.make_response(action)
+    end
+
+    def root_not_found
+      [
+        404,
+        { 'Content-Type' => 'text/plain' },
+        ["URL not found\n"]
+      ]
     end
 
   end

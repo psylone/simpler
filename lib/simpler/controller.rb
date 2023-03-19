@@ -47,7 +47,21 @@ module Simpler
     end
 
     def render(template)
+      if template.is_a?(String)
+        headers['Content-Type'] = 'text/html'
+      elsif template.is_a?(Hash) && template.has_key?(:plain)
+        headers['Content-Type'] = 'text/plain'
+      end
+
       @request.env['simpler.template'] = template
+    end
+
+    def status(status)
+      @response.status = status
+    end
+
+    def headers(headers)
+      @response.headers = headers
     end
 
   end
