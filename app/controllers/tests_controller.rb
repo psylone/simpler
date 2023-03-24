@@ -4,5 +4,5 @@ class TestsController < Simpler::Controller
     render plain: { a: 'a', b: 'b' }
   end
 
-  def create; end
+  def show; end
 end
