@@ -1,8 +1,9 @@
 require_relative 'view'
+require 'active_support/all'
+require 'json'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -32,7 +33,6 @@ module Simpler
       @response
     end
 
-
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
@@ -55,9 +55,27 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def format_response(hash)
+      @request.env['simpler.body'] = if hash[:json]
+                                       headers['Content-Type'] = 'text/json'
+                                       hash[:json].to_json
+                                     elsif hash[:xml]
+                                       headers['Content-Type'] = 'text/xml'
+                                       hash[:xml].to_xml
+                                     elsif hash[:plain]
+                                       headers['Content-Type'] = 'text/plain'
+                                       hash[:plain].to_s
+                                     elsif hash[:inline]
+                                       hash[:inline]
+                                     else
+                                       'Unknown format'
+                                     end
     end
 
+    def render(template)
+      format_response(template) if template.instance_of?(Hash)
+
+      @request.env['simpler.template'] = template
+    end
   end
 end
