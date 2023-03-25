@@ -32,7 +32,15 @@ module Simpler
       @env['simpler.template']
     end
 
+    def template_file_path
+      if controller.name
+        @env['simpler.file_path'] = [controller.name, action].join('/') + '.html.erb'
+      end
+    end
+
     def template_path
+      template_file_path
+
       path = template || [controller.name, action].join('/')
 
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
