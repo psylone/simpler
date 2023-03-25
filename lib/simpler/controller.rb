@@ -1,8 +1,9 @@
 require_relative 'view'
+require 'active_support/all'
+require 'json'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -15,6 +16,8 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
+      parameter_assignment
+
       set_default_headers
       send(action)
       write_response
@@ -23,6 +26,21 @@ module Simpler
     end
 
     private
+
+    def status(code)
+      @response.status = code
+    end
+
+    def parameter_assignment
+      number = @request.env['PATH_INFO'].split('/').map(&:to_i).max
+
+      @params ||= { id: number }
+      @request.env['simpler.params'] = @params
+    end
+
+    def headers
+      @response
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
@@ -42,13 +60,29 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
+    attr_reader :params
+
+    def format_response(hash)
+      @request.env['simpler.body'] = if hash[:json]
+                                       headers['Content-Type'] = 'text/json'
+                                       hash[:json].to_json
+                                     elsif hash[:xml]
+                                       headers['Content-Type'] = 'text/xml'
+                                       hash[:xml].to_xml
+                                     elsif hash[:plain]
+                                       headers['Content-Type'] = 'text/plain'
+                                       hash[:plain].to_s
+                                     elsif hash[:inline]
+                                       hash[:inline]
+                                     else
+                                       'Unknown format'
+                                     end
     end
 
     def render(template)
+      format_response(template) if template.instance_of?(Hash)
+
       @request.env['simpler.template'] = template
     end
-
   end
 end
