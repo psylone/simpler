@@ -11,7 +11,8 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.gsub(/\d/, ':id').match(@path)
+        primary_key = @path.split('/')[-1]
+        @method == method && path.gsub(/\d/, primary_key).match(@path)
       end
     end
   end
