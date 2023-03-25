@@ -16,6 +16,8 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
+      parameter_assignment
+
       set_default_headers
       send(action)
       write_response
@@ -27,6 +29,13 @@ module Simpler
 
     def status(code)
       @response.status = code
+    end
+
+    def parameter_assignment
+      number = @request.env['PATH_INFO'].split('/').map(&:to_i).max
+
+      @params ||= { id: number }
+      @request.env['simpler.params'] = @params
     end
 
     def headers
@@ -51,9 +60,7 @@ module Simpler
       View.new(@request.env).render(binding)
     end
 
-    def params
-      @request.params
-    end
+    attr_reader :params
 
     def format_response(hash)
       @request.env['simpler.body'] = if hash[:json]

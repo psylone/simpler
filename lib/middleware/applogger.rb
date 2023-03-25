@@ -16,15 +16,15 @@ class AppLogger
   end
 
   def request_info(request)
-    log = "Request: #{request.env["REQUEST_METHOD"]} #{request.env["REQUEST_URI"]}
+    log = "Request: #{request.env['REQUEST_METHOD']} #{request.env['REQUEST_URI']}
                                                   Handler: #{request.env['simpler.controller'].class.name}##{request.env['simpler.action']}
-                                                  Parameters: #{request.params}"
+                                                  Parameters: #{request.env['simpler.params']}"
 
     @logger.info(log)
   end
 
   def responce_info(status, headers, request)
-    log = "Response: #{status} #{headers["Content-Type"]} #{request.env['simpler.file_path']} "
+    log = "Response: #{status} #{headers['Content-Type']} #{request.env['simpler.file_path']} "
 
     @logger.info(log) if request.env['simpler.file_path']
   end

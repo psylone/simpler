@@ -33,9 +33,9 @@ module Simpler
     end
 
     def template_file_path
-      if controller.name
-        @env['simpler.file_path'] = [controller.name, action].join('/') + '.html.erb'
-      end
+      return unless controller.name
+
+      @env['simpler.file_path'] = [controller.name, action].join('/') + '.html.erb'
     end
 
     def template_path
