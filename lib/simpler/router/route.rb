@@ -11,7 +11,7 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.match(@path)
+        @method == method && path.gsub(/\d/, ':id').match(@path)
       end
     end
   end
