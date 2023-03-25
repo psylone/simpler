@@ -3,5 +3,7 @@ class TestsController < Simpler::Controller
     @time = Time.now
   end
 
-  def show; end
+  def show
+    @params = params[:id]
+  end
 end
