@@ -10,6 +10,8 @@ module Simpler
     end
 
     def render(binding)
+      return template[:plain] if have_plain?
+
       template = File.read(template_path)
 
       ERB.new(template).result(binding)
@@ -33,6 +35,10 @@ module Simpler
       path = template || [controller.name, action].join('/')
 
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
+    end
+
+    def have_plain?
+      template.is_a?(Hash) && !template[:plain].nil?
     end
 
   end
