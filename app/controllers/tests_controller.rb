@@ -12,4 +12,10 @@ class TestsController < Simpler::Controller
     status 201
   end
 
+  def show
+    @test_id = params[:id]
+
+    render 'tests/show'
+  end
+
 end
