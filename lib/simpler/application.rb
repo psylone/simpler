@@ -33,6 +33,10 @@ module Simpler
       controller = route.controller.new(env)
       action = route.action
 
+      env['simpler.logger'].request_msg(env,
+                                        controller: route.controller,
+                                        action: action)
+
       make_response(controller, action)
     end
 

@@ -1,0 +1,15 @@
+# тестовый лог
+Request: GET /tests/3
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [text/html] tests/show.html.erb
+
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {"name"=>"bob", "test"=>"fail"}
+Response: 200 [text/plain]
+
+Request: GET /tests/12
+Handler: TestsController#show
+Parameters: {}
+Response: 200 [text/html] tests/show.html.erb

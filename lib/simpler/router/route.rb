@@ -13,8 +13,6 @@ module Simpler
 
       def match?(method, path, has_id)
         @method == method && @path.match?(path) && @has_id == has_id
-
-        # TODO: ПРОВЕРКА НА СЛУЧАЙ КОРОТКОГО  ПУТИ - TES
       end
     end
   end

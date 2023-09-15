@@ -5,10 +5,11 @@ module Simpler
     attr_reader :name, :request, :response
 
     def initialize(env)
+      @env = env
       @name = extract_name
-      @request = Rack::Request.new(env)
+      @request = Rack::Request.new(@env)
       @response = Rack::Response.new
-      write_params(:id, env['simpler.id']) if env['simpler.id']
+      write_params(:id, @env['simpler.id']) if @env['simpler.id']
     end
 
     def make_response(action)
@@ -17,7 +18,12 @@ module Simpler
 
       set_default_headers
       send(action)
+
       write_response
+
+      @env['simpler.logger'].response_msg(status: @response.status,
+                                          content_type: @response['Content-Type'],
+                                          path: @template_path)
 
       @response.finish
     end
@@ -39,19 +45,29 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      data_from_view = View.new(@request.env).render(binding)
+      @template_path = data_from_view[:template_path]
+
+      data_from_view[:data]
     end
 
     def params
       @request.params
     end
 
-    def write_params(k, v)
-      params[k] = v
+    def write_params(key, value)
+      params[key] = value
     end
 
     def render(template = {})
-      @request.env['simpler.template'] = template
+      if template && template[:plain]
+        @request.env['simpler.template-type'] = :plain
+        @request.env['simpler.template'] = template[:plain]
+        @response['Content-Type'] = 'text/plain'
+      elsif template
+        @request.env['simpler.template-type'] = :path
+        @request.env['simpler.template'] = template
+      end
     end
 
     def status(status_code)

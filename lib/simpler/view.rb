@@ -9,13 +9,22 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
-      # TODO: ADD RENDER :PLAIN AND MORE
-
-      ERB.new(template).result(binding)
+      {
+        data: ERB.new(render_template).result(binding),
+        template_path: @html_path
+      }
     end
 
     private
+
+    def render_template
+      case template_type
+      when :plain, :path
+        template_path
+      else
+        File.read(template_path)
+      end
+    end
 
     def controller
       @env['simpler.controller']
@@ -29,8 +38,21 @@ module Simpler
       @env['simpler.template']
     end
 
+    def template_type
+      @env['simpler.template-type']
+    end
+
     def template_path
-      path = template || [controller.name, action].join('/')
+      path = ''
+      case template_type
+      when :plain
+        return template
+      when :path
+        path = template
+      else
+        path = [controller.name, action].join('/')
+        @html_path = "#{path}.html.erb"
+      end
 
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
