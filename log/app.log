@@ -1,0 +1,14 @@
+I, [2023-10-01T20:28:44.252388 #6864]  INFO -- : 
+********************************************************
+Request:    GET /tests/1
+Handler:    TestsController#show
+Parameters: {:id=>"1"}
+Response:   200 [text/html] tests/show
+
+I, [2023-10-01T20:28:50.838787 #6864]  INFO -- : 
+********************************************************
+Request:    GET /tests
+Handler:    TestsController#index
+Parameters: {}
+Response:   200 [text/html] tests/index
+

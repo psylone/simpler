@@ -3,7 +3,7 @@ require_relative 'view'
 module Simpler
   class Controller
 
-    attr_reader :name, :request, :response
+    attr_reader :name, :request, :response, :status
 
     def initialize(env)
       @name = extract_name
@@ -32,8 +32,14 @@ module Simpler
       @response['Content-Type'] = 'text/html'
     end
 
+    def set_headers
+      @response.headers
+    end
+
     def write_response
       body = render_body
+      @request.env['simpler.response.status'] = @response.status
+      @request.env['simpler.response.header'] = set_headers['Content-Type']
 
       @response.write(body)
     end
@@ -43,11 +49,25 @@ module Simpler
     end
 
     def params
-      @request.params
+      @request.env['simpler.params'].merge!(@request.params)
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    # def render(template, status = {})
+    #   case template
+    #   when String
+    #     set_headers['Content-Type'] = 'text/html'
+    #   when Hash
+    #     if template.has_key?(:plain)
+    #       set_headers['Content-Type'] = 'text/plain'
+    #     end
+    #   end
+
+    def render(template, status = {}) 
+      @request.env['simpler.template'] = template 
+      if status.is_a?(Integer) && status >= 100
+        status = status[:status] || template[:status] 
+        @response.status = status 
+      end 
     end
 
   end
