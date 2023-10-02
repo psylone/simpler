@@ -12,3 +12,53 @@ Handler:    TestsController#index
 Parameters: {}
 Response:   200 [text/html] tests/index
 
+I, [2023-10-02T19:01:22.890165 #2328]  INFO -- : 
+Request:    GET /favicon.ico
+Response:   
+
+I, [2023-10-02T19:02:26.432485 #2370]  INFO -- : 
+********************************************************
+Request:    GET /tests
+Handler:    TestsController#index
+Parameters: {}
+Response:   201 [text/html] tests/index
+
+I, [2023-10-02T19:02:28.887108 #2370]  INFO -- : 
+********************************************************
+Request:    GET /tests/1
+Handler:    TestsController#show
+Parameters: {:id=>"1"}
+Response:   200 [text/html] tests/show
+
+I, [2023-10-02T19:02:31.419626 #2370]  INFO -- : 
+Request:    GET /tests/1/2
+Response:   
+
+I, [2023-10-02T19:02:46.355274 #2370]  INFO -- : 
+********************************************************
+Request:    GET /tests/1
+Handler:    TestsController#show
+Parameters: {:id=>"1"}
+Response:   200 [text/html] tests/show
+
+I, [2023-10-02T19:02:46.821204 #2370]  INFO -- : 
+********************************************************
+Request:    GET /tests/
+Handler:    TestsController#index
+Parameters: {}
+Response:   201 [text/html] tests/index
+
+I, [2023-10-02T19:03:17.334902 #2528]  INFO -- : 
+********************************************************
+Request:    GET /tests/
+Handler:    TestsController#index
+Parameters: {}
+Response:   201 [text/plain] tests/index
+
+I, [2023-10-02T19:03:55.068058 #2559]  INFO -- : 
+********************************************************
+Request:    GET /tests/
+Handler:    TestsController#index
+Parameters: {}
+Response:   201 [text/html] {:plain=>"Plain text response"}
+

@@ -16,6 +16,7 @@ module Simpler
       @request.env['simpler.action'] = action
 
       set_default_headers
+      set_default_status
       send(action)
       write_response
 
@@ -28,18 +29,26 @@ module Simpler
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
     end
 
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
+    def set_default_status
+      status 200
     end
 
-    def set_headers
+    def status(code)
+      @response.status = code
+    end
+
+    def set_default_headers
+      headers['Content-Type'] = 'text/html'
+    end
+
+    def headers
       @response.headers
     end
 
     def write_response
       body = render_body
       @request.env['simpler.response.status'] = @response.status
-      @request.env['simpler.response.header'] = set_headers['Content-Type']
+      @request.env['simpler.response.header'] = headers['Content-Type']
 
       @response.write(body)
     end
@@ -52,22 +61,8 @@ module Simpler
       @request.env['simpler.params'].merge!(@request.params)
     end
 
-    # def render(template, status = {})
-    #   case template
-    #   when String
-    #     set_headers['Content-Type'] = 'text/html'
-    #   when Hash
-    #     if template.has_key?(:plain)
-    #       set_headers['Content-Type'] = 'text/plain'
-    #     end
-    #   end
-
-    def render(template, status = {}) 
+    def render(template) 
       @request.env['simpler.template'] = template 
-      if status.is_a?(Integer) && status >= 100
-        status = status[:status] || template[:status] 
-        @response.status = status 
-      end 
     end
 
   end

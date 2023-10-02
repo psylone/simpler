@@ -2,8 +2,9 @@ class TestsController < Simpler::Controller
 
   def index
     @time = Time.now
-    # render plain: 'Plain text response', status: 404
-    render 'tests/index', status: 201
+    render 'tests/index'
+    status 201
+    headers['Content-Type'] = 'text/plain'
   end
 
   def create
@@ -14,7 +15,6 @@ class TestsController < Simpler::Controller
     @test_id = params[:id]
     @time = Time.now
     render 'tests/show'
-    # render plain: 'Show', status: 201
   end 
 
 end

@@ -28,15 +28,6 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
-      # begin  
-      #   controller = route.controller.new(env)
-      #   action = route.action
-
-      #   make_response(controller, action)
-      # rescue 
-      #   @response = Rack::Response.new
-      #   @response = [404, {}, []]
-      # end 
 
       if route
         controller = route.controller.new(env)
