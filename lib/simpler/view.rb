@@ -10,9 +10,14 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
+      plain = Hash(template)[:plain]
+      if plain
+        "#{plain}\n"
+      else      
+        template = File.read(template_path)
 
-      ERB.new(template).result(binding)
+        ERB.new(template).result(binding)
+      end
     end
 
     private

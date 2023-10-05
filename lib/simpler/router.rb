@@ -19,19 +19,34 @@ module Simpler
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
 
-      @routes.find { |route| route.match?(method, path) }
-    end
+      route = @routes.find { |route| route.match?(method, path) } 
+      env['simpler.route_info'] = route.route_info(env) if route
+      route
+    end 
 
     private
 
     def add_route(method, path, route_point)
+
       route_point = route_point.split('#')
       controller = controller_from_string(route_point[0])
       action = route_point[1]
+
       route = Route.new(method, path, controller, action)
 
       @routes.push(route)
+
     end
+
+    def controller_name
+       "#{route_info[:resource].capitalize}Controller"
+    end
+
+    def controller_class
+      Object.const_get(controller_name)
+    rescue NameError
+      nil
+    end   
 
     def controller_from_string(controller_name)
       Object.const_get("#{controller_name.capitalize}Controller")
