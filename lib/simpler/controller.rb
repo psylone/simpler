@@ -67,8 +67,6 @@ module Simpler
       [302, { "Location" => uri }, []]
     end
 
-
-
     def render(template)
       if Hash(template)[:plain] 
         @response['Content-Type'] = 'text/plain' 
