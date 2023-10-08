@@ -1,4 +1,5 @@
 require 'logger'
+
 class LoggerMiddleware
   def initialize(app)
     @app = app
@@ -17,18 +18,23 @@ class LoggerMiddleware
   private
 
   def build_log(env, status, headers)
-    template = ->(action) { action ? "#{controller_name(env['REQUEST_PATH'])}/#{action}.html.erb" : "none" }
-    handler = ->(controller) { controller ? "#{controller.class}##{env['simpler.action']}" : "none" }
-    parameters = ->(params) { params&.any? ? params : "none" }
-    record = ["Request: #{env['REQUEST_METHOD']} #{env['REQUEST_PATH']}\n",
-              "Handler: #{handler.call(env['simpler.controller'])}\n",
-              "Parameters: #{parameters.call(env['simpler.params'])}\n",
-              "Response: #{status} [#{headers['Content-Type']}] #{template.call(env['simpler.action'])}\n"]
+    request_method = env['REQUEST_METHOD']
+    request_path = env['REQUEST_PATH']
+    controller = env['simpler.controller']
+    action = env['simpler.action']
+    params = env['simpler.params']
 
-    "#{record.join('')}"
+    "Request: #{request_method} #{request_path}\n" \
+    "Handler: #{controller ? "#{controller.class}##{action}" : 'none'}\n" \
+    "Parameters: #{params&.any? ? params : 'none'}\n" \
+    "Response: #{status} [#{headers['Content-Type']}] #{template_name(action)}\n"
   end
 
-  def controller_name(path)
-    path.split('/')[1]
+  def template_name(action)
+    action ? "#{controller_name(action)}/#{action}.html.erb" : 'none'
+  end
+
+  def controller_name(action)
+    action.split('/')[1]
   end
 end

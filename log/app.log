@@ -4,3 +4,21 @@ Handler: TestsController#show
 Parameters: {:id=>"101"}
 Response: 200 [text/html] tests/show.html.erb
 
+I, [2023-10-08T17:02:01.191061 #197756]  INFO -- : 
+Request: GET /tests/101
+Handler: TestsController#show
+Parameters: {:id=>"101"}
+Response: 200 [text/html] /show.html.erb
+
+I, [2023-10-08T17:02:28.846451 #197756]  INFO -- : 
+Request: GET /tests
+Handler: TestsController#index
+Parameters: none
+Response: 201 [text/html] /index.html.erb
+
+I, [2023-10-08T17:02:31.705453 #197756]  INFO -- : 
+Request: GET /
+Handler: none
+Parameters: none
+Response: 404 [text/plain] none
+
