@@ -10,9 +10,13 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
-
-      ERB.new(template).result(binding)
+      puts "Template Value: #{@env['simpler.template']}"
+      if @env['simpler.template'].is_a?(Hash) && @env['simpler.template'].key?(:plain)
+        @env['simpler.template'][:plain]
+      else
+        template = File.read(template_path)
+        ERB.new(template).result(binding)
+      end
     end
 
     private

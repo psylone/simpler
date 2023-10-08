@@ -1,0 +1,6 @@
+I, [2023-10-08T16:47:42.860686 #195930]  INFO -- : 
+Request: GET /tests/101
+Handler: TestsController#show
+Parameters: {:id=>"101"}
+Response: 200 [text/html] tests/show.html.erb
+

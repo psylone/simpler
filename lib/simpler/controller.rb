@@ -15,11 +15,20 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
+      get_params
       set_default_headers
       send(action)
       write_response
 
       @response.finish
+    end
+
+    def status(code)
+      @response.status = code
+    end
+
+    def set_header(name, value)
+      @response[name] = value
     end
 
     private
@@ -46,9 +55,15 @@ module Simpler
       @request.params
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def get_params
+      @request.params['method'] = @request.env['REQUEST_METHOD']
+      @request.env['simpler.params'].each do |param_key, param_value|
+        @request.params[param_key] = param_value
+      end
     end
 
+    def render(bindings)
+      @request.env['simpler.template'] = bindings
+    end
   end
 end
