@@ -29,9 +29,6 @@ module Simpler
         case fragment
         when "new"
           [nil, :new]
-        when nil
-          action = @request.get? ? :index : :create
-          [nil, action]
         else
           [fragment, :show]
         end
@@ -54,7 +51,7 @@ module Simpler
         str_regexp = path_parts.join("\\/")
         /#{str_regexp}$/
       end
-
+   
       def path_fragments(path)
         @fragments ||= path.split("/").reject { |s| s.empty? }
       end          

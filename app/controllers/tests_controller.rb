@@ -10,7 +10,6 @@ class TestsController < Simpler::Controller
   end
 
   def show
-    @test = Test.find(params[:id])
     @id = params[:id]
   end
 

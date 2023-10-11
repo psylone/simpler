@@ -24,7 +24,7 @@ module Simpler
     end
 
     def params
-      @params = route_info.merge!
+      @params ||= route_info.merge(request_params)
     end
 
     def request_params
