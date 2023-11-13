@@ -22,6 +22,16 @@ module Simpler
       @routes.find { |route| route.match?(method, path) }
     end
 
+    def not_found(env)
+      method = env['REQUEST_METHOD'].downcase.to_sym
+      path = env['PATH_INFO']
+      Rack::Response.new.then do |response|
+        response.status = 404
+        response.write("[#{method} #{path}] route not found\n")
+        response.finish
+      end
+    end
+
     private
 
     def add_route(method, path, route_point)

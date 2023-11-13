@@ -34,6 +34,5 @@ module Simpler
 
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
-
   end
 end
