@@ -4,7 +4,6 @@ class TestsController < Simpler::Controller
     @time = Time.now
   end
 
-
   def show
     render plain: params['id']
   end
@@ -12,5 +11,4 @@ class TestsController < Simpler::Controller
   def create
 
   end
-
 end
