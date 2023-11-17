@@ -22,10 +22,14 @@ module Simpler
       @response.finish
     end
 
+    def status(status_code)
+      @response.status = status_code
+    end
+
     private
 
     def extract_name
-      self.class.name.match('(?<name>.+)Controller')[:name].downcase
+      self.class.name.match('(?<name>.+)Controller')[:name]&.downcase
     end
 
     def set_default_headers
