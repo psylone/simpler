@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Simpler
   class Router
     class Route
@@ -12,9 +14,19 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.match(@path)
+        path = __path(path) if id_present?
+        @method == method && path.match("^#{@path}$")
       end
 
+      private
+
+      def id_present?
+        @path.match(':id')
+      end
+
+      def __path(path)
+        "#{path.split(%r{/\d}).first}/:id"
+      end
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
@@ -11,14 +13,18 @@ module Simpler
       @response = Rack::Response.new
     end
 
-    def make_response(action)
+    def make_response(action, logger)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
+      @logger = logger
 
+      @logger.info("Handler: #{self.class.name}\##{action}")
+      @logger.info("Parameters: #{prepare_params}")
       set_default_headers
       send(action)
       write_response
 
+      @logger.info("Response: #{@response.status} [#{@response.content_type}] #{name}.html.erb")
       @response.finish
     end
 
@@ -43,12 +49,24 @@ module Simpler
     end
 
     def params
-      @request.params
+      pattern = '((?<path>.*)/(?<id>\d*))'
+      @request.path.match(pattern)
+    end
+
+    def prepare_params
+      params.named_captures
+    end
+
+    def status(status_code)
+      @response.status = status_code
+    end
+
+    def headers
+      @response
     end
 
     def render(template)
       @request.env['simpler.template'] = template
     end
-
   end
 end

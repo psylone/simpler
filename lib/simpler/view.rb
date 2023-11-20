@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'erb'
 
 module Simpler
@@ -10,6 +12,8 @@ module Simpler
     end
 
     def render(binding)
+      return plain if plain?
+
       template = File.read(template_path)
 
       ERB.new(template).result(binding)
@@ -35,5 +39,12 @@ module Simpler
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
 
+    def plain?
+      template.is_a?(Hash) && template.key?(:plain)
+    end
+
+    def plain
+      template[:plain]
+    end
   end
 end

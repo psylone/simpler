@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require 'singleton'
 require 'sequel'
@@ -26,15 +28,23 @@ module Simpler
       @router.instance_eval(&block)
     end
 
-    def call(env)
+    def call(env, logger)
+      @logger = logger
       route = @router.route_for(env)
+
+      return not_found_error if route.nil?
+
       controller = route.controller.new(env)
       action = route.action
 
-      make_response(controller, action)
+      make_response(controller, action, logger)
     end
 
     private
+
+    def not_found_error
+      [404, { 'Content-Type' => 'text/plain' }, ['Not found']]
+    end
 
     def require_app
       Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
@@ -50,9 +60,8 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action)
-      controller.make_response(action)
+    def make_response(controller, action, logger)
+      controller.make_response(action, logger)
     end
-
   end
 end
