@@ -9,11 +9,15 @@ module Simpler
 
     include Singleton
 
-    attr_reader :db
+    attr_reader :db, :controller, :action, :params
 
     def initialize
       @router = Router.new
       @db = nil
+
+      @controller = nil
+      @action = nil
+      @params = nil
     end
 
     def bootstrap!
@@ -31,11 +35,11 @@ module Simpler
 
       return make_404_response(env) if route.nil?
 
-      controller = route.controller.new(env)
-      action = route.action
-      params = params_for_route(route, env)
+      @controller = route.controller.new(env)
+      @action = route.action
+      @params = params_for_route(route, env)
 
-      make_response(controller, action, params)
+      make_response(@controller, @action, @params)
     end
 
     private
@@ -63,6 +67,7 @@ module Simpler
     end
 
     def params_for_route(route, env)
+      # TODO: query params
       if route.params.any?
         match = env['PATH_INFO'].match(route.path)
 
@@ -71,6 +76,5 @@ module Simpler
 
       {}
     end
-
   end
 end

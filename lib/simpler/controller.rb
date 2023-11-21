@@ -15,6 +15,7 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
       @request.env['params'] = params
+      @request.env['simpler.template'] = [name, action].join('/')
 
       set_default_headers
       send(action)
@@ -63,6 +64,5 @@ module Simpler
     def render(template)
       @request.env['simpler.template'] = template
     end
-
   end
 end
