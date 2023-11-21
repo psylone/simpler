@@ -28,6 +28,9 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+
+      return make_404_response(env) if route.nil?
+
       controller = route.controller.new(env)
       action = route.action
       params = params_for_route(route, env)
@@ -53,6 +56,10 @@ module Simpler
 
     def make_response(controller, action, params)
       controller.make_response(action, params)
+    end
+
+    def make_404_response(env)
+      Controller.new(env).response_404
     end
 
     def params_for_route(route, env)

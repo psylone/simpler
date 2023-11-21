@@ -23,6 +23,11 @@ module Simpler
       @response.finish
     end
 
+    def response_404
+      @response.status = 404
+      @response.finish
+    end
+
     def status(status_code)
       @response.status = status_code
     end
