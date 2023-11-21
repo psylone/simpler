@@ -30,8 +30,9 @@ module Simpler
       route = @router.route_for(env)
       controller = route.controller.new(env)
       action = route.action
+      params = params_for_route(route, env)
 
-      make_response(controller, action)
+      make_response(controller, action, params)
     end
 
     private
@@ -50,8 +51,18 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action)
-      controller.make_response(action)
+    def make_response(controller, action, params)
+      controller.make_response(action, params)
+    end
+
+    def params_for_route(route, env)
+      if route.params.any?
+        match = env['PATH_INFO'].match(route.path)
+
+        return route.params.to_h { |key| [key, match[key]] }
+      end
+
+      {}
     end
 
   end

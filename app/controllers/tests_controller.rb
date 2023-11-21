@@ -1,3 +1,5 @@
+require 'byebug'
+
 class TestsController < Simpler::Controller
 
   def index
@@ -6,6 +8,9 @@ class TestsController < Simpler::Controller
 
   def create
 
+  end
+
+  def show
   end
 
 end
