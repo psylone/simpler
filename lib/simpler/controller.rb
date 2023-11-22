@@ -1,6 +1,5 @@
 require_relative 'view'
-
-require 'byebug'
+require 'json'
 
 module Simpler
   class Controller
@@ -12,6 +11,8 @@ module Simpler
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
       @request.params.merge!(params)
+      @render_mode = :view
+      @render_content = binding
     end
 
     def make_response(action)
@@ -54,17 +55,37 @@ module Simpler
     end
 
     def write_response
-      body = render_body
+      body = send("render_#{@render_mode}", @render_content)
 
       @response.write(body)
     end
 
-    def render_body
+    def render(options)
+      mode, content = options.first
+
+      @render_mode = mode
+      @render_content = content
+    end
+
+    def render_view(binding)
       View.new(@request.env).render(binding)
     end
 
-    def render(template)
+    def render_plain(content)
+      @response['Content-Type'] = 'text/plain'
+      @request.env.delete('simpler.template')
+      content
+    end
+
+    def render_template(template)
       @request.env['simpler.template'] = template
+      render_view(binding)
+    end
+
+    def render_json(content)
+      @response['Content-Type'] = 'application/json'
+      @request.env.delete('simpler.template')
+      content.to_json
     end
   end
 end

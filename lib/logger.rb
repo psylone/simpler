@@ -1,5 +1,3 @@
-require 'byebug'
-
 class MyLogger
   def initialize(app)
     @app = app
