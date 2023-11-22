@@ -8,9 +8,10 @@ class MyLogger
   def call(env)
     request = Rack::Request.new(env)
     response = @app.call(env)
+
     log = make_log(request)
     write_log(log)
-    # debugger
+
     response
   end
 
@@ -35,11 +36,11 @@ class MyLogger
   end
 
   def action
-    @app.action
+    @app.controller.request.env['simpler.action']
   end
 
   def params
-    @app.params
+    @app.controller.params
   end
 
   def status

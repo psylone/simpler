@@ -1,20 +1,22 @@
 require_relative 'view'
 
+require 'byebug'
+
 module Simpler
   class Controller
 
     attr_reader :name, :request, :response
 
-    def initialize(env)
+    def initialize(env, params = {})
       @name = extract_name
       @request = Rack::Request.new(env)
       @response = Rack::Response.new
+      @request.params.merge!(params)
     end
 
-    def make_response(action, params)
+    def make_response(action)
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
-      @request.env['params'] = params
       @request.env['simpler.template'] = [name, action].join('/')
 
       set_default_headers
@@ -38,7 +40,7 @@ module Simpler
     end
 
     def params
-      @request.env['params']
+      @request.params
     end
 
     private

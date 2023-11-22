@@ -16,8 +16,6 @@ module Simpler
       @db = nil
 
       @controller = nil
-      @action = nil
-      @params = nil
     end
 
     def bootstrap!
@@ -35,11 +33,11 @@ module Simpler
 
       return make_404_response(env) if route.nil?
 
-      @controller = route.controller.new(env)
-      @action = route.action
-      @params = params_for_route(route, env)
+      params = params_for_route(env, route)
+      action = route.action
+      @controller = route.controller.new(env, params)
 
-      make_response(@controller, @action, @params)
+      make_response(action)
     end
 
     private
@@ -58,16 +56,17 @@ module Simpler
       @db = Sequel.connect(database_config)
     end
 
-    def make_response(controller, action, params)
-      controller.make_response(action, params)
+    def make_response(action)
+      @controller.make_response(action)
     end
 
     def make_404_response(env)
-      Controller.new(env).response_404
+      @controller = Controller.new(env)
+
+      @controller.response_404
     end
 
-    def params_for_route(route, env)
-      # TODO: query params
+    def params_for_route(env, route)
       if route.params.any?
         match = env['PATH_INFO'].match(route.path)
 

@@ -13,5 +13,4 @@ class TestsController < Simpler::Controller
   def show
     @test = Test.find(id: params[:id])
   end
-
 end

@@ -43,3 +43,73 @@ Handler: TestsController#show
 Parameters: {:id=>"1"}
 Response: 200 [text/html] tests/show.html.erb
 -
+Request: GET /tests
+Handler: TestsController#index
+Parameters: 
+Response: 200 [text/html] tests/index.html.erb
+-
+Request: GET /tests
+Handler: TestsController#index
+Parameters: 
+Response: 200 [text/html] tests/index.html.erb
+-
+Request: GET /tests
+Handler: TestsController#index
+Parameters: 
+Response: 200 [text/html] tests/index.html.erb
+-
+Request: GET /tests
+Handler: TestsController#
+Parameters: 
+Response: 200 [text/html] tests/index.html.erb
+-
+Request: GET /tests
+Handler: TestsController#
+Parameters: 
+Response: 200 [text/html] tests/index.html.erb
+-
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [text/html] tests/index.html.erb
+-
+Request: GET /tests/1
+Handler: TestsController#show
+Parameters: {:id=>"1"}
+Response: 200 [text/html] tests/show.html.erb
+-
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {"category"=>"Backend"}
+Response: 200 [text/html] tests/index.html.erb
+-
+Request: GET /tes
+Handler: Simpler::Controller#
+Parameters: {}
+Response: 404 [] 
+-
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [text/html] tests/index.html.erb
+-
+Request: GET /tes
+Handler: Simpler::Controller#
+Parameters: {"sdf"=>"1"}
+Response: 404 [] 
+-
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [text/html] tests/index.html.erb
+-
+Request: GET /tests
+Handler: TestsController#index
+Parameters: {}
+Response: 200 [text/html] tests/list.html.erb
+-
+Request: GET /test
+Handler: Simpler::Controller#
+Parameters: {}
+Response: 404 [] 
+-
