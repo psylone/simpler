@@ -3,6 +3,7 @@ require 'singleton'
 require 'sequel'
 require_relative 'router'
 require_relative 'controller'
+require 'pry'
 
 module Simpler
   class Application
@@ -28,6 +29,9 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+
+      return not_found if route.nil?
+
       controller = route.controller.new(env)
       action = route.action
 
@@ -54,5 +58,8 @@ module Simpler
       controller.make_response(action)
     end
 
+    def not_found
+      [404, { 'Content-Type' => 'text/plain' }, ['Not found']]
+    end
   end
 end
