@@ -1,4 +1,4 @@
-require_relative 'router/route'
+  require_relative 'router/route'
 
 module Simpler
   class Router
@@ -20,6 +20,16 @@ module Simpler
       path = env['PATH_INFO']
 
       @routes.find { |route| route.match?(method, path) }
+    end
+
+    def not_found(env)
+      method = env['REQUEST_METHOD'].downcase.to_sym
+      path = env['PATH_INFO']
+      Rack::Response.new.then do |response|
+        response.status = 404
+        response.write("[#{method} #{path}] route for current application is not found\n")
+        response.finish
+      end
     end
 
     private

@@ -1,0 +1,21 @@
+
+    Request: GET
+    Handler: NilClass#
+    Parameters: 
+    Response: 404 [] 
+    
+    Request: GET
+    Handler: TestsController#render_plain
+    Parameters: {}
+    Response: 200 [text/plain] plain
+    
+    Request: GET
+    Handler: TestsController#index
+    Parameters: {}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"125"}
+    Response: 200 [text/html] plain
+    
