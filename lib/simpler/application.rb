@@ -53,7 +53,6 @@ module Simpler
     end
 
     def make_response(controller, action)
-      # binding.pry
       controller.make_response(action)
     end
 
