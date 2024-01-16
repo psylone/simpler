@@ -1,4 +1,5 @@
 require_relative 'view'
+require 'pry'
 
 module Simpler
   class Controller
@@ -18,7 +19,6 @@ module Simpler
       set_default_headers
       send(action)
       write_response
-
       @response.finish
     end
 
@@ -50,5 +50,8 @@ module Simpler
       @request.env['simpler.template'] = template
     end
 
+    def status(code)
+      @response.status = code
+    end
   end
 end
