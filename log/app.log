@@ -1,0 +1,116 @@
+###########################################################################################
+    Request: GET
+    Handler: TestsController#index
+    Parameters: 
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#index
+    Parameters: 
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#index
+    Parameters: 
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#index
+    Parameters: {}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"101"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"101"}
+    Response: 201 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 201 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 201 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#show
+    Parameters: {"id"=>"1"}
+    Response: 201 [text/html] 
+    
+    Request: GET
+    Handler: TestsController#index
+    Parameters: {}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: NilClass#
+    Parameters: 
+    Response: 404 [] 
+    
+    Request: GET
+    Handler: TestsController#index
+    Parameters: {}
+    Response: 200 [text/html] 
+    
+    Request: GET
+    Handler: NilClass#
+    Parameters: 
+    Response: 404 [] 
+    
+    Request: GET
+    Handler: TestsController#index
+    Parameters: {}
+    Response: 200 [text/html] 
+    
