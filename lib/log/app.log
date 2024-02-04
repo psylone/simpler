@@ -1,0 +1,39 @@
+I, [2024-02-04T20:44:01.374901 #24989]  INFO -- : 2024-02-04 20:44:01Request: [GET] /tests Handler: #<TestsController:0x00007fa2ec026570>#index Parameters: {}
+I, [2024-02-04T21:50:02.550581 #31409]  INFO -- : 2024-02-04 21:50:02Request: [GET] /tests Handler: #<TestsController:0x00007f6b080266b8>#index Parameters: {}
+I, [2024-02-04T21:50:41.558603 #31409]  INFO -- : 2024-02-04 21:50:41Request: [GET] /tests Handler: #<TestsController:0x00007f6b08025858>#index Parameters: {}
+I, [2024-02-04T21:50:45.432642 #31409]  INFO -- : 2024-02-04 21:50:45Request: [GET] /tests Handler: #<TestsController:0x00007f6b08081018>#index Parameters: {}
+I, [2024-02-04T22:00:06.777799 #363]  INFO -- : 2024-02-04 22:00:06Request: [GET] /tests Handler: #<TestsController:0x00007fba540264d8>#index Parameters: {}
+I, [2024-02-04T22:00:06.777880 #363]  INFO -- : Response: [200] text/html 
+I, [2024-02-04T22:04:26.477444 #363]  INFO -- : 2024-02-04 22:04:26Request: [GET] /tests?category=Backend Handler: #<TestsController:0x000055acef292da8>#index Parameters: {"category"=>"Backend"}
+I, [2024-02-04T22:04:26.477543 #363]  INFO -- : Response: [200] text/html 
+I, [2024-02-04T22:22:25.013680 #2520]  INFO -- : 2024-02-04 22:22:25
+Request: [GET] /tests?category=Backend 
+Handler: #<TestsController:0x00007fd42c026310>#index 
+Parameters: {"category"=>"Backend"}
+
+I, [2024-02-04T22:23:48.793601 #2664]  INFO -- : 2024-02-04 22:23:48
+Request: [GET] /tests?category=Backend 
+Handler: #<TestsController:0x00007fe464026278>#index 
+Parameters: {"category"=>"Backend"}
+
+I, [2024-02-04T22:23:48.793715 #2664]  INFO -- : Response: [200] text/html 
+
+
+I, [2024-02-04T22:28:54.101400 #3295]  INFO -- : 2024-02-04 22:28:54
+Request: [GET] /tests?category=Backend2 
+Handler: #<TestsController:0x00007f9bc0026a30>#index 
+Parameters: {"category"=>"Backend2"}
+Response: [200] text/html 
+
+I, [2024-02-04T22:30:10.242829 #3295]  INFO -- : 2024-02-04 22:30:10
+Request: [GET] /tests?category=Backend2 
+Handler: #<TestsController:0x000056307b35a1b8>#index 
+Parameters: {"category"=>"Backend2"}
+Response: [200] text/html 
+
+I, [2024-02-04T22:39:22.013776 #4785]  INFO -- : 
+Request: [GET] /tests?category=Backend3 
+Handler: #<TestsController:0x00007fe3d4026588>#index 
+Parameters: {"category"=>"Backend3"}
+Response: [200] text/html 
+
