@@ -31,7 +31,7 @@ module Simpler
       route = @router.route_for(env)
 
       return not_found if route.nil?
-
+      # binding.pry
       controller = route.controller.new(env)
       action = route.action
 
