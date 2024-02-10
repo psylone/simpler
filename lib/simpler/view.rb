@@ -5,12 +5,15 @@ module Simpler
 
     VIEW_BASE_PATH = 'app/views'.freeze
 
+    attr_reader :used_template
+
     def initialize(env)
       @env = env
+      @used_template = template_path
     end
 
     def render(binding)
-      template = File.read(template_path)
+      template = File.read(@used_template)
 
       ERB.new(template).result(binding)
     end

@@ -20,7 +20,7 @@ class RequestLogger
   def logging(request, response)
     status, headers, body = response
     content_type = headers['Content-Type']
-    template = headers['X-Rander-Template-Path'] #добавить в заголовки ответа
+    template = headers['Rander-Template-Path'] 
     
     @logger.info(
       "\nRequest: [#{request.request_method}] #{request.fullpath} \n" \

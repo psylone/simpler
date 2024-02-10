@@ -28,6 +28,14 @@ module Simpler
       @response.finish
     end
 
+    def status(status_code)
+      @response.status = status_code
+    end
+
+    def headers
+      @response
+    end
+
     private
 
     def extract_name
@@ -45,7 +53,9 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      view = View.new(@request.env)
+      @response['Rander-Template-Path'] = view.used_template.to_s
+      view.render(binding)
     end
 
     def params
