@@ -1,16 +1,14 @@
-class TestsController < Simpler::Controller
+# frozen_string_literal: true
 
+class TestsController < Simpler::Controller
   def index
     @time = Time.now
-    render plain: "Some plain text"
+    render plain: 'Some plain text'
   end
 
-  def create
+  def create; end
 
-  end
-
-  def show     
+  def show
     render plain: "Params: #{params} Id: #{params[:id]}, name: #{@name}"
   end
-
 end

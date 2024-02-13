@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'logger'
 
 class RequestLogger
@@ -11,17 +13,17 @@ class RequestLogger
     response = @app.call(env)
 
     logging(request, response)
-    
+
     response
   end
 
   private
 
   def logging(request, response)
-    status, headers, body = response
+    status, headers, _body = response
     content_type = headers['Content-Type']
-    template = headers['Rander-Template-Path'] 
-    
+    template = headers['Rander-Template-Path']
+
     @logger.info(
       "\nRequest: [#{request.request_method}] #{request.fullpath} \n" \
       "Handler: #{request.env['simpler.controller']}#"\
@@ -30,5 +32,4 @@ class RequestLogger
       "Response: [#{status}] #{content_type} #{template}\n"
     )
   end
-
 end

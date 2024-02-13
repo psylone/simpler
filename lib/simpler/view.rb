@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'erb'
 
 module Simpler
   class View
-
-    VIEW_BASE_PATH = 'app/views'.freeze
+    VIEW_BASE_PATH = 'app/views'
 
     attr_reader :used_template, :content_type
 
@@ -14,10 +15,11 @@ module Simpler
     end
 
     def render(binding)
-      return plain_render if template.is_a?(Hash) && template.has_key?(:plain)
+      return plain_render if template.is_a?(Hash) && template.key?(:plain)
+
       template_file = File.read(@used_template)
 
-      ERB.new(template_file ).result(binding)
+      ERB.new(template_file).result(binding)
     end
 
     private
@@ -44,6 +46,5 @@ module Simpler
 
       Simpler.root.join(VIEW_BASE_PATH, "#{path}.html.erb")
     end
-
   end
 end
