@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'view'
 
 module Simpler
   class Controller
-
     attr_reader :name, :request, :response
 
     def initialize(env)
@@ -15,21 +16,24 @@ module Simpler
       @request.env['simpler.controller'] = self
       @request.env['simpler.action'] = action
 
-      set_default_headers
       send(action)
       write_response
 
       @response.finish
     end
 
+    def status(status_code)
+      @response.status = status_code
+    end
+
+    def headers
+      @response
+    end
+
     private
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
-    end
-
-    def set_default_headers
-      @response['Content-Type'] = 'text/html'
     end
 
     def write_response
@@ -39,16 +43,19 @@ module Simpler
     end
 
     def render_body
-      View.new(@request.env).render(binding)
+      view = View.new(@request.env)
+      @response['Rander-Template-Path'] = view.used_template.to_s
+      @response['Content-Type'] = view.content_type.to_s
+      view.render(binding)
     end
 
     def params
-      @request.params
+      path = '((?<path>.*)/(?<id>\d*))'
+      @request.path.match(path)
     end
 
-    def render(template)
-      @request.env['simpler.template'] = template
+    def render(parametr)
+      @request.env['simpler.template'] = parametr
     end
-
   end
 end

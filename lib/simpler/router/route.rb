@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Simpler
   class Router
     class Route
-
       attr_reader :controller, :action
 
       def initialize(method, path, controller, action)
@@ -12,9 +13,19 @@ module Simpler
       end
 
       def match?(method, path)
-        @method == method && path.match(@path)
+        path = idless_path(path) if id?
+        @method == method && path.match("^#{@path}$")
       end
 
+      private
+
+      def id?
+        @path.match(':id')
+      end
+
+      def idless_path(path)
+        "#{path.split(%r{/\d}).first}/:id"
+      end
     end
   end
 end

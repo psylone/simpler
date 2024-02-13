@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require 'singleton'
 require 'sequel'
@@ -6,7 +8,6 @@ require_relative 'controller'
 
 module Simpler
   class Application
-
     include Singleton
 
     attr_reader :db
@@ -28,6 +29,8 @@ module Simpler
 
     def call(env)
       route = @router.route_for(env)
+      return page_404 unless route
+
       controller = route.controller.new(env)
       action = route.action
 
@@ -36,8 +39,12 @@ module Simpler
 
     private
 
+    def page_404
+      Rack::Response.new(['<h1>404 Not Found</h1>'], 404, { 'Content-Type' => 'text/html' }).finish
+    end
+
     def require_app
-      Dir["#{Simpler.root}/app/**/*.rb"].each { |file| require file }
+      Dir["#{Simpler.root}/app/**/*.rb"].sort.each { |file| require file }
     end
 
     def require_routes
@@ -53,6 +60,5 @@ module Simpler
     def make_response(controller, action)
       controller.make_response(action)
     end
-
   end
 end
