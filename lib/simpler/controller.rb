@@ -49,7 +49,8 @@ module Simpler
     end
 
     def params
-      @request.params
+      path = '((?<path>.*)/(?<id>\d*))'
+      @request.path.match(path)
     end
 
     def render(parametr)
