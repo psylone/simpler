@@ -13,7 +13,9 @@ module Simpler
 
     def make_response(action)
       @request.env['simpler.controller'] = self
+      @request.env['simpler.controllername'] = self.class.name
       @request.env['simpler.action'] = action
+      @request.env[:id] = get_id(@request.env) 
 
       set_default_headers
       send(action)
@@ -23,6 +25,18 @@ module Simpler
     end
 
     private
+
+    def get_id(env)
+      env['PATH_INFO'].match('\d+').to_s.to_i
+    end
+
+    def headers
+      @response
+    end
+
+    def status(status)  
+      @response.status = status
+    end
 
     def extract_name
       self.class.name.match('(?<name>.+)Controller')[:name].downcase
@@ -49,6 +63,6 @@ module Simpler
     def render(template)
       @request.env['simpler.template'] = template
     end
-
   end
+
 end

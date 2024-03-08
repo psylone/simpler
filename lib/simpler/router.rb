@@ -18,11 +18,14 @@ module Simpler
     def route_for(env)
       method = env['REQUEST_METHOD'].downcase.to_sym
       path = env['PATH_INFO']
-
-      @routes.find { |route| route.match?(method, path) }
+      route = @routes.find { |route| route.match?(method, path) }
     end
 
     private
+
+    def no_route
+      Route.new('get', '/no_page', ErrorController, 'no_page')
+    end
 
     def add_route(method, path, route_point)
       route_point = route_point.split('#')
