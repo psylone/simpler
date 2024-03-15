@@ -1,0 +1,16 @@
+I, [2024-03-08T20:57:11.299500 #42217]  INFO -- request: GET/tests/312
+I, [2024-03-08T20:57:11.303658 #42217]  INFO -- Handler: TestsController
+I, [2024-03-08T20:57:11.303703 #42217]  INFO -- Parameter: #show
+I, [2024-03-08T20:57:11.303720 #42217]  INFO -- Responce: 200 OK [text/html] id 312
+I, [2024-03-08T20:57:15.189928 #42217]  INFO -- request: GET/tests/303
+I, [2024-03-08T20:57:15.190177 #42217]  INFO -- Handler: TestsController
+I, [2024-03-08T20:57:15.190203 #42217]  INFO -- Parameter: #show
+I, [2024-03-08T20:57:15.190219 #42217]  INFO -- Responce: 200 OK [text/html] id 303
+I, [2024-03-08T20:57:19.222804 #42217]  INFO -- request: GET/tests/500
+I, [2024-03-08T20:57:19.223113 #42217]  INFO -- Handler: TestsController
+I, [2024-03-08T20:57:19.223143 #42217]  INFO -- Parameter: #show
+I, [2024-03-08T20:57:19.223162 #42217]  INFO -- Responce: 200 OK [text/html] id 500
+I, [2024-03-08T20:57:23.190205 #42217]  INFO -- request: GET/tests/999
+I, [2024-03-08T20:57:23.190521 #42217]  INFO -- Handler: TestsController
+I, [2024-03-08T20:57:23.190555 #42217]  INFO -- Parameter: #show
+I, [2024-03-08T20:57:23.190575 #42217]  INFO -- Responce: 200 OK [text/html] id 999

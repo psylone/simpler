@@ -10,12 +10,18 @@ module Simpler
     end
 
     def render(binding)
-      template = File.read(template_path)
+      template = check_plain || File.read(template_path)
 
       ERB.new(template).result(binding)
     end
 
     private
+
+    def check_plain
+      return nil if @env['simpler.template'].nil?
+      
+      @env['simpler.template'][:plain]
+    end
 
     def controller
       @env['simpler.controller']
